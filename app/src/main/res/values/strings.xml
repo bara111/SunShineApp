@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">SunShine</string>
+    <string name="sunshine">SunShine</string>
+    <string name="base_url">http://api.openweathermap.org/</string>
+    <string name="lat_nablus">32.22</string>
+    <string name="lon_nablus">35.22</string>
+    <string name="api_key">829740af696dc0258609d2d0a6a8472a</string>
+    <string name="today">Today</string>
+    <string name="weather_details">Weather Details</string>
+    <string name="solid">solid</string>
+    <string name="insert">Insert</string>
+    <string name="records">Records</string>
+</resources>

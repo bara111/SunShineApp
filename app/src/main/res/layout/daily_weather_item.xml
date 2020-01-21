@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="itemViewModel"
+            type="com.example.weatherapp.models.WeatherDailyData" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.9">
+
+            <ImageView
+                android:id="@+id/icon_iv"
+                android:layout_width="@dimen/iconDimens"
+                android:layout_height="@dimen/iconDimens"
+                android:layout_gravity="center"
+                android:layout_marginLeft="15dp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/date_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="5dp"
+                    android:gravity="start"
+                    android:lines="2"
+                    android:text="@{itemViewModel.getFormatedTime()}"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/listItemTextSize"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/condition_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+
+                    android:text="@{itemViewModel.weather.get(0).description}"
+                    android:textSize="@dimen/listItemTextSize"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".6"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/max_temp_tv"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="6dp"
+                android:text="@{itemViewModel.main.converterTempMax()}"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/listItemTextMaxTempSize"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/min_temp_tv"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="3dp"
+                android:text="@{itemViewModel.main.converterTempMin()}"
+                android:textSize="@dimen/listItemTextMinTempSize"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </LinearLayout>
+</layout>
