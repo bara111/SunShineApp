@@ -17,7 +17,5 @@ object RetrofitModule {
             .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-
-
     }
 }

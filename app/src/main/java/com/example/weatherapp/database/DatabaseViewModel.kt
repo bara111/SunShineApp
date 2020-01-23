@@ -14,7 +14,7 @@ class DatabaseViewModel(application: Application) : AndroidViewModel(application
     init {
         val wordsDao = WeatherRoomDatabase.getDatabase(application).wordDao()
         repository = WeatherRepository(wordsDao)
-        records = repository.allWeatherRecord
+        records = repository.weatherRecords
     }
     fun insert(word: WeatherEntity) = viewModelScope.launch {
         repository.insert(word)

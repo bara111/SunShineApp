@@ -1,10 +1,9 @@
 package com.example.weatherapp.di.component
 
 import android.content.Context
-import com.example.weatherapp.AppSubcomponents
+import com.example.weatherapp.AppSubComponents
 import com.example.weatherapp.di.module.MainActivityPresenterModule
 import com.example.weatherapp.di.module.RetrofitModule
-import com.example.weatherapp.ui.details.DetailsActivity
 import com.example.weatherapp.ui.details.DetailsComponent
 import com.example.weatherapp.ui.weather.MainActivity
 import dagger.BindsInstance
@@ -13,7 +12,7 @@ import javax.inject.Singleton
 
 // Definition of the Application graph
 @Singleton
-@Component(modules = [MainActivityPresenterModule::class, RetrofitModule::class, AppSubcomponents::class]) //tell the dagger to generate code with all dependencies it's called whenever you want to inject app graph in the activity
+@Component(modules = [MainActivityPresenterModule::class, RetrofitModule::class, AppSubComponents::class]) //tell the dagger to generate code with all dependencies it's called whenever you want to inject app graph in the activity
 interface AppComponent {
     @Component.Factory // used to pass instances that already available at the time we are creating instance of the graph
     interface Factory {

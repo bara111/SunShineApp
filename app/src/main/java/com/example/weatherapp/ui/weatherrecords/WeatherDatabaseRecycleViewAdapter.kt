@@ -4,13 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.weatherapp.R
 import com.example.weatherapp.database.WeatherEntity
-import com.example.weatherapp.databinding.DailyWeatherItemBinding
 import com.example.weatherapp.databinding.DatabaseItemLayoutBinding
 import com.example.weatherapp.extension.ctx
-import com.example.weatherapp.models.WeatherDailyData
 
 class WeatherDatabaseRecycleViewAdapter(
     var list: List<WeatherEntity>?,
@@ -27,8 +24,7 @@ class WeatherDatabaseRecycleViewAdapter(
             false
         )
         return ViewHolder(
-            binding,
-            itemClick
+            binding
         ).apply {
             itemView.setOnClickListener {
                 list?.get(adapterPosition)?.let {
@@ -49,10 +45,9 @@ class WeatherDatabaseRecycleViewAdapter(
     }
 
     class ViewHolder(
-        val binding: DatabaseItemLayoutBinding,
-        private val itemClick: (WeatherEntity) -> Unit
+        val binding: DatabaseItemLayoutBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        var dailyData: WeatherEntity? = null
+        private var dailyData: WeatherEntity? = null
         fun bind(data: WeatherEntity) {
             binding.databaseViewModel = data
             dailyData = data

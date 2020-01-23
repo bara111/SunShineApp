@@ -8,4 +8,4 @@ import dagger.Module
         DetailsComponent::class
     ]
 )
-class AppSubcomponents
+class AppSubComponents

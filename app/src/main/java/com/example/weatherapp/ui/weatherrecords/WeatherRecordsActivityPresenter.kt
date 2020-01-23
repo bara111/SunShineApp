@@ -9,7 +9,7 @@ import com.example.weatherapp.database.DatabaseViewModel
 class WeatherRecordsActivityPresenter(
     private val lifecycleOwner: LifecycleOwner,
     private val View: WeatherRecordsContract.View,
-    private val viewModelStoreOwner: ViewModelStoreOwner
+    viewModelStoreOwner: ViewModelStoreOwner
 ) : WeatherRecordsContract.Presenter {
 
     private var wordViewModel: DatabaseViewModel = ViewModelProvider(viewModelStoreOwner).get(
@@ -24,6 +24,4 @@ class WeatherRecordsActivityPresenter(
             }
         })
     }
-
-
 }
