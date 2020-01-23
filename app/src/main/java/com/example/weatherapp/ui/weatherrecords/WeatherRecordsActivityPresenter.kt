@@ -18,7 +18,7 @@ class WeatherRecordsActivityPresenter(
 
 
     override fun openDatabase() {
-        wordViewModel.Records.observe(lifecycleOwner, Observer { words ->
+        wordViewModel.records.observe(lifecycleOwner, Observer { words ->
             words?.let {
                 View.updateViewData(words)
             }

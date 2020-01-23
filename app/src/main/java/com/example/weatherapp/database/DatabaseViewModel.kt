@@ -9,12 +9,12 @@ import kotlinx.coroutines.launch
 class DatabaseViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository: WeatherRepository
-    val Records: LiveData<List<WeatherEntity>>
+    val records: LiveData<List<WeatherEntity>>
 
     init {
         val wordsDao = WeatherRoomDatabase.getDatabase(application).wordDao()
         repository = WeatherRepository(wordsDao)
-        Records = repository.allWeatherRecord
+        records = repository.allWeatherRecord
     }
     fun insert(word: WeatherEntity) = viewModelScope.launch {
         repository.insert(word)

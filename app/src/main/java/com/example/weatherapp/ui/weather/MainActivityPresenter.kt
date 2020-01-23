@@ -20,8 +20,8 @@ class MainActivityPresenter @Inject constructor(var context: Context) : MainCont
     @Singleton
     @Inject
     lateinit var retrofit: Retrofit
-    private var weatherResponse: List<WeatherDailyData>? = null
     lateinit var view: MainContract.View
+    private var weatherResponse: List<WeatherDailyData>? = null
     private lateinit var latNablus: String
     private lateinit var lonNablus: String
     private lateinit var apiKey: String
