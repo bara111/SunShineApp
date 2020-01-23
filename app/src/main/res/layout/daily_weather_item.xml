@@ -5,7 +5,7 @@
 
         <variable
             name="itemViewModel"
-            type="com.example.weatherapp.models.WeatherDailyData" />
+            type="com.example.weatherapp.data.models.WeatherDailyData" />
     </data>
 
     <LinearLayout
@@ -39,7 +39,7 @@
                     android:layout_marginTop="5dp"
                     android:gravity="start"
                     android:lines="2"
-                    android:text="@{itemViewModel.getFormatedTime()}"
+                    android:text="@{itemViewModel.formatedTime}"
                     android:textColor="@color/colorBlack"
                     android:textSize="@dimen/listItemTextSize"
                     android:textStyle="bold" />
@@ -49,7 +49,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
-
                     android:text="@{itemViewModel.weather.get(0).description}"
                     android:textSize="@dimen/listItemTextSize"
                     android:textStyle="bold" />

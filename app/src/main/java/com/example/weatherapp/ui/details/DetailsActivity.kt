@@ -1,5 +1,7 @@
 package com.example.weatherapp.ui.details
 
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -8,38 +10,25 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.example.weatherapp.BaseApp
 import com.example.weatherapp.R
-import com.example.weatherapp.constants.Constants
-import com.example.weatherapp.database.WeatherEntity
+import com.example.weatherapp.data.database.WeatherEntity
 import com.example.weatherapp.databinding.ActivityDetailsBinding
-import com.example.weatherapp.models.WeatherDailyData
+import com.example.weatherapp.data.models.WeatherDailyData
 
 class DetailsActivity : AppCompatActivity(), DetailsContract.View {
     private lateinit var detailsActivityPresenter: DetailsActivityPresenter
-    private val TAG = DetailsActivity::class.java.simpleName
     private lateinit var binding: ActivityDetailsBinding
     private lateinit var weatherDailyData: WeatherDailyData
-    private lateinit var weatherEntity: WeatherEntity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         (application as BaseApp).appComponent.detailsComponent().create().inject(this)
         super.onCreate(savedInstanceState)
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_details)
         binding.lifecycleOwner = this
         setSupportActionBar(binding.toolbar)
         detailsActivityPresenter = DetailsActivityPresenter(this)
-        weatherDailyData = intent.getSerializableExtra(Constants.DETAILS) as WeatherDailyData
-        binding.degreeTv.text = weatherDailyData.wind.getDegreeWithUnit()
-        binding.speedTv.text = weatherDailyData.wind.getSpeedWithUnit()
-        binding.description.text = weatherDailyData.weather[0].description
-        binding.maxTempTv.text = weatherDailyData.main.converterTempMax()
-        binding.minTempTv.text = weatherDailyData.main.converterTempMin()
-        binding.time.text = weatherDailyData.getFormatedTime()
-        binding.humidityTv.text = weatherDailyData.main.getHumidityWithUnit()
-        weatherEntity = WeatherEntity(
-            weatherDailyData.getFormatedTime(),
-            weatherDailyData.main.converterTempMax(),
-            weatherDailyData.main.converterTempMin()
-        )
+        weatherDailyData = intent.getSerializableExtra(EXTRA_DETAILS) as WeatherDailyData
+        binding.weatherData = weatherDailyData
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -50,11 +39,26 @@ class DetailsActivity : AppCompatActivity(), DetailsContract.View {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.insert_data -> {
-                detailsActivityPresenter.addRecord(weatherEntity)
+                detailsActivityPresenter.addRecord(
+                    weatherDailyData.getFormatedTime(),
+                    weatherDailyData.main.converterTempMax(),
+                    weatherDailyData.main.converterTempMin()
+                )
                 Toast.makeText(applicationContext, "added item", Toast.LENGTH_LONG).show()
                 true
             }
             else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+
+    companion object {
+        private val EXTRA_DETAILS: String = "${DetailsActivity::class.java.name} _DETAILS_EXTRA"
+        fun newIntent(context: Context, weatherDailyData: WeatherDailyData): Intent {
+            return Intent(context, DetailsActivity::class.java).putExtra(
+                EXTRA_DETAILS,
+                weatherDailyData
+            )
         }
     }
 }

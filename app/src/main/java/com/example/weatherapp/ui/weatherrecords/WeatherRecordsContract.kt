@@ -1,6 +1,6 @@
 package com.example.weatherapp.ui.weatherrecords
 
-import com.example.weatherapp.database.WeatherEntity
+import com.example.weatherapp.data.database.WeatherEntity
 
 class WeatherRecordsContract {
     interface Presenter {

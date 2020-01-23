@@ -8,7 +8,6 @@ import javax.inject.Singleton
 
 @Module
 object RetrofitModule {
-
     @Provides
     @Singleton
     fun getRetrofit(): Retrofit {

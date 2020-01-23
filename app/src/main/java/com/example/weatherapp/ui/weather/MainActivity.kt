@@ -10,26 +10,21 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.weatherapp.BaseApp
 import com.example.weatherapp.R
-import com.example.weatherapp.constants.Constants
 import com.example.weatherapp.databinding.ActivityMainBinding
 import com.example.weatherapp.ui.details.DetailsActivity
 import com.example.weatherapp.ui.weatherrecords.WeatherRecordsActivity
 import javax.inject.Inject
-import javax.inject.Singleton
-
 
 class MainActivity : AppCompatActivity(),
     MainContract.View {
-    @Singleton
     @Inject
-     lateinit var mainActivityPresenter: MainActivityPresenter
+    lateinit var mainActivityPresenter: MainActivityPresenter
     private lateinit var binding: ActivityMainBinding
     val TAG: String = MainActivity::javaClass.name
-
     override fun onCreate(savedInstanceState: Bundle?) {
-
         (application as BaseApp).appComponent.inject(this)
         super.onCreate(savedInstanceState)
+
         binding = DataBindingUtil.setContentView(
             this,
             R.layout.activity_main
@@ -44,8 +39,6 @@ class MainActivity : AppCompatActivity(),
             getString(R.string.api_key)
         )
         initView()
-
-
     }
 
     override fun initView() {
@@ -65,21 +58,19 @@ class MainActivity : AppCompatActivity(),
             WeatherRecycleViewAdapter(
                 mainActivityPresenter.getWeatherDaily()
             ) {
-                var myIntent = Intent(this, DetailsActivity::class.java)
-                myIntent.putExtra(Constants.DETAILS,it)
-                startActivity(myIntent)
+                startActivity(DetailsActivity.newIntent(this, it))
             }
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
         return true
     }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.records -> {
-                startActivity(Intent(this,WeatherRecordsActivity::class.java))
+                startActivity(Intent(this, WeatherRecordsActivity::class.java))
                 true
             }
             else -> super.onOptionsItemSelected(item)

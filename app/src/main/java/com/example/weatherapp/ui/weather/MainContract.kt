@@ -1,10 +1,9 @@
 package com.example.weatherapp.ui.weather
 
-import com.example.weatherapp.BaseContract
-import com.example.weatherapp.models.WeatherDailyData
+import com.example.weatherapp.data.models.WeatherDailyData
 
 class MainContract {
-    interface Presenter: BaseContract.Presenter<View> {
+    interface Presenter {
         fun requestData()
         fun getMaxTemp(): String?
         fun getMinTemp(): String?

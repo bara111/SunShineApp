@@ -1,13 +1,7 @@
 package com.example.weatherapp.ui.details
-
-import com.example.weatherapp.database.WeatherEntity
-
 class DetailsContract {
     interface Presenter{
-        fun addRecord(weatherEntity: WeatherEntity)
-
+        fun addRecord(time: String,maxTemp: String,minTemp:String)
     }
-    interface View{
-
-    }
+    interface View
 }

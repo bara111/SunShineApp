@@ -5,15 +5,14 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherapp.R
-import com.example.weatherapp.database.WeatherEntity
+import com.example.weatherapp.data.database.WeatherEntity
 import com.example.weatherapp.databinding.DatabaseItemLayoutBinding
 import com.example.weatherapp.extension.ctx
 
 class WeatherDatabaseRecycleViewAdapter(
     var list: List<WeatherEntity>?,
     var itemClick: (WeatherEntity) -> Unit
-) :
-    RecyclerView.Adapter<WeatherDatabaseRecycleViewAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<WeatherDatabaseRecycleViewAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding: DatabaseItemLayoutBinding = DataBindingUtil.inflate(
             LayoutInflater.from(parent.ctx),

@@ -8,13 +8,12 @@ import com.bumptech.glide.Glide
 import com.example.weatherapp.R
 import com.example.weatherapp.databinding.DailyWeatherItemBinding
 import com.example.weatherapp.extension.ctx
-import com.example.weatherapp.models.WeatherDailyData
+import com.example.weatherapp.data.models.WeatherDailyData
 
 class WeatherRecycleViewAdapter(
     var list: List<WeatherDailyData>?,
     var itemClick: (WeatherDailyData) -> Unit
-) :
-    RecyclerView.Adapter<WeatherRecycleViewAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<WeatherRecycleViewAdapter.ViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -25,8 +24,7 @@ class WeatherRecycleViewAdapter(
             false
         )
         return ViewHolder(
-            binding,
-            itemClick
+            binding
         ).apply {
             itemView.setOnClickListener {
                 list?.get(adapterPosition)?.let {
@@ -47,14 +45,13 @@ class WeatherRecycleViewAdapter(
     }
 
     class ViewHolder(
-        val binding: DailyWeatherItemBinding,
-        private val itemClick: (WeatherDailyData) -> Unit
+        val binding: DailyWeatherItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        var dailyData: WeatherDailyData? = null
+        private var dailyData: WeatherDailyData? = null
         fun bind(data: WeatherDailyData) {
             Glide.with(itemView.ctx).load(data.weather[0].getUrl()).into(binding.iconIv)
             binding.itemViewModel = data
-            dailyData = data
+            this.dailyData = data
             binding.executePendingBindings()
         }
     }

@@ -1,12 +1,9 @@
 package com.example.weatherapp.ui.weather
 
 import android.content.Context
-import android.util.Log
-import com.example.weatherapp.constants.Constants
-
-import com.example.weatherapp.models.WeatherResponse
-import com.example.weatherapp.network.WeatherService
-import com.example.weatherapp.models.WeatherDailyData
+import com.example.weatherapp.data.models.WeatherResponse
+import com.example.weatherapp.data.network.WeatherService
+import com.example.weatherapp.data.models.WeatherDailyData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -17,7 +14,6 @@ import javax.inject.Singleton
 @Singleton
 class MainActivityPresenter @Inject constructor(var context: Context) : MainContract.Presenter {
 
-    @Singleton
     @Inject
     lateinit var retrofit: Retrofit
     lateinit var view: MainContract.View
@@ -78,18 +74,6 @@ class MainActivityPresenter @Inject constructor(var context: Context) : MainCont
         this.latNablus=latNablus
         this.lonNablus=lonNablus
         this.apiKey=apiKey
-    }
-
-    override fun subscribe() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun unsubscribe() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun attach(view: MainContract.View) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
 

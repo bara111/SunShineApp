@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
 
+        <variable
+            name="weatherData"
+            type="com.example.weatherapp.data.models.WeatherDailyData" />
     </data>
-
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -45,14 +45,13 @@
 
                 <TextView
                     android:id="@+id/degree_tv"
-
                     android:layout_width="wrap_content"
-
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
                     android:layout_margin="10dp"
                     android:gravity="start"
                     android:lines="1"
+                    android:text="@{weatherData.wind.getDegreeWithUnit()}"
                     android:textColor="@color/colorBlack"
                     android:textSize="@dimen/detailsTextSize"
                     android:textStyle="bold" />
@@ -71,47 +70,16 @@
                 <TextView
                     android:id="@+id/speed_tv"
                     android:layout_width="wrap_content"
-
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
                     android:layout_margin="10dp"
                     android:gravity="start"
                     android:lines="2"
+                    android:text="@{weatherData.wind.getSpeedWithUnit()}"
                     android:textColor="@color/colorBlack"
                     android:textSize="@dimen/detailsTextSize"
                     android:textStyle="bold" />
             </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/hastag" />
-
-                <TextView
-                    android:id="@+id/description"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:layout_margin="10dp"
-                    android:gravity="start"
-                    android:lines="2"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/detailsTextSize"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
 
         </LinearLayout>
 
@@ -120,6 +88,7 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:text="@{weatherData.main.converterTempMax()}"
                 android:id="@+id/max_temp_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -133,6 +102,8 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:text="@{weatherData.main.converterTempMin()}"
+
                 android:id="@+id/min_temp_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -158,9 +129,9 @@
                 android:src="@drawable/time_and_date" />
 
             <TextView
+                android:text="@{weatherData.getFormatedTime()}"
                 android:id="@+id/time"
                 android:layout_width="wrap_content"
-
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:layout_margin="10dp"
@@ -184,7 +155,7 @@
                 android:src="@drawable/humidity" />
 
             <TextView
-
+                android:text="@{weatherData.main.getHumidityWithUnit()}"
                 android:id="@+id/humidity_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

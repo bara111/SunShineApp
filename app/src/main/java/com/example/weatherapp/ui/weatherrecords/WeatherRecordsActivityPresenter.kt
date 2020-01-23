@@ -4,7 +4,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
-import com.example.weatherapp.database.DatabaseViewModel
+import com.example.weatherapp.data.database.DatabaseViewModel
 
 class WeatherRecordsActivityPresenter(
     private val lifecycleOwner: LifecycleOwner,
