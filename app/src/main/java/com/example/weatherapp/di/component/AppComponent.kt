@@ -20,5 +20,5 @@ interface AppComponent {
     }
 
     fun inject(mainActivity: MainActivity)//With the inject(mainActivity: MainActivity)method in the @Component interface, we're telling Dagger that MainActivity requests injection and that it has to provide what the Activity is injecting
-    fun DetailsComponent(): DetailsComponent.Factory
+    fun detailsComponent(): DetailsComponent.Factory
 }

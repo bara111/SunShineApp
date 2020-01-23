@@ -1,7 +1,6 @@
 package com.example.weatherapp.models
 
 import java.io.Serializable
-import kotlin.contracts.Returns
 
 data class Wind(
     val deg: Int,

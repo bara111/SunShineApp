@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -67,7 +66,7 @@ class MainActivity : AppCompatActivity(),
                 mainActivityPresenter.getWeatherDaily()
             ) {
                 var myIntent = Intent(this, DetailsActivity::class.java)
-                myIntent.putExtra(Constants.DETAILDATA,it)
+                myIntent.putExtra(Constants.DETAILS,it)
                 startActivity(myIntent)
             }
 

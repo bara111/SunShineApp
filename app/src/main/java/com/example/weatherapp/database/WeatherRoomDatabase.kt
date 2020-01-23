@@ -6,8 +6,9 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 @Database(entities = [WeatherEntity::class], version = 1, exportSchema = false)
- abstract class WeatherRoomDatabase : RoomDatabase() {
+abstract class WeatherRoomDatabase : RoomDatabase() {
     abstract fun wordDao(): WeatherDao
+
     companion object {
         @Volatile
         private var INSTANCE: WeatherRoomDatabase? = null

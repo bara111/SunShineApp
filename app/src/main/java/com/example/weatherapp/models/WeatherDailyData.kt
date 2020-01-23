@@ -6,7 +6,8 @@ import java.io.Serializable
 
 data class WeatherDailyData(
     val clouds: Clouds,
-    val dt: Int,
+    @SerializedName("dt")
+    val unixValue: Int,
     @SerializedName("dt_txt")
     val time: String,
     val main: Main,
@@ -15,10 +16,10 @@ data class WeatherDailyData(
     val weather: List<Weather>,
     val wind: Wind
 
-): Serializable {
+) : Serializable {
     fun getFormatedTime(): String {
 
         return java.time.format.DateTimeFormatter.ISO_INSTANT
-            .format(java.time.Instant.ofEpochSecond(dt.toLong()))
+            .format(java.time.Instant.ofEpochSecond(unixValue.toLong()))
     }
 }

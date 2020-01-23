@@ -16,6 +16,7 @@ class DatabaseViewModel(application: Application) : AndroidViewModel(application
         repository = WeatherRepository(wordsDao)
         records = repository.weatherRecords
     }
+
     fun insert(word: WeatherEntity) = viewModelScope.launch {
         repository.insert(word)
     }

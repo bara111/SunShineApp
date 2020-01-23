@@ -1,7 +1,9 @@
 package com.example.weatherapp.models
 
+import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 data class Rain(
-    val `3h`: Double
+    @SerializedName("`3h`")
+    val snowValue: Double
 ): Serializable

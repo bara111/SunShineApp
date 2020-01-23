@@ -21,18 +21,15 @@ class DetailsActivity : AppCompatActivity(), DetailsContract.View {
     private lateinit var weatherEntity: WeatherEntity
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        (application as BaseApp).appComponent.DetailsComponent().create().inject(this)
-
+        (application as BaseApp).appComponent.detailsComponent().create().inject(this)
         super.onCreate(savedInstanceState)
-
         binding = DataBindingUtil.setContentView(this, R.layout.activity_details)
         binding.lifecycleOwner = this
-
         setSupportActionBar(binding.toolbar)
         detailsActivityPresenter = DetailsActivityPresenter(this)
-        weatherDailyData = intent.getSerializableExtra(Constants.DETAILDATA) as WeatherDailyData
-        binding.degreeTv.text = weatherDailyData.wind.deg.toString()
-        binding.speedTv.text = weatherDailyData.wind.speed.toString()
+        weatherDailyData = intent.getSerializableExtra(Constants.DETAILS) as WeatherDailyData
+        binding.degreeTv.text = weatherDailyData.wind.getDegreeWithUnit()
+        binding.speedTv.text = weatherDailyData.wind.getSpeedWithUnit()
         binding.description.text = weatherDailyData.weather[0].description
         binding.maxTempTv.text = weatherDailyData.main.converterTempMax()
         binding.minTempTv.text = weatherDailyData.main.converterTempMin()
@@ -43,18 +40,18 @@ class DetailsActivity : AppCompatActivity(), DetailsContract.View {
             weatherDailyData.main.converterTempMax(),
             weatherDailyData.main.converterTempMin()
         )
-
     }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.appbar, menu)
         return true
     }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.insert_data -> {
                 detailsActivityPresenter.addRecord(weatherEntity)
                 Toast.makeText(applicationContext, "added item", Toast.LENGTH_LONG).show()
-
                 true
             }
             else -> super.onOptionsItemSelected(item)

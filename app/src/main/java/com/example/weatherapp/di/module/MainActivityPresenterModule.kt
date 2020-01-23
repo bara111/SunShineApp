@@ -7,10 +7,8 @@ import dagger.Module
 import javax.inject.Singleton
 
 @Module
-   abstract class MainActivityPresenterModule {
+abstract class MainActivityPresenterModule {
     @Singleton
-
     @Binds
     abstract fun provideMainActivityPresenter(mainActivityPresenter: MainActivityPresenter): MainContract.Presenter
-
 }

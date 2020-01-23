@@ -1,9 +1,11 @@
 package com.example.weatherapp.models
 
+import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 data class City(
-    val coord: Coord,
+    @SerializedName("coord")
+    val coordinates: Coord,
     val country: String,
     val id: Int,
     val name: String,

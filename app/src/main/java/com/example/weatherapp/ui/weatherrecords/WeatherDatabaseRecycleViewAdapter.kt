@@ -14,8 +14,6 @@ class WeatherDatabaseRecycleViewAdapter(
     var itemClick: (WeatherEntity) -> Unit
 ) :
     RecyclerView.Adapter<WeatherDatabaseRecycleViewAdapter.ViewHolder>() {
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding: DatabaseItemLayoutBinding = DataBindingUtil.inflate(
             LayoutInflater.from(parent.ctx),
