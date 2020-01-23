@@ -1,11 +1,9 @@
 package com.example.weatherapp.di.module
 
-import android.content.Context
 import com.example.weatherapp.ui.weather.MainActivityPresenter
 import com.example.weatherapp.ui.weather.MainContract
 import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import javax.inject.Singleton
 
 @Module
@@ -13,6 +11,6 @@ import javax.inject.Singleton
     @Singleton
 
     @Binds
-    abstract fun proivdeMainActivityPresenter(mainActivityPresenter: MainActivityPresenter): MainContract.Presenter
+    abstract fun provideMainActivityPresenter(mainActivityPresenter: MainActivityPresenter): MainContract.Presenter
 
 }

@@ -11,7 +11,7 @@ object RetrofitModule {
 
     @Provides
     @Singleton
-    fun getRertrofit(): Retrofit {
+    fun getRetrofit(): Retrofit {
         var baseUrl = "http://api.openweathermap.org/"
         return Retrofit.Builder()
             .baseUrl(baseUrl)

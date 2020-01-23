@@ -43,7 +43,6 @@ class MainActivityPresenter @Inject constructor(var context: Context) : MainCont
             }
 
             override fun onFailure(call: Call<WeatherResponse>, t: Throwable) {
-                Log.d(Constants.TAG, t.toString() + "")
             }
         })
 
