@@ -7,7 +7,6 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.weatherapp.BaseApp
 import com.example.weatherapp.R
 import com.example.weatherapp.databinding.ActivityMainBinding
@@ -20,7 +19,6 @@ class MainActivity : AppCompatActivity(),
     @Inject
     lateinit var mainActivityPresenter: MainActivityPresenter
     private lateinit var binding: ActivityMainBinding
-    val TAG: String = MainActivity::javaClass.name
     override fun onCreate(savedInstanceState: Bundle?) {
         (application as BaseApp).appComponent.inject(this)
         super.onCreate(savedInstanceState)
@@ -46,20 +44,19 @@ class MainActivity : AppCompatActivity(),
     }
 
     override fun updateViewData() {
-        binding.progressCircular.visibility = View.GONE
-        binding.WeatherRV.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        binding.WeatherRV.hasFixedSize()
-        binding.conditionTv.text = mainActivityPresenter.getDescription()
-        binding.todayHighTempTv.text = mainActivityPresenter.getMaxTemp()
-        binding.todayLowTempTv.text = mainActivityPresenter.getMinTemp()
-
-        binding.WeatherRV.adapter =
-            WeatherRecycleViewAdapter(
-                mainActivityPresenter.getWeatherDaily()
-            ) {
-                startActivity(DetailsActivity.newIntent(this, it))
-            }
+        binding.apply {
+            progressCircular.visibility = View.GONE
+            WeatherRV.hasFixedSize()
+            conditionTv.text = mainActivityPresenter.getDescription()
+            todayHighTempTv.text = mainActivityPresenter.getMaxTemp()
+            todayLowTempTv.text = mainActivityPresenter.getMinTemp()
+            WeatherRV.adapter =
+                WeatherRecycleViewAdapter(
+                    mainActivityPresenter.getWeatherDaily()
+                ) {
+                    startActivity(DetailsActivity.newIntent(applicationContext, it))
+                }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -77,4 +74,7 @@ class MainActivity : AppCompatActivity(),
         }
     }
 
+    companion object {
+        val TAG: String = MainActivity::javaClass.name
+    }
 }

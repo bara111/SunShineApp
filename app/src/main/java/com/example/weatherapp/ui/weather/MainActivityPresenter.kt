@@ -1,6 +1,7 @@
 package com.example.weatherapp.ui.weather
 
 import android.content.Context
+import android.util.Log
 import com.example.weatherapp.data.models.WeatherResponse
 import com.example.weatherapp.data.network.WeatherService
 import com.example.weatherapp.data.models.WeatherDailyData
@@ -39,6 +40,7 @@ class MainActivityPresenter @Inject constructor(var context: Context) : MainCont
             }
 
             override fun onFailure(call: Call<WeatherResponse>, t: Throwable) {
+                Log.d(MainActivity.TAG, t.message)
             }
         })
 
@@ -70,10 +72,10 @@ class MainActivityPresenter @Inject constructor(var context: Context) : MainCont
         lonNablus: String,
         apiKey: String
     ) {
-        this.view=view
-        this.latNablus=latNablus
-        this.lonNablus=lonNablus
-        this.apiKey=apiKey
+        this.view = view
+        this.latNablus = latNablus
+        this.lonNablus = lonNablus
+        this.apiKey = apiKey
     }
 
 

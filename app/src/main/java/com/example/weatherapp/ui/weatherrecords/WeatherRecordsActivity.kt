@@ -19,7 +19,7 @@ class WeatherRecordsActivity : AppCompatActivity(), WeatherRecordsContract.View 
             lifecycleOwner = this@WeatherRecordsActivity
         }
         setSupportActionBar(binding.toolbar)
-        weatherRecordsActivityPresenter = WeatherRecordsActivityPresenter(this, this, this)
+        weatherRecordsActivityPresenter = WeatherRecordsActivityPresenter(applicationContext,this)
         weatherRecordsActivityPresenter.openDatabase()
     }
 

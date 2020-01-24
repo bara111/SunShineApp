@@ -1,27 +1,26 @@
 package com.example.weatherapp.ui.weatherrecords
 
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelStoreOwner
-import com.example.weatherapp.data.database.DatabaseViewModel
+import android.content.Context
+import com.example.weatherapp.data.database.WeatherDao
+import com.example.weatherapp.data.database.WeatherEntity
+import com.example.weatherapp.data.database.WeatherRoomDatabase
 
 class WeatherRecordsActivityPresenter(
-    private val lifecycleOwner: LifecycleOwner,
-    private val View: WeatherRecordsContract.View,
-    viewModelStoreOwner: ViewModelStoreOwner
+    context: Context,var view:WeatherRecordsContract.View
 ) : WeatherRecordsContract.Presenter {
+    private var weatherRoomDatabase = WeatherRoomDatabase.getDatabase(context)
+    private var dao: WeatherDao
+    private lateinit var weatherRecords: List<WeatherEntity>
 
-    private var wordViewModel: DatabaseViewModel = ViewModelProvider(viewModelStoreOwner).get(
-        DatabaseViewModel::class.java
-    )
-
+    init {
+        dao = weatherRoomDatabase.wordDao()
+    }
 
     override fun openDatabase() {
-        wordViewModel.records.observe(lifecycleOwner, Observer { words ->
-            words?.let {
-                View.updateViewData(words)
-            }
-        })
+        weatherRecords = dao.getRecords()
+        this.view.updateViewData(weatherRecords)
+
     }
+
+
 }

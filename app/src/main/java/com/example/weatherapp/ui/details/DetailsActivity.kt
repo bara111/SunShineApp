@@ -26,7 +26,7 @@ class DetailsActivity : AppCompatActivity(), DetailsContract.View {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_details)
         binding.lifecycleOwner = this
         setSupportActionBar(binding.toolbar)
-        detailsActivityPresenter = DetailsActivityPresenter(this)
+        detailsActivityPresenter = DetailsActivityPresenter(applicationContext)
         weatherDailyData = intent.getSerializableExtra(EXTRA_DETAILS) as WeatherDailyData
         binding.weatherData = weatherDailyData
     }
