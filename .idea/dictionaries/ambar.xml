@@ -3,7 +3,13 @@
     <words>
       <w>appid</w>
       <w>coord</w>
+      <w>descriptiontext</w>
       <w>formated</w>
+      <w>listtext</w>
+      <w>maxtemp</w>
+      <w>maxtemptext</w>
+      <w>mintemp</w>
+      <w>mintemptext</w>
       <w>nablus</w>
       <w>recyclerview</w>
       <w>weatherapp</w>

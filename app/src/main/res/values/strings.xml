@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">SunShine</string>
-    <string name="sunshine">SunShine</string>
     <string name="base_url">http://api.openweathermap.org/</string>
     <string name="lat_nablus">32.22</string>
     <string name="lon_nablus">35.22</string>
