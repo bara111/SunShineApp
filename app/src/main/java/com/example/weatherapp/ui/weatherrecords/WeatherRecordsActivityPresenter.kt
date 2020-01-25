@@ -21,6 +21,4 @@ class WeatherRecordsActivityPresenter(
         this.view.updateViewData(this.weatherRecords)
 
     }
-
-
 }

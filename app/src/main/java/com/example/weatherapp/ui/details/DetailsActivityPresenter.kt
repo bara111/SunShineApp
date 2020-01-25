@@ -14,6 +14,6 @@ class DetailsActivityPresenter(var context: Context) : DetailsContract.Presenter
     }
 
     override fun addRecord(time: String, maxTemp: String, minTemp: String) {
-        dao.insert(WeatherEntity(time,maxTemp,minTemp))
+        dao.insert(WeatherEntity(time, maxTemp, minTemp))
     }
 }

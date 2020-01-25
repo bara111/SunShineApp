@@ -6,7 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherapp.R
 import com.example.weatherapp.data.database.WeatherEntity
-import com.example.weatherapp.databinding.DatabaseItemLayoutBinding
+import com.example.weatherapp.databinding.DatabaseItemBinding
 import com.example.weatherapp.extension.ctx
 
 class WeatherDatabaseRecycleViewAdapter(
@@ -14,9 +14,9 @@ class WeatherDatabaseRecycleViewAdapter(
     var itemClick: (WeatherEntity) -> Unit
 ) : RecyclerView.Adapter<WeatherDatabaseRecycleViewAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding: DatabaseItemLayoutBinding = DataBindingUtil.inflate(
+        val binding: DatabaseItemBinding = DataBindingUtil.inflate(
             LayoutInflater.from(parent.ctx),
-            R.layout.database_item_layout,
+            R.layout.database_item,
             parent,
             false
         )
@@ -42,7 +42,7 @@ class WeatherDatabaseRecycleViewAdapter(
     }
 
     class ViewHolder(
-        val binding: DatabaseItemLayoutBinding
+        val binding: DatabaseItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         private var dailyData: WeatherEntity? = null
         fun bind(data: WeatherEntity) {

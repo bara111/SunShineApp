@@ -12,5 +12,4 @@
     <dimen name="mainMaxTempTextSize">70sp</dimen>
     <dimen name="mainMinTempTextSize">40sp</dimen>
     <dimen name="descriptionTextSize">30sp</dimen>
-
 </resources>

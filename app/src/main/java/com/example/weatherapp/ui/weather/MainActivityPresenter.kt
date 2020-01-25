@@ -12,6 +12,7 @@ import retrofit2.Retrofit
 import javax.inject.Inject
 import javax.inject.Singleton
 
+@Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 @Singleton
 class MainActivityPresenter @Inject constructor(var context: Context) : MainContract.Presenter {
 
@@ -38,7 +39,6 @@ class MainActivityPresenter @Inject constructor(var context: Context) : MainCont
                     view.updateViewData()
                 }
             }
-
             override fun onFailure(call: Call<WeatherResponse>, t: Throwable) {
                 Log.d(MainActivity.TAG, t.message)
             }
@@ -49,26 +49,6 @@ class MainActivityPresenter @Inject constructor(var context: Context) : MainCont
     override fun getWeatherDaily(): List<WeatherDailyData>? {
         return weatherResponse
     }
-
-//    override fun getMaxTemp(): String? {
-//        return weatherResponse?.get(0)?.main?.converterTempMax()
-//    }
-//
-//    override fun getMinTemp(): String? {
-//        return weatherResponse?.get(0)?.main?.converterTempMin()
-//    }
-//
-//    override fun getDescription(): String? {
-//        return weatherResponse!![0].weather[0].description
-//    }
-//
-//    override fun getWeatherDaily(): List<WeatherDailyData>? {
-//        return weatherResponse
-//    }
-//
-//    override fun getUrl(): String {
-//        return weatherResponse?.get(0)?.weather!![0].getUrl()
-//    }
 
     override fun setValues(
         view: MainContract.View,
@@ -81,8 +61,6 @@ class MainActivityPresenter @Inject constructor(var context: Context) : MainCont
         this.lonNablus = lonNablus
         this.apiKey = apiKey
     }
-
-
 }
 
 

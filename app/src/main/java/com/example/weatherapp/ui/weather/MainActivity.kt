@@ -46,9 +46,7 @@ class MainActivity : AppCompatActivity(),
         binding.apply {
             progressCircular.visibility = View.GONE
             WeatherRV.hasFixedSize()
-            weatherData=mainActivityPresenter.getWeatherDaily()?.get(0)
-//            todayHighTempTv.text = mainActivityPresenter.getMaxTemp()
-//            todayLowTempTv.text = mainActivityPresenter.getMinTemp()
+            weatherData = mainActivityPresenter.getWeatherDaily()?.get(0)
             WeatherRV.adapter =
                 WeatherRecycleViewAdapter(
                     mainActivityPresenter.getWeatherDaily()

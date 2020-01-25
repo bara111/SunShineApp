@@ -22,14 +22,16 @@ class DetailsActivity : AppCompatActivity(), DetailsContract.View {
         (application as BaseApp).appComponent.detailsComponent().create().inject(this)
         super.onCreate(savedInstanceState)
 
-        binding = DataBindingUtil.setContentView<ActivityDetailsBinding>(this, R.layout.activity_details).apply {
+        binding =
+            DataBindingUtil.setContentView<ActivityDetailsBinding>(this, R.layout.activity_details)
+                .apply {
 
-            lifecycleOwner=this@DetailsActivity
-            weatherDailyData = intent.getSerializableExtra(EXTRA_DETAILS) as WeatherDailyData
-            weatherData = weatherDailyData
-        }
+                    lifecycleOwner = this@DetailsActivity
+                    weatherDailyData =
+                        intent.getSerializableExtra(EXTRA_DETAILS) as WeatherDailyData
+                    weatherData = weatherDailyData
+                }
         detailsActivityPresenter = DetailsActivityPresenter(applicationContext)
-
         setSupportActionBar(binding.toolbar)
     }
 
@@ -52,7 +54,6 @@ class DetailsActivity : AppCompatActivity(), DetailsContract.View {
             else -> super.onOptionsItemSelected(item)
         }
     }
-
 
     companion object {
         private val EXTRA_DETAILS: String = "${DetailsActivity::class.java.name} _DETAILS_EXTRA"

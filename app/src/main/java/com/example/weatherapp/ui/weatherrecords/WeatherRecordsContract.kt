@@ -7,7 +7,6 @@ class WeatherRecordsContract {
         fun openDatabase()
     }
 
-
     interface View {
         fun updateViewData(list: List<WeatherEntity>)
     }

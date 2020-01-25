@@ -1,7 +1,7 @@
 package com.example.weatherapp.ui.weatherrecords
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.weatherapp.R
 import com.example.weatherapp.data.database.WeatherEntity
@@ -19,7 +19,7 @@ class WeatherRecordsActivity : AppCompatActivity(), WeatherRecordsContract.View 
             lifecycleOwner = this@WeatherRecordsActivity
         }
         setSupportActionBar(binding.toolbar)
-        weatherRecordsActivityPresenter = WeatherRecordsActivityPresenter(applicationContext,this)
+        weatherRecordsActivityPresenter = WeatherRecordsActivityPresenter(applicationContext, this)
         weatherRecordsActivityPresenter.openDatabase()
     }
 
