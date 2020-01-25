@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -8,84 +10,84 @@
             type="com.example.weatherapp.data.models.WeatherDailyData" />
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:baselineAligned="false"
         android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1.9">
+        <ImageView
+            android:id="@+id/icon_iv"
+            android:layout_width="@dimen/listItemIconDimens"
+            android:layout_height="@dimen/listItemIconDimens"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:contentDescription="@string/todo"
+            android:src="@drawable/ic_sun"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/icon_iv"
-                android:layout_width="@dimen/iconDimens"
-                android:layout_height="@dimen/iconDimens"
-                android:layout_gravity="center"
-                android:layout_marginStart="15dp"
-                android:contentDescription="@string/todo" />
+        <TextView
+            android:id="@+id/date_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_margin="15dp"
+            android:layout_marginStart="12dp"
+            android:gravity="start"
+            android:lines="1"
+            android:text="@{itemViewModel.formatedTime}"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/listItemTextSize"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/icon_iv"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.205"
+            tools:text="2020-1-25" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginStart="15dp"
-                android:orientation="vertical">
+        <TextView
+            android:id="@+id/condition_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="5dp"
+            android:text="@{itemViewModel.weather.get(0).description}"
+            android:textSize="@dimen/listItemTextSize"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/icon_iv"
+            app:layout_constraintTop_toBottomOf="@+id/date_tv"
+            tools:text="cloudy" />
 
-                <TextView
-                    android:id="@+id/date_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:layout_marginTop="5dp"
-                    android:gravity="start"
-                    android:lines="2"
-                    android:text="@{itemViewModel.formatedTime}"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/listItemTextSize"
-                    android:textStyle="bold" />
+        <TextView
+            android:id="@+id/max_temp_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:text="@{itemViewModel.main.converterTempMax()}"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/listItemTextMaxTempSize"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="25" />
 
-                <TextView
-                    android:id="@+id/condition_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:text="@{itemViewModel.weather.get(0).description}"
-                    android:textSize="@dimen/listItemTextSize"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight=".6"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/max_temp_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="6dp"
-                android:text="@{itemViewModel.main.converterTempMax()}"
-                android:textColor="@color/colorBlack"
-                android:textSize="@dimen/listItemTextMaxTempSize"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/min_temp_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="3dp"
-                android:text="@{itemViewModel.main.converterTempMin()}"
-                android:textSize="@dimen/listItemTextMinTempSize"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-    </LinearLayout>
+        <TextView
+            android:id="@+id/min_temp_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="7dp"
+            android:layout_marginEnd="15dp"
+            android:text="@{itemViewModel.main.converterTempMin()}"
+            android:textSize="@dimen/listItemTextMinTempSize"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/max_temp_tv"
+            tools:text="12" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

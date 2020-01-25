@@ -26,9 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary" />
-
         </com.google.android.material.appbar.AppBarLayout>
-
 
         <ImageView
             android:id="@+id/imageView4"
@@ -41,12 +39,12 @@
             app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
         <TextView
-            android:fontFamily="serif"
             android:id="@+id/degree_tv"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
             android:layout_gravity="start"
             android:layout_margin="15dp"
+            android:fontFamily="serif"
             android:gravity="start"
             android:lines="1"
             android:text="@{weatherData.wind.getDegreeWithUnit()}"
@@ -69,12 +67,12 @@
             tools:ignore="ContentDescription" />
 
         <TextView
-            android:fontFamily="serif"
             android:id="@+id/speed_tv"
             android:layout_width="150dp"
             android:layout_height="60dp"
             android:layout_gravity="start"
             android:layout_margin="15dp"
+            android:fontFamily="serif"
             android:gravity="start"
             android:lines="1"
             android:text="@{weatherData.wind.getSpeedWithUnit()}"
@@ -85,9 +83,7 @@
             app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
             tools:text="100 m/s" />
 
-
         <TextView
-            android:fontFamily="serif"
             android:id="@+id/max_temp_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -95,6 +91,7 @@
             android:layout_gravity="start"
             android:layout_margin="15dp"
             android:layout_marginStart="16dp"
+            android:fontFamily="serif"
             android:gravity="start"
             android:lines="2"
             android:text="@{weatherData.main.converterTempMax()}"
@@ -106,13 +103,13 @@
             tools:text="12" />
 
         <TextView
-            android:fontFamily="serif"
             android:id="@+id/min_temp_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_gravity="start"
             android:layout_margin="15dp"
+            android:fontFamily="serif"
             android:gravity="start"
             android:lines="2"
             android:text="@{weatherData.main.converterTempMin()}"
@@ -128,19 +125,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-
             android:contentDescription="@string/weather_details"
             android:src="@drawable/ic_calendar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
-            android:fontFamily="serif"
-            android:layout_margin="15dp"
             android:id="@+id/time"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
             android:layout_gravity="start"
+            android:layout_margin="15dp"
+            android:fontFamily="serif"
             android:gravity="start"
             android:lines="1"
             android:text="@{weatherData.getFormatedTime()}"
@@ -162,12 +158,12 @@
             app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
         <TextView
-            android:fontFamily="serif"
             android:id="@+id/humidity_tv"
             android:layout_width="150dp"
             android:layout_height="60dp"
             android:layout_gravity="start"
             android:layout_margin="15dp"
+            android:fontFamily="serif"
             android:gravity="start"
             android:lines="1"
             android:text="@{weatherData.main.getHumidityWithUnit()}"
@@ -177,9 +173,5 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/speed_tv"
             tools:text="18%" />
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </layout>

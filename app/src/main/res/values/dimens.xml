@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="listItemTextSize">16sp</dimen>
-    <dimen name="detailsTextSize">25sp</dimen>
-    <dimen name="listItemTextMaxTempSize">32sp</dimen>
-    <dimen name="listItemTextMinTempSize">25sp</dimen>
+    <dimen name="detailsTextSize">16sp</dimen>
+    <dimen name="listItemTextMaxTempSize">24sp</dimen>
+    <dimen name="listItemTextMinTempSize">20sp</dimen>
     <dimen name="iconDimens">50dp</dimen>
     <dimen name="sunDimens">90dp</dimen>
+    <dimen name="listItemIconDimens">35dp</dimen>
     <dimen name="roundedViewHeight">215dp</dimen>
     <dimen name="descriptionMargin">8dp</dimen>
     <dimen name="todayTextSize">30sp</dimen>
-    <dimen name="mainMaxTempTextSize">70sp</dimen>
-    <dimen name="mainMinTempTextSize">40sp</dimen>
+    <dimen name="listItemMainMaxTempTextSize">40sp</dimen>
+    <dimen name="lisItemMainMinTempTextSize">20sp</dimen>
     <dimen name="descriptionTextSize">30sp</dimen>
+    <dimen name="MaxTempSize">45sp</dimen>
+    <dimen name="MinTempSize">30sp</dimen>
 </resources>

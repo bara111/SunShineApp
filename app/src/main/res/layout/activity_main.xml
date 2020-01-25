@@ -12,134 +12,120 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".ui.weather.MainActivity">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <com.google.android.material.appbar.AppBarLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize">
+            android:layout_height="match_parent"
+            android:background="@drawable/rounded_corner_view"
+            android:orientation="vertical"
+            tools:context=".ui.weather.MainActivity">
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appBarLayout2"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimary" />
+                app:layout_constraintTop_toTopOf="parent">
 
-        </com.google.android.material.appbar.AppBarLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
-            android:orientation="horizontal">
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/roundedViewHeight"
-            android:background="@drawable/rounded_corner_view"
-            android:baselineAligned="false"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="0dp"
-
-                android:layout_height="@dimen/roundedViewHeight"
-                android:layout_weight="1.2"
-                android:background="@drawable/rounded_corner_view">
-
-                <LinearLayout
-
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="30dp"
-                    android:orientation="vertical"
-                    tools:ignore="UselessParent">
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="?attr/colorPrimary" />
+            </com.google.android.material.appbar.AppBarLayout>
 
-                    <TextView
-                        android:id="@+id/today_date_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/today"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="@dimen/todayTextSize" />
+            <TextView
+                android:id="@+id/today_date_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:fontFamily="serif"
+                android:text="@string/today"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/todayTextSize"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/appBarLayout2" />
 
-                    <TextView
-                        android:id="@+id/today_high_temp_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@{weatherData.main.converterTempMax()}"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="@dimen/mainMaxTempTextSize" />
+            <TextView
+                android:id="@+id/today_high_temp_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:fontFamily="serif"
+                android:text="@{weatherData.main.converterTempMax()}"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/MaxTempSize"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/today_date_tv"
+                tools:text="25" />
 
-                    <TextView
-                        android:id="@+id/today_low_temp_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@{weatherData.main.converterTempMin()}"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="@dimen/mainMinTempTextSize" />
+            <TextView
+                android:id="@+id/today_low_temp_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:fontFamily="serif"
+                android:text="@{weatherData.main.converterTempMin()}"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/MinTempSize"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/today_high_temp_tv"
+                tools:text="15" />
 
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="@dimen/sunDimens"
+                android:layout_height="@dimen/sunDimens"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="50dp"
+                android:contentDescription="@string/todo"
+                android:src="@drawable/ic_sun"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/appBarLayout2" />
 
-                </LinearLayout>
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-
-                android:layout_height="@dimen/roundedViewHeight"
-                android:layout_weight="0.9"
-                android:background="@drawable/rounded_corner_view"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="@dimen/sunDimens"
-                    android:layout_height="@dimen/sunDimens"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="15dp"
-                    android:contentDescription="@string/todo"
-                    android:src="@drawable/ic_sun" />
-
-                <TextView
-                    android:id="@+id/condition_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/descriptionMargin"
-                    android:text="@{weatherData.weather.get(0).description}"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="@dimen/descriptionTextSize"
-                    android:textStyle="bold" />
-
-
-            </LinearLayout>
-
-
-        </LinearLayout>
+            <TextView
+                android:id="@+id/condition_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="50dp"
+                android:fontFamily="serif"
+                android:text="@{weatherData.weather.get(0).description}"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/descriptionTextSize"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView5"
+                tools:text="cloudy" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
-            <ProgressBar
-                android:id="@+id/progress_circular"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/Weather_RV"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scrollbars="vertical"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-        </RelativeLayout>
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent" />
 
+            <ProgressBar
+                android:id="@+id/progress_circular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                app:layout_constraintBottom_toBottomOf="@+id/Weather_RV"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/Weather_RV"
+                app:layout_constraintTop_toTopOf="@+id/Weather_RV" />
+        </RelativeLayout>
     </LinearLayout>
 </layout>
