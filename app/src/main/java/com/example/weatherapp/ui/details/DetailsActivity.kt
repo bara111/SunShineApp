@@ -18,7 +18,7 @@ class DetailsActivity : AppCompatActivity(), DetailsContract.View {
     @Inject
     lateinit var detailsActivityPresenter: DetailsActivityPresenter
     private lateinit var binding: ActivityDetailsBinding
-    private lateinit var weatherDailyData: WeatherDailyData
+    private  var weatherDailyData: WeatherDailyData?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         (application as BaseApp).appComponent.detailsComponent().create().inject(this)
         super.onCreate(savedInstanceState)
@@ -27,8 +27,7 @@ class DetailsActivity : AppCompatActivity(), DetailsContract.View {
                 .apply {
 
                     lifecycleOwner = this@DetailsActivity
-                    weatherDailyData =
-                        intent.getSerializableExtra(EXTRA_DETAILS) as WeatherDailyData
+                    weatherDailyData = intent.getParcelableExtra(EXTRA_DETAILS)
                     weatherData = weatherDailyData
                 }
         setSupportActionBar(binding.toolbar)
@@ -38,14 +37,13 @@ class DetailsActivity : AppCompatActivity(), DetailsContract.View {
         menuInflater.inflate(R.menu.appbar, menu)
         return true
     }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.insert_data -> {
                 detailsActivityPresenter.addRecord(
-                    weatherDailyData.getFormatedTime(),
-                    weatherDailyData.main.converterTempMax(),
-                    weatherDailyData.main.converterTempMin()
+                    weatherDailyData!!.getFormatedTime(),
+                    weatherDailyData!!.main!!.converterTempMax(),
+                    weatherDailyData!!.main!!.converterTempMin()
                 )
                 Toast.makeText(applicationContext, "added item", Toast.LENGTH_LONG).show()
                 true
@@ -56,10 +54,10 @@ class DetailsActivity : AppCompatActivity(), DetailsContract.View {
 
     companion object {
         private val EXTRA_DETAILS: String = "${DetailsActivity::class.java.name} _DETAILS_EXTRA"
-        fun newIntent(context: Context, weatherDailyData: WeatherDailyData): Intent {
+        fun newIntent(context: Context, list: WeatherDailyData?): Intent {
             return Intent(context, DetailsActivity::class.java).putExtra(
                 EXTRA_DETAILS,
-                weatherDailyData
+                list
             )
         }
     }

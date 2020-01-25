@@ -10,8 +10,8 @@ class WeatherRecordsActivityPresenter @Inject constructor(
     context: Context
 ) : WeatherRecordsContract.Presenter {
     private lateinit var view: WeatherRecordsContract.View
-    @Inject
-    var weatherRoomDatabase=WeatherRoomDatabase.getDatabase(context)
+
+    private var weatherRoomDatabase=WeatherRoomDatabase.getDatabase(context)
     private var dao: WeatherDao
     private lateinit var weatherRecords: List<WeatherEntity>
 

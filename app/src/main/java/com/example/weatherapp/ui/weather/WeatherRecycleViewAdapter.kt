@@ -49,7 +49,7 @@ class WeatherRecycleViewAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
         private var dailyData: WeatherDailyData? = null
         fun bind(data: WeatherDailyData) {
-            Glide.with(itemView.ctx).load(data.weather[0].getUrl()).into(binding.iconIv)
+            Glide.with(itemView.ctx).load(data.weather?.get(0)?.getUrl()).into(binding.iconIv)
             binding.itemViewModel = data
             this.dailyData = data
             binding.executePendingBindings()

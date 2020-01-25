@@ -28,7 +28,6 @@ class MainActivity : AppCompatActivity(),
             R.layout.activity_main
         ).apply { lifecycleOwner = this@MainActivity }
         setSupportActionBar(binding.toolbar)
-
         mainActivityPresenter.setValues(
             this,
             getString(R.string.lat_nablus),
@@ -51,7 +50,7 @@ class MainActivity : AppCompatActivity(),
                 WeatherRecycleViewAdapter(
                     mainActivityPresenter.getWeatherDaily()
                 ) {
-                    startActivity(DetailsActivity.newIntent(applicationContext, it))
+                    startActivity(DetailsActivity.newIntent(applicationContext, weatherData))
                 }
         }
     }

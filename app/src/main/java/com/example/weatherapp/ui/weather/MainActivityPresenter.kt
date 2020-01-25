@@ -19,7 +19,7 @@ class MainActivityPresenter @Inject constructor(var context: Context) : MainCont
     @Inject
     lateinit var retrofit: Retrofit
     lateinit var view: MainContract.View
-    private var weatherResponse: List<WeatherDailyData>? = null
+    private var weatherResponse: ArrayList<WeatherDailyData>? = null
     private lateinit var latNablus: String
     private lateinit var lonNablus: String
     private lateinit var apiKey: String
@@ -46,7 +46,7 @@ class MainActivityPresenter @Inject constructor(var context: Context) : MainCont
 
     }
 
-    override fun getWeatherDaily(): List<WeatherDailyData>? {
+    override fun getWeatherDaily(): ArrayList<WeatherDailyData>? {
         return weatherResponse
     }
 
