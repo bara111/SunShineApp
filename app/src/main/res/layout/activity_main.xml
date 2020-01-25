@@ -104,7 +104,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="15dp"
                     android:contentDescription="@string/todo"
-                    android:src="@drawable/sun" />
+                    android:src="@drawable/ic_sun" />
 
                 <TextView
                     android:id="@+id/condition_tv"
