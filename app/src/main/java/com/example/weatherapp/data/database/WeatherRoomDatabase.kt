@@ -13,7 +13,7 @@ abstract class WeatherRoomDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: WeatherRoomDatabase? = null
         fun getDatabase(context: Context): WeatherRoomDatabase {
-            val tempInstance = INSTANCE
+            val tempInstance = this.INSTANCE
             if (tempInstance != null) {
                 return tempInstance
             }
@@ -23,7 +23,7 @@ abstract class WeatherRoomDatabase : RoomDatabase() {
                     WeatherRoomDatabase::class.java,
                     "word_database"
                 ).allowMainThreadQueries().build()
-                INSTANCE = instance
+                this.INSTANCE = instance
                 return instance
             }
         }

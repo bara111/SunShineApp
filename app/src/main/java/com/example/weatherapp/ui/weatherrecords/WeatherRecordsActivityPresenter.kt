@@ -18,7 +18,7 @@ class WeatherRecordsActivityPresenter(
 
     override fun openDatabase() {
         weatherRecords = dao.getRecords()
-        this.view.updateViewData(weatherRecords)
+        this.view.updateViewData(this.weatherRecords)
 
     }
 

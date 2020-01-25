@@ -11,7 +11,7 @@ object RetrofitModule {
     @Provides
     @Singleton
     fun getRetrofit(): Retrofit {
-        var baseUrl = "http://api.openweathermap.org/"
+        val baseUrl = "http://api.openweathermap.org/"
         return Retrofit.Builder()
             .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create())

@@ -46,25 +46,29 @@ class MainActivityPresenter @Inject constructor(var context: Context) : MainCont
 
     }
 
-    override fun getMaxTemp(): String? {
-        return weatherResponse?.get(0)?.main?.converterTempMax()
-    }
-
-    override fun getMinTemp(): String? {
-        return weatherResponse?.get(0)?.main?.converterTempMin()
-    }
-
-    override fun getDescription(): String? {
-        return weatherResponse!![0].weather[0].description
-    }
-
     override fun getWeatherDaily(): List<WeatherDailyData>? {
         return weatherResponse
     }
 
-    override fun getUrl(): String {
-        return weatherResponse?.get(0)?.weather!![0].getUrl()
-    }
+//    override fun getMaxTemp(): String? {
+//        return weatherResponse?.get(0)?.main?.converterTempMax()
+//    }
+//
+//    override fun getMinTemp(): String? {
+//        return weatherResponse?.get(0)?.main?.converterTempMin()
+//    }
+//
+//    override fun getDescription(): String? {
+//        return weatherResponse!![0].weather[0].description
+//    }
+//
+//    override fun getWeatherDaily(): List<WeatherDailyData>? {
+//        return weatherResponse
+//    }
+//
+//    override fun getUrl(): String {
+//        return weatherResponse?.get(0)?.weather!![0].getUrl()
+//    }
 
     override fun setValues(
         view: MainContract.View,

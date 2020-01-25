@@ -10,7 +10,6 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.example.weatherapp.BaseApp
 import com.example.weatherapp.R
-import com.example.weatherapp.data.database.WeatherEntity
 import com.example.weatherapp.databinding.ActivityDetailsBinding
 import com.example.weatherapp.data.models.WeatherDailyData
 
@@ -23,12 +22,15 @@ class DetailsActivity : AppCompatActivity(), DetailsContract.View {
         (application as BaseApp).appComponent.detailsComponent().create().inject(this)
         super.onCreate(savedInstanceState)
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_details)
-        binding.lifecycleOwner = this
-        setSupportActionBar(binding.toolbar)
+        binding = DataBindingUtil.setContentView<ActivityDetailsBinding>(this, R.layout.activity_details).apply {
+
+            lifecycleOwner=this@DetailsActivity
+            weatherDailyData = intent.getSerializableExtra(EXTRA_DETAILS) as WeatherDailyData
+            weatherData = weatherDailyData
+        }
         detailsActivityPresenter = DetailsActivityPresenter(applicationContext)
-        weatherDailyData = intent.getSerializableExtra(EXTRA_DETAILS) as WeatherDailyData
-        binding.weatherData = weatherDailyData
+
+        setSupportActionBar(binding.toolbar)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

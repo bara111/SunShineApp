@@ -10,6 +10,5 @@ class WeatherRecordsContract {
 
     interface View {
         fun updateViewData(list: List<WeatherEntity>)
-
     }
 }

@@ -23,11 +23,10 @@ class MainActivity : AppCompatActivity(),
         (application as BaseApp).appComponent.inject(this)
         super.onCreate(savedInstanceState)
 
-        binding = DataBindingUtil.setContentView(
+        binding = DataBindingUtil.setContentView<ActivityMainBinding>(
             this,
             R.layout.activity_main
-        )
-        binding.lifecycleOwner = this
+        ).apply { lifecycleOwner = this@MainActivity }
         setSupportActionBar(binding.toolbar)
 
         mainActivityPresenter.setValues(
@@ -47,9 +46,9 @@ class MainActivity : AppCompatActivity(),
         binding.apply {
             progressCircular.visibility = View.GONE
             WeatherRV.hasFixedSize()
-            conditionTv.text = mainActivityPresenter.getDescription()
-            todayHighTempTv.text = mainActivityPresenter.getMaxTemp()
-            todayLowTempTv.text = mainActivityPresenter.getMinTemp()
+            weatherData=mainActivityPresenter.getWeatherDaily()?.get(0)
+//            todayHighTempTv.text = mainActivityPresenter.getMaxTemp()
+//            todayLowTempTv.text = mainActivityPresenter.getMinTemp()
             WeatherRV.adapter =
                 WeatherRecycleViewAdapter(
                     mainActivityPresenter.getWeatherDaily()
@@ -67,7 +66,7 @@ class MainActivity : AppCompatActivity(),
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.records -> {
-                startActivity(Intent(this, WeatherRecordsActivity::class.java))
+                this.startActivity(Intent(this, WeatherRecordsActivity::class.java))
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -75,6 +74,7 @@ class MainActivity : AppCompatActivity(),
     }
 
     companion object {
-        val TAG: String = MainActivity::javaClass.name
+        val TAG: String
+            get() = MainActivity::javaClass.name
     }
 }
