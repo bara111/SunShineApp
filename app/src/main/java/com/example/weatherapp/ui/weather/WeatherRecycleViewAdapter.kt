@@ -6,9 +6,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.weatherapp.R
-import com.example.weatherapp.databinding.DailyWeatherItemBinding
 import com.example.weatherapp.extension.ctx
 import com.example.weatherapp.data.models.WeatherDailyData
+import com.example.weatherapp.databinding.DailyweatherListItemBinding
 
 class WeatherRecycleViewAdapter(
     var list: List<WeatherDailyData>?,
@@ -17,9 +17,9 @@ class WeatherRecycleViewAdapter(
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding: DailyWeatherItemBinding = DataBindingUtil.inflate(
+        val binding: DailyweatherListItemBinding = DataBindingUtil.inflate(
             LayoutInflater.from(parent.ctx),
-            R.layout.daily_weather_item,
+            R.layout.dailyweather_list_item,
             parent,
             false
         )
@@ -45,7 +45,7 @@ class WeatherRecycleViewAdapter(
     }
 
     class ViewHolder(
-        val binding: DailyWeatherItemBinding
+        val binding: DailyweatherListItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         private var dailyData: WeatherDailyData? = null
         fun bind(data: WeatherDailyData) {
