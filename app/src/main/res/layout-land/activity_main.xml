@@ -39,7 +39,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/shape_main_rounded"
+                android:background="@drawable/main_roundedcorners_shape"
                 android:orientation="vertical"
                 tools:context=".ui.weather.MainActivity">
 
@@ -90,7 +90,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="5dp"
-                    android:src="@drawable/ic_sun"
+                    android:src="@drawable/main_sunicon_small"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/today_date_tv"
                     app:layout_constraintTop_toBottomOf="@+id/appBarLayout2"

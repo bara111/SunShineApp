@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:src="@drawable/ic_wind"
+            android:src="@drawable/details_windicon_small"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
             tools:ignore="ContentDescription" />
@@ -61,7 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:src="@drawable/ic_meter"
+            android:src="@drawable/details_metericon_small"
             app:layout_constraintEnd_toStartOf="@+id/speed_tv"
             app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
             tools:ignore="ContentDescription" />
@@ -125,7 +125,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:src="@drawable/ic_calendar"
+            android:src="@drawable/details_calendaricon_small"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             tools:ignore="ContentDescription" />
@@ -152,7 +152,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:src="@drawable/ic_rain"
+            android:src="@drawable/details_rainicon_small"
             app:layout_constraintEnd_toStartOf="@+id/humidity_tv"
             app:layout_constraintTop_toBottomOf="@+id/imageView2"
             tools:ignore="ContentDescription" />
