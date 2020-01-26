@@ -48,7 +48,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
-                    android:text="@string/today"
+                    android:text="@string/main_today"
                     android:textColor="@color/colorWhite"
                     android:textSize="@dimen/size_main_todayText_small"
                     app:layout_constraintStart_toStartOf="parent"
@@ -90,12 +90,11 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="5dp"
-                    android:contentDescription="@string/todo"
                     android:src="@drawable/ic_sun"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/today_date_tv"
                     app:layout_constraintTop_toBottomOf="@+id/appBarLayout2"
-                    tools:ignore="NotSibling" />
+                    tools:ignore="ContentDescription,NotSibling" />
 
                 <TextView
                     android:id="@+id/condition_tv"

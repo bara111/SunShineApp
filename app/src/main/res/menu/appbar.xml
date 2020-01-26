@@ -3,6 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/insert_data"
-        android:title="@string/insert"
+        android:title="@string/details_insert"
         app:showAsAction="always" />
 </menu>

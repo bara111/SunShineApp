@@ -22,11 +22,11 @@
             android:layout_height="@dimen/size_itemList_icon_small"
             android:layout_gravity="center"
             android:layout_margin="15dp"
-            android:contentDescription="@string/todo"
             android:src="@drawable/ic_sun"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/date_tv"

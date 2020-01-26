@@ -33,9 +33,9 @@ class MainActivity : AppCompatActivity(),
         if (savedInstanceState == null) {
             mainActivityPresenter.setValues(
                 this,
-                getString(R.string.lat_nablus),
-                getString(R.string.lon_nablus),
-                getString(R.string.api_key)
+                getString(R.string.retrofit_lat_nablus),
+                getString(R.string.retrofit_lon_nablus),
+                getString(R.string.retrofit_api_key)
             )
             initView()
         }
