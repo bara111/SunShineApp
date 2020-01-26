@@ -12,14 +12,13 @@ import retrofit2.Retrofit
 import javax.inject.Inject
 import javax.inject.Singleton
 
-@Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 @Singleton
 class MainActivityPresenter @Inject constructor(var context: Context) : MainContract.Presenter {
 
     @Inject
     lateinit var retrofit: Retrofit
-    lateinit var view: MainContract.View
     private var weatherResponse: ArrayList<WeatherDailyData>? = null
+    private lateinit var view: MainContract.View
     private lateinit var latNablus: String
     private lateinit var lonNablus: String
     private lateinit var apiKey: String
@@ -40,7 +39,7 @@ class MainActivityPresenter @Inject constructor(var context: Context) : MainCont
                 }
             }
             override fun onFailure(call: Call<WeatherResponse>, t: Throwable) {
-                Log.d(MainActivity.TAG, t.message)
+                Log.d(MainActivity.TAG, t.toString())
             }
         })
 

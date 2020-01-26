@@ -18,7 +18,18 @@ class DetailsActivity : AppCompatActivity(), DetailsContract.View {
     @Inject
     lateinit var detailsActivityPresenter: DetailsActivityPresenter
     private lateinit var binding: ActivityDetailsBinding
-    private  var weatherDailyData: WeatherDailyData?=null
+    private var weatherDailyData: WeatherDailyData? = null
+
+    companion object {
+        private val EXTRA_DETAILS: String = "${DetailsActivity::class.java.name}_DETAILS_EXTRA"
+        fun newIntent(context: Context, list: WeatherDailyData?): Intent {
+            return Intent(context, DetailsActivity::class.java).putExtra(
+                EXTRA_DETAILS,
+                list
+            )
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         (application as BaseApp).appComponent.detailsComponent().create().inject(this)
         super.onCreate(savedInstanceState)
@@ -37,6 +48,7 @@ class DetailsActivity : AppCompatActivity(), DetailsContract.View {
         menuInflater.inflate(R.menu.appbar, menu)
         return true
     }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.insert_data -> {
@@ -49,16 +61,6 @@ class DetailsActivity : AppCompatActivity(), DetailsContract.View {
                 true
             }
             else -> super.onOptionsItemSelected(item)
-        }
-    }
-
-    companion object {
-        private val EXTRA_DETAILS: String = "${DetailsActivity::class.java.name} _DETAILS_EXTRA"
-        fun newIntent(context: Context, list: WeatherDailyData?): Intent {
-            return Intent(context, DetailsActivity::class.java).putExtra(
-                EXTRA_DETAILS,
-                list
-            )
         }
     }
 }

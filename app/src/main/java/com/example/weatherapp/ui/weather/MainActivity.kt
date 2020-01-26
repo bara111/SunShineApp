@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.weatherapp.BaseApp
 import com.example.weatherapp.R
+import com.example.weatherapp.data.models.WeatherDailyData
 import com.example.weatherapp.databinding.ActivityMainBinding
 import com.example.weatherapp.ui.details.DetailsActivity
 import com.example.weatherapp.ui.weatherrecords.WeatherRecordsActivity
@@ -19,6 +20,7 @@ class MainActivity : AppCompatActivity(),
     @Inject
     lateinit var mainActivityPresenter: MainActivityPresenter
     private lateinit var binding: ActivityMainBinding
+    private var weatherDataList: ArrayList<WeatherDailyData>? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         (application as BaseApp).appComponent.inject(this)
         super.onCreate(savedInstanceState)
@@ -28,13 +30,18 @@ class MainActivity : AppCompatActivity(),
             R.layout.activity_main
         ).apply { lifecycleOwner = this@MainActivity }
         setSupportActionBar(binding.toolbar)
-        mainActivityPresenter.setValues(
-            this,
-            getString(R.string.lat_nablus),
-            getString(R.string.lon_nablus),
-            getString(R.string.api_key)
-        )
-        initView()
+        if (savedInstanceState == null) {
+            mainActivityPresenter.setValues(
+                this,
+                getString(R.string.lat_nablus),
+                getString(R.string.lon_nablus),
+                getString(R.string.api_key)
+            )
+            initView()
+        }
+        else {
+            onRotateDevice()
+        }
     }
 
     override fun initView() {
@@ -46,9 +53,25 @@ class MainActivity : AppCompatActivity(),
             progressCircular.visibility = View.GONE
             WeatherRV.hasFixedSize()
             weatherData = mainActivityPresenter.getWeatherDaily()?.get(0)
+            weatherDataList = mainActivityPresenter.getWeatherDaily()
             WeatherRV.adapter =
                 WeatherRecycleViewAdapter(
-                    mainActivityPresenter.getWeatherDaily()
+                    weatherDataList
+                ) {
+                    startActivity(DetailsActivity.newIntent(applicationContext, weatherData))
+                }
+        }
+    }
+
+    private fun onRotateDevice() {
+        binding.apply {
+            progressCircular.visibility = View.GONE
+            WeatherRV.hasFixedSize()
+            weatherData = mainActivityPresenter.getWeatherDaily()?.get(0)
+            weatherDataList = mainActivityPresenter.getWeatherDaily()
+            WeatherRV.adapter =
+                WeatherRecycleViewAdapter(
+                    weatherDataList
                 ) {
                     startActivity(DetailsActivity.newIntent(applicationContext, weatherData))
                 }

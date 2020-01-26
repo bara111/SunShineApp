@@ -17,7 +17,6 @@ class MainContract {
     interface View {
         fun initView()
         fun updateViewData()
-
     }
 
 

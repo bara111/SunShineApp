@@ -13,6 +13,7 @@ class WeatherRecordsActivity : AppCompatActivity(), WeatherRecordsContract.View 
     @Inject
     lateinit var weatherRecordsActivityPresenter: WeatherRecordsActivityPresenter
     private lateinit var binding: ActivityWeatherDatabaseBinding
+    private val view: WeatherRecordsContract.View = this
     override fun onCreate(savedInstanceState: Bundle?) {
         (application as BaseApp).appComponent.weatherDatabaseComponent().create().inject(this)
 
@@ -24,9 +25,10 @@ class WeatherRecordsActivity : AppCompatActivity(), WeatherRecordsContract.View 
             lifecycleOwner = this@WeatherRecordsActivity
         }
         setSupportActionBar(binding.toolbar)
-        weatherRecordsActivityPresenter = WeatherRecordsActivityPresenter(applicationContext)
-        weatherRecordsActivityPresenter.setView(this)
-        weatherRecordsActivityPresenter.openDatabase()
+        weatherRecordsActivityPresenter.apply {
+            setView(view)
+            openDatabase()
+        }
     }
 
     override fun updateViewData(list: List<WeatherEntity>) {

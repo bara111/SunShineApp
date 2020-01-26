@@ -28,6 +28,7 @@ data class WeatherDailyData(
         parcel.createTypedArrayList(Weather),
         parcel.readParcelable(Wind::class.java.classLoader)
     )
+
     fun getFormatedTime(): String {
 
         return java.time.format.DateTimeFormatter.ISO_INSTANT
@@ -58,6 +59,4 @@ data class WeatherDailyData(
             return arrayOfNulls(size)
         }
     }
-
-
 }

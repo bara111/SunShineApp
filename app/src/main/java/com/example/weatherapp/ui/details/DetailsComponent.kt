@@ -1,7 +1,8 @@
 package com.example.weatherapp.ui.details
 
+import com.example.weatherapp.di.scope.ActivityScope
 import dagger.Subcomponent
-
+@ActivityScope
 @Subcomponent(modules = [DetailsModule::class])
 interface DetailsComponent {
 
