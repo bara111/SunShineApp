@@ -47,7 +47,7 @@ class MainAdapter(
         override fun areItemsTheSame(
             oldItem: WeatherDailyData,
             newItem: WeatherDailyData
-        ) = oldItem==newItem
+        ) = oldItem.getFormatedTime()==newItem.getFormatedTime()
 
         override fun areContentsTheSame(
             oldItem: WeatherDailyData,
