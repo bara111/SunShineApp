@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity(),
     @Inject
     lateinit var mainActivityPresenter: MainActivityPresenter
     private lateinit var binding: ActivityMainBinding
+    private lateinit var mainAdapter: MainAdapter
     private var weatherDataList: ArrayList<WeatherDailyData>? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         (application as BaseApp).appComponent.inject(this)
@@ -30,6 +31,7 @@ class MainActivity : AppCompatActivity(),
             R.layout.activity_main
         ).apply { lifecycleOwner = this@MainActivity }
         setSupportActionBar(binding.toolbarAll)
+
         if (savedInstanceState == null) {
             mainActivityPresenter.setValues(
                 this,
@@ -38,8 +40,7 @@ class MainActivity : AppCompatActivity(),
                 getString(R.string.retrofit_api_key)
             )
             initView()
-        }
-        else {
+        } else {
             onRotateDevice()
         }
     }
@@ -54,12 +55,11 @@ class MainActivity : AppCompatActivity(),
             recycleviewAll.hasFixedSize()
             weatherData = mainActivityPresenter.getWeatherDaily()?.get(0)
             weatherDataList = mainActivityPresenter.getWeatherDaily()
-            recycleviewAll.adapter =
-                WeatherRecycleViewAdapter(
-                    weatherDataList
-                ) {
-                    startActivity(DetailsActivity.newIntent(applicationContext, weatherData))
-                }
+            mainAdapter = MainAdapter {
+                startActivity(DetailsActivity.newIntent(applicationContext, weatherData))
+            }
+            recycleviewAll.adapter = mainAdapter
+            mainAdapter.submitList(weatherDataList)
         }
     }
 
@@ -69,12 +69,11 @@ class MainActivity : AppCompatActivity(),
             recycleviewAll.hasFixedSize()
             weatherData = mainActivityPresenter.getWeatherDaily()?.get(0)
             weatherDataList = mainActivityPresenter.getWeatherDaily()
-            recycleviewAll.adapter =
-                WeatherRecycleViewAdapter(
-                    weatherDataList
-                ) {
-                    startActivity(DetailsActivity.newIntent(applicationContext, weatherData))
-                }
+            mainAdapter = MainAdapter {
+                startActivity(DetailsActivity.newIntent(applicationContext, weatherData))
+            }
+            recycleviewAll.adapter = mainAdapter
+            mainAdapter.submitList(weatherDataList)
         }
     }
 
@@ -97,4 +96,6 @@ class MainActivity : AppCompatActivity(),
         val TAG: String
             get() = MainActivity::javaClass.name
     }
+
+
 }

@@ -14,6 +14,7 @@ class WeatherRecordsActivity : AppCompatActivity(), WeatherRecordsContract.View 
     lateinit var weatherRecordsActivityPresenter: WeatherRecordsActivityPresenter
     private lateinit var binding: ActivityWeatherDatabaseBinding
     private val view: WeatherRecordsContract.View = this
+    private lateinit var adapter: WeatherDatabaseAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         (application as BaseApp).appComponent.weatherDatabaseComponent().create().inject(this)
 
@@ -30,11 +31,12 @@ class WeatherRecordsActivity : AppCompatActivity(), WeatherRecordsContract.View 
             openDatabase()
         }
     }
-
     override fun updateViewData(list: List<WeatherEntity>) {
         with(binding) {
+            adapter = WeatherDatabaseAdapter()
+            adapter.submitList(list)
             recycleviewAll.hasFixedSize()
-            recycleviewAll.adapter = WeatherDatabaseRecycleViewAdapter(list) {}
+            recycleviewAll.adapter=adapter
         }
     }
 }
