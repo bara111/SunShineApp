@@ -12,8 +12,7 @@ import com.example.weatherapp.extension.ctx
 
 class MainAdapter(
     var itemClick: (WeatherDailyData) -> Unit
-) :
-    ListAdapter<WeatherDailyData, MainAdapter.DetailsViewHolder>(WeatherDC()) {
+) : ListAdapter<WeatherDailyData, MainAdapter.DetailsViewHolder>(WeatherDC()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailsViewHolder {
         return DetailsViewHolder.from(parent).apply {
             itemView.setOnClickListener {
@@ -48,7 +47,7 @@ class MainAdapter(
         override fun areItemsTheSame(
             oldItem: WeatherDailyData,
             newItem: WeatherDailyData
-        ) = true
+        ) = oldItem==newItem
 
         override fun areContentsTheSame(
             oldItem: WeatherDailyData,

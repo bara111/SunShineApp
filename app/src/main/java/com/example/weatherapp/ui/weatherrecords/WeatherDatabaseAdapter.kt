@@ -38,7 +38,7 @@ class WeatherDatabaseAdapter :
         override fun areItemsTheSame(
             oldItem: WeatherEntity,
             newItem: WeatherEntity
-        ) = true
+        ) = oldItem==newItem
 
         override fun areContentsTheSame(
             oldItem: WeatherEntity,
