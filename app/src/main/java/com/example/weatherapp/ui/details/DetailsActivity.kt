@@ -41,7 +41,7 @@ class DetailsActivity : AppCompatActivity(), DetailsContract.View {
                     weatherDailyData = intent.getParcelableExtra(EXTRA_DETAILS)
                     weatherData = weatherDailyData
                 }
-        setSupportActionBar(binding.toolbar)
+        setSupportActionBar(binding.toolbarAll)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

@@ -24,7 +24,7 @@ class WeatherRecordsActivity : AppCompatActivity(), WeatherRecordsContract.View 
         ).apply {
             lifecycleOwner = this@WeatherRecordsActivity
         }
-        setSupportActionBar(binding.toolbar)
+        setSupportActionBar(binding.toolbarAll)
         weatherRecordsActivityPresenter.apply {
             setView(view)
             openDatabase()
@@ -33,8 +33,8 @@ class WeatherRecordsActivity : AppCompatActivity(), WeatherRecordsContract.View 
 
     override fun updateViewData(list: List<WeatherEntity>) {
         with(binding) {
-            WeatherRV.hasFixedSize()
-            WeatherRV.adapter = WeatherDatabaseRecycleViewAdapter(list) {}
+            recycleviewAll.hasFixedSize()
+            recycleviewAll.adapter = WeatherDatabaseRecycleViewAdapter(list) {}
         }
     }
 }

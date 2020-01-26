@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity(),
             this,
             R.layout.activity_main
         ).apply { lifecycleOwner = this@MainActivity }
-        setSupportActionBar(binding.toolbar)
+        setSupportActionBar(binding.toolbarAll)
         if (savedInstanceState == null) {
             mainActivityPresenter.setValues(
                 this,
@@ -50,11 +50,11 @@ class MainActivity : AppCompatActivity(),
 
     override fun updateViewData() {
         binding.apply {
-            progressCircular.visibility = View.GONE
-            WeatherRV.hasFixedSize()
+            progressbarMain.visibility = View.GONE
+            recycleviewAll.hasFixedSize()
             weatherData = mainActivityPresenter.getWeatherDaily()?.get(0)
             weatherDataList = mainActivityPresenter.getWeatherDaily()
-            WeatherRV.adapter =
+            recycleviewAll.adapter =
                 WeatherRecycleViewAdapter(
                     weatherDataList
                 ) {
@@ -65,11 +65,11 @@ class MainActivity : AppCompatActivity(),
 
     private fun onRotateDevice() {
         binding.apply {
-            progressCircular.visibility = View.GONE
-            WeatherRV.hasFixedSize()
+            progressbarMain.visibility = View.GONE
+            recycleviewAll.hasFixedSize()
             weatherData = mainActivityPresenter.getWeatherDaily()?.get(0)
             weatherDataList = mainActivityPresenter.getWeatherDaily()
-            WeatherRV.adapter =
+            recycleviewAll.adapter =
                 WeatherRecycleViewAdapter(
                     weatherDataList
                 ) {

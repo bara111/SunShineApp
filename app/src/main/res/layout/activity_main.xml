@@ -23,20 +23,20 @@
             tools:context=".ui.weather.MainActivity">
 
             <com.google.android.material.appbar.AppBarLayout
-                android:id="@+id/appBarLayout2"
+                android:id="@+id/appBarLayout_all"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/toolbar"
+                    android:id="@+id/toolbar_all"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     android:background="?attr/colorPrimary" />
             </com.google.android.material.appbar.AppBarLayout>
 
             <TextView
-                android:id="@+id/today_date_tv"
+                android:id="@+id/textview_main_today"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
@@ -46,10 +46,10 @@
                 android:textSize="@dimen/size_main_todayText_small"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/appBarLayout2" />
+                app:layout_constraintTop_toBottomOf="@+id/appBarLayout_all" />
 
             <TextView
-                android:id="@+id/today_high_temp_tv"
+                android:id="@+id/textview_main_maxtemp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
@@ -59,11 +59,11 @@
                 android:textSize="@dimen/size_main_maxtemptext_small"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/today_date_tv"
+                app:layout_constraintTop_toBottomOf="@+id/textview_main_today"
                 tools:text="25" />
 
             <TextView
-                android:id="@+id/today_low_temp_tv"
+                android:id="@+id/textview_main_mintemp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
@@ -73,11 +73,11 @@
                 android:textSize="@dimen/size_main_mintemptext_small"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/today_high_temp_tv"
+                app:layout_constraintTop_toBottomOf="@+id/textview_main_maxtemp"
                 tools:text="15" />
 
             <ImageView
-                android:id="@+id/imageView5"
+                android:id="@+id/imageview_main_sun"
                 android:layout_width="@dimen/size_main_icon_small"
                 android:layout_height="@dimen/size_main_icon_small"
                 android:layout_gravity="center"
@@ -85,11 +85,11 @@
                 android:layout_marginEnd="50dp"
                 android:src="@drawable/main_sunicon_small"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/appBarLayout2"
+                app:layout_constraintTop_toBottomOf="@+id/appBarLayout_all"
                 tools:ignore="ContentDescription" />
 
             <TextView
-                android:id="@+id/condition_tv"
+                android:id="@+id/textview_listitem_condition"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -101,7 +101,7 @@
                 android:textSize="@dimen/size_all_descriptiontext_small"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView5"
+                app:layout_constraintTop_toBottomOf="@+id/imageview_main_sun"
                 tools:text="cloudy" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -110,7 +110,7 @@
             android:layout_height="wrap_content">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/Weather_RV"
+                android:id="@+id/recycleview_all"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scrollbars="vertical"
@@ -118,14 +118,14 @@
                 app:layout_constraintBottom_toBottomOf="parent" />
 
             <ProgressBar
-                android:id="@+id/progress_circular"
+                android:id="@+id/progressbar_main"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                app:layout_constraintBottom_toBottomOf="@+id/Weather_RV"
+                app:layout_constraintBottom_toBottomOf="@+id/recycleview_all"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/Weather_RV"
-                app:layout_constraintTop_toTopOf="@+id/Weather_RV" />
+                app:layout_constraintStart_toStartOf="@+id/recycleview_all"
+                app:layout_constraintTop_toTopOf="@+id/recycleview_all" />
         </RelativeLayout>
     </LinearLayout>
 </layout>

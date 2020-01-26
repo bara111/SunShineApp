@@ -17,7 +17,7 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/icon_iv"
+            android:id="@+id/imgaeview_listitem_icon"
             android:layout_width="@dimen/size_itemList_icon_small"
             android:layout_height="@dimen/size_itemList_icon_small"
             android:layout_gravity="center"
@@ -29,7 +29,7 @@
             tools:ignore="ContentDescription" />
 
         <TextView
-            android:id="@+id/date_tv"
+            android:id="@+id/textview_listitem_time_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
@@ -42,13 +42,13 @@
             android:textSize="@dimen/size_text_details_small"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/icon_iv"
+            app:layout_constraintStart_toEndOf="@+id/imgaeview_listitem_icon"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.205"
             tools:text="2020-1-25" />
 
         <TextView
-            android:id="@+id/condition_tv"
+            android:id="@+id/textview_listitem_condition"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
@@ -57,12 +57,12 @@
             android:text="@{itemViewModel.weather.get(0).description}"
             android:textSize="@dimen/size_text_details_small"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/icon_iv"
-            app:layout_constraintTop_toBottomOf="@+id/date_tv"
+            app:layout_constraintStart_toEndOf="@+id/imgaeview_listitem_icon"
+            app:layout_constraintTop_toBottomOf="@+id/textview_listitem_time_date"
             tools:text="cloudy" />
 
         <TextView
-            android:id="@+id/max_temp_tv"
+            android:id="@+id/textview_all_maxtemp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -76,7 +76,7 @@
             tools:text="25" />
 
         <TextView
-            android:id="@+id/min_temp_tv"
+            android:id="@+id/textview_all_mintemp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -87,7 +87,7 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/max_temp_tv"
+            app:layout_constraintTop_toBottomOf="@+id/textview_all_maxtemp"
             tools:text="12" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -19,7 +19,7 @@ class WeatherRecycleViewAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding: DailyweatherListItemBinding = DataBindingUtil.inflate(
             LayoutInflater.from(parent.ctx),
-            R.layout.dailyweather_list_item,
+            R.layout.imageview_listitem_icon,
             parent,
             false
         )

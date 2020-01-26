@@ -22,14 +22,14 @@
             tools:ignore="MissingConstraints">
 
             <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
+                android:id="@+id/toolbar_all"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary" />
         </com.google.android.material.appbar.AppBarLayout>
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/imageview_details_degree"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
@@ -39,7 +39,7 @@
             tools:ignore="ContentDescription" />
 
         <TextView
-            android:id="@+id/degree_tv"
+            android:id="@+id/textview_details_degree"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
             android:layout_gravity="start"
@@ -52,22 +52,22 @@
             android:textColor="@color/colorBlack"
             android:textSize="@dimen/size_text_details_small"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/imageView4"
+            app:layout_constraintStart_toEndOf="@+id/imageview_details_degree"
             app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
             tools:text="180" />
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/imageview_details_speed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
             android:src="@drawable/details_metericon_small"
-            app:layout_constraintEnd_toStartOf="@+id/speed_tv"
+            app:layout_constraintEnd_toStartOf="@+id/textview_details_speed"
             app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
             tools:ignore="ContentDescription" />
 
         <TextView
-            android:id="@+id/speed_tv"
+            android:id="@+id/textview_details_speed"
             android:layout_width="150dp"
             android:layout_height="60dp"
             android:layout_gravity="start"
@@ -84,7 +84,7 @@
             tools:text="100 m/s" />
 
         <TextView
-            android:id="@+id/max_temp_tv"
+            android:id="@+id/textview_all_maxtemp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
@@ -99,11 +99,11 @@
             android:textSize="@dimen/size_text_details_small"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView4"
+            app:layout_constraintTop_toBottomOf="@+id/imageview_details_degree"
             tools:text="12" />
 
         <TextView
-            android:id="@+id/min_temp_tv"
+            android:id="@+id/textview_all_mintemp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -117,11 +117,11 @@
             android:textSize="@dimen/size_text_details_small"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/max_temp_tv"
+            app:layout_constraintTop_toBottomOf="@+id/textview_all_maxtemp"
             tools:text="10" />
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/imageview_details_time_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
@@ -131,7 +131,7 @@
             tools:ignore="ContentDescription" />
 
         <TextView
-            android:id="@+id/time"
+            android:id="@+id/textview_details_time_date"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
             android:layout_gravity="start"
@@ -144,21 +144,21 @@
             android:textSize="@dimen/size_text_details_small"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView3"
+            app:layout_constraintStart_toEndOf="@+id/imageview_details_time_date"
             tools:text="2020-1-25" />
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/imageView_details_humidity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
             android:src="@drawable/details_rainicon_small"
-            app:layout_constraintEnd_toStartOf="@+id/humidity_tv"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2"
+            app:layout_constraintEnd_toStartOf="@+id/textview_details_humidity"
+            app:layout_constraintTop_toBottomOf="@+id/imageview_details_speed"
             tools:ignore="ContentDescription" />
 
         <TextView
-            android:id="@+id/humidity_tv"
+            android:id="@+id/textview_details_humidity"
             android:layout_width="150dp"
             android:layout_height="60dp"
             android:layout_gravity="start"
@@ -171,7 +171,7 @@
             android:textSize="@dimen/size_text_details_small"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/speed_tv"
+            app:layout_constraintTop_toBottomOf="@+id/textview_details_speed"
             tools:text="18%" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

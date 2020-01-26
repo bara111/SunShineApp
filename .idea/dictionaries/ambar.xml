@@ -6,6 +6,7 @@
       <w>descriptiontext</w>
       <w>formated</w>
       <w>grnd</w>
+      <w>listitem</w>
       <w>listtext</w>
       <w>maxtemp</w>
       <w>maxtemptext</w>
@@ -13,6 +14,9 @@
       <w>mintemptext</w>
       <w>nablus</w>
       <w>recyclerview</w>
+      <w>recycleview</w>
+      <w>sunicon</w>
+      <w>textview</w>
       <w>weatherapp</w>
       <w>weatherrecords</w>
     </words>
