@@ -26,8 +26,8 @@ class MainAdapter(
         val binding: DailyweatherListitemIconBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(data: WeatherDailyData) {
-            Glide.with(itemView.ctx).load(data.weather?.get(0)?.getUrl())
-                .into(binding.imgaeviewListitemIcon)
+            if(data.weather?.size!=0)
+            Glide.with(itemView.ctx).load(data.weather?.get(0)?.getUrl()).into(binding.imgaeviewListitemIcon)
             binding.itemViewModel = data
             binding.executePendingBindings()
         }

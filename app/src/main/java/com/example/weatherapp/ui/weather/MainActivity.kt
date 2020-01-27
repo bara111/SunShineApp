@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity(),
             )
             initView()
         } else {
-            weatherDataList = savedInstanceState.getParcelableArrayList<WeatherDailyData>("a")
+            weatherDataList = savedInstanceState.getParcelableArrayList<WeatherDailyData>(lIST)
             onRotateDevice(weatherDataList)
         }
     }
@@ -90,11 +90,13 @@ class MainActivity : AppCompatActivity(),
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        return outState.putParcelableArrayList("a", weatherDataList)
+        return outState.putParcelableArrayList(lIST, weatherDataList)
     }
 
     companion object {
         val TAG: String = MainActivity::javaClass.name
+        val lIST: String = "SAVED_LIST"
+
     }
 
 
