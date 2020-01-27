@@ -15,8 +15,9 @@
         android:layout_height="wrap_content">
 
         <TextView
+            app:layout_constrainedWidth="true"
             android:id="@+id/textview_listitem_time_date"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:gravity="start"
@@ -26,8 +27,11 @@
             android:textSize="@dimen/size_text_details_small"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/textview_all_maxtemp"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.48"
             tools:text="2020-1-15" />
 
         <TextView
@@ -45,6 +49,7 @@
             tools:text="25" />
 
         <TextView
+            android:layout_marginBottom="10dp"
             android:id="@+id/textview_all_mintemp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

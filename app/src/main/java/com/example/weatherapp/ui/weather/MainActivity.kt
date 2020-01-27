@@ -30,7 +30,13 @@ class MainActivity : AppCompatActivity(),
             this,
             R.layout.activity_main
         ).apply { lifecycleOwner = this@MainActivity }
+
         setSupportActionBar(binding.toolbarAll)
+        mainAdapter = MainAdapter {
+            startActivity(DetailsActivity.newIntent(this@MainActivity, it))
+        }
+        binding.recycleviewAll.adapter = mainAdapter
+        binding.recycleviewAll.hasFixedSize()
 
         if (savedInstanceState == null) {
             mainActivityPresenter.setValues(
@@ -41,7 +47,8 @@ class MainActivity : AppCompatActivity(),
             )
             initView()
         } else {
-            onRotateDevice()
+            weatherDataList = savedInstanceState.getParcelableArrayList<WeatherDailyData>("a")
+            onRotateDevice(weatherDataList)
         }
     }
 
@@ -49,31 +56,20 @@ class MainActivity : AppCompatActivity(),
         mainActivityPresenter.requestData()
     }
 
-    override fun updateViewData() {
-        binding.apply {
+    override fun updateViewData(list: ArrayList<WeatherDailyData>?) {
+        with(binding) {
             progressbarMain.visibility = View.GONE
-            recycleviewAll.hasFixedSize()
-            weatherData = mainActivityPresenter.getWeatherDaily()?.get(0)
-            weatherDataList = mainActivityPresenter.getWeatherDaily()
-            mainAdapter = MainAdapter {
-                startActivity(DetailsActivity.newIntent(applicationContext, weatherData))
-            }
-            recycleviewAll.adapter = mainAdapter
-            mainAdapter.submitList(weatherDataList)
+            weatherDataList = list
+            weatherData = list?.get(0)
+            mainAdapter.submitList(list)
         }
     }
 
-    private fun onRotateDevice() {
-        binding.apply {
+    private fun onRotateDevice(list: ArrayList<WeatherDailyData>?) {
+        with(binding) {
             progressbarMain.visibility = View.GONE
-            recycleviewAll.hasFixedSize()
-            weatherData = mainActivityPresenter.getWeatherDaily()?.get(0)
-            weatherDataList = mainActivityPresenter.getWeatherDaily()
-            mainAdapter = MainAdapter {
-                startActivity(DetailsActivity.newIntent(applicationContext, weatherData))
-            }
-            recycleviewAll.adapter = mainAdapter
-            mainAdapter.submitList(weatherDataList)
+            mainAdapter.submitList(list)
+            weatherData = list?.get(0)
         }
     }
 
@@ -85,16 +81,20 @@ class MainActivity : AppCompatActivity(),
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.records -> {
-                this.startActivity(Intent(this, WeatherRecordsActivity::class.java))
+                startActivity(Intent(this, WeatherRecordsActivity::class.java))
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        return outState.putParcelableArrayList("a", weatherDataList)
+    }
+
     companion object {
-        val TAG: String
-            get() = MainActivity::javaClass.name
+        val TAG: String = MainActivity::javaClass.name
     }
 
 

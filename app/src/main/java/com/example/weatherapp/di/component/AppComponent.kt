@@ -10,7 +10,6 @@ import com.example.weatherapp.ui.weatherrecords.WeatherDatabaseComponent
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
-
 @Singleton
 @Component(modules = [MainActivityPresenterModule::class, RetrofitModule::class, AppSubComponents::class])
 interface AppComponent {

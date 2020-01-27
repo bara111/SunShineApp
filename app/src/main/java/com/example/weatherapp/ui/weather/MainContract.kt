@@ -16,7 +16,7 @@ class MainContract {
 
     interface View {
         fun initView()
-        fun updateViewData()
+        fun updateViewData(list: ArrayList<WeatherDailyData>?)
     }
 
 

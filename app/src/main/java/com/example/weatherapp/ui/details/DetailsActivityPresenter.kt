@@ -7,7 +7,7 @@ import com.example.weatherapp.data.database.WeatherRoomDatabase
 import javax.inject.Inject
 
 class DetailsActivityPresenter @Inject constructor(var context: Context) : DetailsContract.Presenter {
-    private var weatherRoomDatabase = WeatherRoomDatabase.getDatabase(context)
+    private val weatherRoomDatabase by lazy {WeatherRoomDatabase.getDatabase(context)}
     private var dao: WeatherDao
 
     init {

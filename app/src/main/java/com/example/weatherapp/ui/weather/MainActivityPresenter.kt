@@ -2,9 +2,9 @@ package com.example.weatherapp.ui.weather
 
 import android.content.Context
 import android.util.Log
+import com.example.weatherapp.data.models.WeatherDailyData
 import com.example.weatherapp.data.models.WeatherResponse
 import com.example.weatherapp.data.network.WeatherService
-import com.example.weatherapp.data.models.WeatherDailyData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -12,9 +12,8 @@ import retrofit2.Retrofit
 import javax.inject.Inject
 import javax.inject.Singleton
 
-@Singleton
 class MainActivityPresenter @Inject constructor(var context: Context) : MainContract.Presenter {
-
+ @Singleton
     @Inject
     lateinit var retrofit: Retrofit
     private var weatherResponse: ArrayList<WeatherDailyData>? = null
@@ -35,14 +34,14 @@ class MainActivityPresenter @Inject constructor(var context: Context) : MainCont
             ) {
                 if (response.code() == 200) {
                     weatherResponse = response.body()?.list
-                    view.updateViewData()
+                    view.updateViewData(weatherResponse)
                 }
             }
+
             override fun onFailure(call: Call<WeatherResponse>, t: Throwable) {
                 Log.d(MainActivity.TAG, t.toString())
             }
         })
-
     }
 
     override fun getWeatherDaily(): ArrayList<WeatherDailyData>? {

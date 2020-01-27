@@ -37,14 +37,17 @@
 
             <TextView
                 android:id="@+id/textview_main_today"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
+                android:layout_marginTop="16dp"
                 android:fontFamily="serif"
                 android:text="@string/main_today"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/size_main_todayText_small"
                 android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/imageview_main_sun"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/appBarLayout_all" />
 
@@ -76,14 +79,15 @@
                 app:layout_constraintTop_toBottomOf="@+id/textview_main_maxtemp"
                 tools:text="15" />
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imageview_main_sun"
                 android:layout_width="@dimen/size_main_icon_small"
                 android:layout_height="@dimen/size_main_icon_small"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="28dp"
                 android:layout_marginEnd="50dp"
                 android:src="@drawable/main_sunicon_small"
+                app:layout_constrainedWidth="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/appBarLayout_all"
                 tools:ignore="ContentDescription" />

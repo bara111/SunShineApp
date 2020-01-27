@@ -13,7 +13,7 @@ data class Wind(
     )
 
     fun getSpeedWithUnit(): String {
-        return this.speed.toString() + " m/s"
+        return this.speed.toString() + " m"
     }
 
     fun getDegreeWithUnit(): String {

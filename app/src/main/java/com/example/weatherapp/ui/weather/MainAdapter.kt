@@ -20,10 +20,8 @@ class MainAdapter(
             }
         }
     }
-
     override fun onBindViewHolder(holder: DetailsViewHolder, position: Int) =
         holder.bind(getItem(position))
-
     class DetailsViewHolder(
         val binding: DailyweatherListitemIconBinding
     ) : RecyclerView.ViewHolder(binding.root) {
@@ -33,7 +31,6 @@ class MainAdapter(
             binding.itemViewModel = data
             binding.executePendingBindings()
         }
-
         companion object {
             fun from(parent: ViewGroup): DetailsViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
@@ -42,17 +39,14 @@ class MainAdapter(
             }
         }
     }
-
     private class WeatherDC : DiffUtil.ItemCallback<WeatherDailyData>() {
         override fun areItemsTheSame(
             oldItem: WeatherDailyData,
             newItem: WeatherDailyData
         ) = oldItem.getFormatedTime()==newItem.getFormatedTime()
-
         override fun areContentsTheSame(
             oldItem: WeatherDailyData,
             newItem: WeatherDailyData
-        ) = oldItem == newItem
+        ) = ((oldItem.main?.converterTempMax()==newItem.main?.converterTempMax())&&(oldItem.main?.converterTempMin()== newItem.main?.converterTempMin())&&(oldItem.weather?.get(0)?.description== newItem.weather?.get(0)?.description))
     }
-
 }

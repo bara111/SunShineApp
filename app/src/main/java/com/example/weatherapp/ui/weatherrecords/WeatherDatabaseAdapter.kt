@@ -43,7 +43,7 @@ class WeatherDatabaseAdapter :
         override fun areContentsTheSame(
             oldItem: WeatherEntity,
             newItem: WeatherEntity
-        ) = oldItem == newItem
+        ) = ((oldItem.MaxTemp == newItem.MaxTemp)&&(oldItem.MinTemp==newItem.MinTemp))
     }
 
 }

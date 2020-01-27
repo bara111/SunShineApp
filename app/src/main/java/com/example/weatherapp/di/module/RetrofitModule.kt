@@ -8,13 +8,14 @@ import javax.inject.Singleton
 
 @Module
 object RetrofitModule {
-    @Provides
     @Singleton
+    @Provides
     fun getRetrofit(): Retrofit {
-        val baseUrl = "http://api.openweathermap.org/"
         return Retrofit.Builder()
-            .baseUrl(baseUrl)
+            .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
+
+    private const val BASE_URL = "http://api.openweathermap.org/"
 }

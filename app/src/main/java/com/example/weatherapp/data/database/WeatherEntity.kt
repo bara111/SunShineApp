@@ -10,6 +10,6 @@ data class WeatherEntity(
     @PrimaryKey
     @NonNull
     @ColumnInfo(name = "time") val time: String,
-    @ColumnInfo(name = "MaxTemp") val MaxTemp: String?,
-    @ColumnInfo(name = "MinTemp") val MinTemp: String?
+    @ColumnInfo(name = "MaxTemp") val MaxTemp: String,
+    @ColumnInfo(name = "MinTemp") val MinTemp: String
 )

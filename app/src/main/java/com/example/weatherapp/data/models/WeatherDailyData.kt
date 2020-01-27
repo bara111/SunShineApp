@@ -13,10 +13,11 @@ data class WeatherDailyData(
     val main: Main?,
     val rain: Rain?,
     val sys: Sys?,
-    val weather: ArrayList<Weather>?,
+    val weather: List<Weather>?,
     val wind: Wind?
 
 ) : Parcelable {
+
 
     constructor(parcel: Parcel) : this(
         parcel.readParcelable(Clouds::class.java.classLoader),
