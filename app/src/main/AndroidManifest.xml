@@ -14,11 +14,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppCompatTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.weatherrecords.WeatherRecordsActivity"></activity>
+        <activity android:name=".ui.weather.WeatherActivity"></activity>
         <activity
             android:name=".ui.details.DetailsActivity"
             android:theme="@style/AppCompatTheme" />
-        <activity android:name=".ui.weather.MainActivity">
+        <activity
+            android:name=".ui.courtine.CourtineActivity"
+            android:theme="@style/AppCompatTheme" />
+
+        <activity android:name=".ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

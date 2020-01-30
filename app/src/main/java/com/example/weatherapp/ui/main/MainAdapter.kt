@@ -1,4 +1,4 @@
-package com.example.weatherapp.ui.weather
+package com.example.weatherapp.ui.main
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.weatherapp.data.models.WeatherDailyData
-import com.example.weatherapp.databinding.DailyweatherListitemIconBinding
+import com.example.weatherapp.databinding.WeatherdailyitemMainBinding
 import com.example.weatherapp.extension.ctx
 
 class MainAdapter(
@@ -23,7 +23,7 @@ class MainAdapter(
     override fun onBindViewHolder(holder: DetailsViewHolder, position: Int) =
         holder.bind(getItem(position))
     class DetailsViewHolder(
-        val binding: DailyweatherListitemIconBinding
+        val binding: WeatherdailyitemMainBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(data: WeatherDailyData) {
             if(data.weather?.size!=0)
@@ -34,7 +34,7 @@ class MainAdapter(
         companion object {
             fun from(parent: ViewGroup): DetailsViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = DailyweatherListitemIconBinding.inflate(layoutInflater, parent, false)
+                val binding = WeatherdailyitemMainBinding.inflate(layoutInflater, parent, false)
                 return DetailsViewHolder(binding)
             }
         }

@@ -1,4 +1,4 @@
-package com.example.weatherapp.ui.weatherrecords
+package com.example.weatherapp.ui.weather
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,10 +6,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherapp.data.database.WeatherEntity
-import com.example.weatherapp.databinding.DatabaseListItemBinding
+import com.example.weatherapp.databinding.WeatheritemLayoutBinding
 
-class WeatherDatabaseAdapter :
-    ListAdapter<WeatherEntity, WeatherDatabaseAdapter.DetailsViewHolder>(WeatherDatabaseDC()) {
+class WeatherAdapter :
+    ListAdapter<WeatherEntity, WeatherAdapter.DetailsViewHolder>(WeatherDatabaseDC()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailsViewHolder {
         return DetailsViewHolder.from(parent)
     }
@@ -18,7 +18,7 @@ class WeatherDatabaseAdapter :
         holder.bind(getItem(position))
 
     class DetailsViewHolder(
-        val binding: DatabaseListItemBinding
+        val binding: WeatheritemLayoutBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(data: WeatherEntity) {
             binding.databaseViewModel = data
@@ -28,7 +28,7 @@ class WeatherDatabaseAdapter :
         companion object {
             fun from(parent: ViewGroup): DetailsViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = DatabaseListItemBinding.inflate(layoutInflater, parent, false)
+                val binding = WeatheritemLayoutBinding.inflate(layoutInflater, parent, false)
                 return DetailsViewHolder(binding)
             }
         }

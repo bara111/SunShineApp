@@ -1,4 +1,4 @@
-package com.example.weatherapp.ui.weatherrecords
+package com.example.weatherapp.ui.weather
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -6,24 +6,24 @@ import androidx.databinding.DataBindingUtil
 import com.example.weatherapp.BaseApp
 import com.example.weatherapp.R
 import com.example.weatherapp.data.database.WeatherEntity
-import com.example.weatherapp.databinding.ActivityWeatherDatabaseBinding
+import com.example.weatherapp.databinding.ActivityWeatherBinding
 import javax.inject.Inject
 
-class WeatherRecordsActivity : AppCompatActivity(), WeatherRecordsContract.View {
+class WeatherActivity : AppCompatActivity(), WeatherContract.View {
     @Inject
-    lateinit var weatherRecordsActivityPresenter: WeatherRecordsActivityPresenter
-    private lateinit var binding: ActivityWeatherDatabaseBinding
-    private val view: WeatherRecordsContract.View = this
-    private lateinit var adapter: WeatherDatabaseAdapter
+    lateinit var weatherRecordsActivityPresenter: WeatherActivityPresenter
+    private lateinit var binding: ActivityWeatherBinding
+    private val view: WeatherContract.View = this
+    private lateinit var adapter: WeatherAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         (application as BaseApp).appComponent.weatherDatabaseComponent().create().inject(this)
 
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView<ActivityWeatherDatabaseBinding>(
+        binding = DataBindingUtil.setContentView<ActivityWeatherBinding>(
             this,
-            R.layout.activity_weather_database
+            R.layout.activity_weather
         ).apply {
-            lifecycleOwner = this@WeatherRecordsActivity
+            lifecycleOwner = this@WeatherActivity
         }
         setSupportActionBar(binding.toolbarAll)
         weatherRecordsActivityPresenter.apply {
@@ -33,7 +33,7 @@ class WeatherRecordsActivity : AppCompatActivity(), WeatherRecordsContract.View 
     }
     override fun updateViewData(list: List<WeatherEntity>) {
         with(binding) {
-            adapter = WeatherDatabaseAdapter()
+            adapter = WeatherAdapter()
             adapter.submitList(list)
             recycleviewAll.hasFixedSize()
             recycleviewAll.adapter=adapter

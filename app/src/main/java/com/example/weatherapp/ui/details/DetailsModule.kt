@@ -5,7 +5,6 @@ import javax.inject.Singleton
 
 @Module
 abstract class DetailsModule {
-    @Singleton
     @Binds
     abstract fun provideDetailsPresenter(detailsActivityPresenter: DetailsActivityPresenter): DetailsContract.Presenter
 }

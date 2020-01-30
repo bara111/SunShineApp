@@ -1,7 +1,7 @@
 package com.example.weatherapp.di.module
 
-import com.example.weatherapp.ui.weather.MainActivityPresenter
-import com.example.weatherapp.ui.weather.MainContract
+import com.example.weatherapp.ui.main.MainActivityPresenter
+import com.example.weatherapp.ui.main.MainContract
 import dagger.Binds
 import dagger.Module
 

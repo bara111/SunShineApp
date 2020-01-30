@@ -1,8 +1,8 @@
-package com.example.weatherapp.ui.weatherrecords
+package com.example.weatherapp.ui.weather
 
 import com.example.weatherapp.data.database.WeatherEntity
 
-class WeatherRecordsContract {
+class WeatherContract {
     interface Presenter {
         fun openDatabase()
     }

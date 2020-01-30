@@ -1,4 +1,4 @@
-package com.example.weatherapp.ui.weather
+package com.example.weatherapp.ui.main
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,8 +11,9 @@ import com.example.weatherapp.BaseApp
 import com.example.weatherapp.R
 import com.example.weatherapp.data.models.WeatherDailyData
 import com.example.weatherapp.databinding.ActivityMainBinding
+import com.example.weatherapp.ui.courtine.CourtineActivity
 import com.example.weatherapp.ui.details.DetailsActivity
-import com.example.weatherapp.ui.weatherrecords.WeatherRecordsActivity
+import com.example.weatherapp.ui.weather.WeatherActivity
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(),
@@ -37,7 +38,6 @@ class MainActivity : AppCompatActivity(),
         }
         binding.recycleviewAll.adapter = mainAdapter
         binding.recycleviewAll.hasFixedSize()
-
         if (savedInstanceState == null) {
             mainActivityPresenter.setValues(
                 this,
@@ -62,6 +62,7 @@ class MainActivity : AppCompatActivity(),
             weatherDataList = list
             weatherData = list?.get(0)
             mainAdapter.submitList(list)
+
         }
     }
 
@@ -81,7 +82,11 @@ class MainActivity : AppCompatActivity(),
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.records -> {
-                startActivity(Intent(this, WeatherRecordsActivity::class.java))
+                startActivity(Intent(this, WeatherActivity::class.java))
+                true
+            }
+            R.id.courtine -> {
+                startActivity(Intent(this, CourtineActivity::class.java))
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -95,9 +100,6 @@ class MainActivity : AppCompatActivity(),
 
     companion object {
         val TAG: String = MainActivity::javaClass.name
-        val lIST: String = "SAVED_LIST"
-
+        const val lIST: String = "SAVED_LIST"
     }
-
-
 }

@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.weatherapp.BaseApp
@@ -18,7 +17,7 @@ class DetailsActivity : AppCompatActivity(), DetailsContract.View {
     @Inject
     lateinit var detailsActivityPresenter: DetailsActivityPresenter
     private lateinit var binding: ActivityDetailsBinding
-    private lateinit var weatherDailyData: WeatherDailyData
+    private var weatherDailyData: WeatherDailyData? = null
 
     companion object {
         private val EXTRA_DETAILS: String = "${DetailsActivity::class.java.name}_DETAILS_EXTRA"
@@ -39,8 +38,8 @@ class DetailsActivity : AppCompatActivity(), DetailsContract.View {
                     lifecycleOwner = this@DetailsActivity
                 }
         setSupportActionBar(binding.toolbarAll)
-        weatherDailyData= intent.getParcelableExtra(EXTRA_DETAILS)
-        binding.weatherData=weatherDailyData
+        weatherDailyData = intent.getParcelableExtra(EXTRA_DETAILS)
+        binding.weatherData = weatherDailyData
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -51,11 +50,11 @@ class DetailsActivity : AppCompatActivity(), DetailsContract.View {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.insert_data -> {
-                if (weatherDailyData.main != null) {
+                if (weatherDailyData?.main != null) {
                     detailsActivityPresenter.addRecord(
-                        weatherDailyData.getFormatedTime(),
-                        weatherDailyData.main!!.converterTempMax(),
-                        weatherDailyData.main!!.converterTempMin()
+                        weatherDailyData!!.getFormatedTime(),
+                        weatherDailyData!!.main!!.converterTempMax(),
+                        weatherDailyData!!.main!!.converterTempMin()
                     )
                 }
                 true

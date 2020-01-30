@@ -4,9 +4,10 @@ import android.content.Context
 import com.example.weatherapp.AppSubComponents
 import com.example.weatherapp.di.module.MainActivityPresenterModule
 import com.example.weatherapp.di.module.RetrofitModule
+import com.example.weatherapp.ui.courtine.CourtineComponent
 import com.example.weatherapp.ui.details.DetailsComponent
-import com.example.weatherapp.ui.weather.MainActivity
-import com.example.weatherapp.ui.weatherrecords.WeatherDatabaseComponent
+import com.example.weatherapp.ui.main.MainActivity
+import com.example.weatherapp.ui.weather.WeatherComponent
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -19,5 +20,7 @@ interface AppComponent {
     }
     fun inject(mainActivity: MainActivity)
     fun detailsComponent(): DetailsComponent.Factory
-    fun weatherDatabaseComponent(): WeatherDatabaseComponent.Factory
+    fun weatherDatabaseComponent(): WeatherComponent.Factory
+    fun courtineComponent(): CourtineComponent.Factory
+
 }
