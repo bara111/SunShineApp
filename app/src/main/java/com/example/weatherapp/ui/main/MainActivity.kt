@@ -2,14 +2,15 @@ package com.example.weatherapp.ui.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.example.weatherapp.BaseApp
 import com.example.weatherapp.R
-import com.example.weatherapp.data.models.WeatherResponse
 import com.example.weatherapp.databinding.ActivityMainBinding
 import com.example.weatherapp.ui.details.DetailsActivity
 import com.example.weatherapp.ui.weather.WeatherActivity
@@ -34,10 +35,16 @@ class MainActivity : AppCompatActivity() {
         }
         binding.recycleviewAll.adapter = mainAdapter
         binding.recycleviewAll.hasFixedSize()
-        val nameObserver = Observer<WeatherResponse> { newName ->
-            mainAdapter.submitList(newName.list)
-        }
-        viewModel.weatherDailyDataList?.observe(this, nameObserver)
+        viewModel.weatherDailyDataList.observe(this,
+            Observer { list ->
+                with(binding) {
+                    progressbarMain.visibility = View.GONE
+                    textviewMainMaxtemp?.text= list[0].main?.converterTempMax()
+                    textviewMainMintemp?.text= list[0].main?.converterTempMin()
+                    textviewListitemCondition.text= list[0].weather?.get(0)?.description
+                }
+                mainAdapter.submitList(list)
+            })
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

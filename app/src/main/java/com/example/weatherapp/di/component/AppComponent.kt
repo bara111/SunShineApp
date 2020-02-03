@@ -3,9 +3,9 @@ package com.example.weatherapp.di.component
 import android.content.Context
 import com.example.weatherapp.AppSubComponents
 import com.example.weatherapp.di.module.RetrofitModule
-import com.example.weatherapp.ui.details.di.component.DetailsComponent
-import com.example.weatherapp.ui.main.di.component.MainComponent
-import com.example.weatherapp.ui.weather.di.component.WeatherComponent
+import com.example.weatherapp.ui.details.di.component.DetailsActivityComponent
+import com.example.weatherapp.ui.main.di.component.MainActivityComponent
+import com.example.weatherapp.ui.weather.di.component.WeatherActivityComponent
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -17,8 +17,9 @@ interface AppComponent {
     interface Factory {
         fun create(@BindsInstance context: Context): AppComponent
     }
-    fun mainComponent(): MainComponent.Factory
-    fun detailsComponent(): DetailsComponent.Factory
-    fun weatherDatabaseComponent(): WeatherComponent.Factory
+
+    fun mainComponent(): MainActivityComponent.Factory
+    fun detailsComponent(): DetailsActivityComponent.Factory
+    fun weatherDatabaseComponent(): WeatherActivityComponent.Factory
 
 }

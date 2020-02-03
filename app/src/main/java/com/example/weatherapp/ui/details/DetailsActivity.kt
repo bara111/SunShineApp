@@ -11,20 +11,16 @@ import com.example.weatherapp.BaseApp
 import com.example.weatherapp.R
 import com.example.weatherapp.data.models.WeatherDailyData
 import com.example.weatherapp.databinding.ActivityDetailsBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 class DetailsActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityDetailsBinding
+    @Inject
+    lateinit var viewModel: DetailsViewModel
     private var weatherDailyData: WeatherDailyData? = null
-
-    companion object {
-        private val EXTRA_DETAILS: String = "${DetailsActivity::class.java.name}_DETAILS_EXTRA"
-        fun newIntent(context: Context, list: WeatherDailyData?): Intent {
-            return Intent(context, DetailsActivity::class.java).putExtra(
-                EXTRA_DETAILS,
-                list
-            )
-        }
-    }
+    private lateinit var binding: ActivityDetailsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         (application as BaseApp).appComponent.detailsComponent().create().inject(this)
@@ -43,20 +39,30 @@ class DetailsActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.appbar, menu)
         return true
     }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.insert_data -> {
                 if (weatherDailyData?.main != null) {
-//                    detailsActivityPresenter.addRecord(
-//                        weatherDailyData!!.getFormatedTime(),
-//                        weatherDailyData!!.main!!.converterTempMax(),
-//                        weatherDailyData!!.main!!.converterTempMin()
-//                    )
+                    CoroutineScope(Dispatchers.Main).launch {
+                        viewModel.saveRecord(
+                            weatherDailyData!!.getFormatedTime(),
+                            weatherDailyData!!.main?.converterTempMax(),
+                            weatherDailyData!!.main?.converterTempMin()
+                        )
+                    }
                 }
                 true
             }
             else -> super.onOptionsItemSelected(item)
+        }
+    }
+    companion object {
+        private val EXTRA_DETAILS: String = "${DetailsActivity::class.java.name}_DETAILS_EXTRA"
+        fun newIntent(context: Context, list: WeatherDailyData?): Intent {
+            return Intent(context, DetailsActivity::class.java).putExtra(
+                EXTRA_DETAILS,
+                list
+            )
         }
     }
 }

@@ -5,7 +5,7 @@ import com.example.weatherapp.ui.weather.WeatherViewModel
 import dagger.Binds
 import dagger.Module
 @Module
-abstract class WeatherModule {
+abstract class WeatherActivityViewModelModule {
     @Binds
-    abstract fun provideMainActivityPresenter(weatherViewModel: WeatherViewModel): ViewModel
+    abstract fun provideWeatherActivityViewModel(weatherViewModel: WeatherViewModel): ViewModel
 }

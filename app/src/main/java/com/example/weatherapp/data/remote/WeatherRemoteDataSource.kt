@@ -1,10 +1,7 @@
 package com.example.weatherapp.data.remote
 
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.weatherapp.data.WeatherDataSource
-import com.example.weatherapp.data.local.WeatherEntity
 import com.example.weatherapp.data.models.WeatherDailyData
 import com.example.weatherapp.data.models.WeatherResponse
 import com.example.weatherapp.ui.main.MainActivity
@@ -15,12 +12,12 @@ import retrofit2.Retrofit
 import javax.inject.Inject
 import javax.inject.Singleton
 
-class WeatherRemoteDataSource @Inject constructor() : WeatherDataSource {
+class WeatherRemoteDataSource @Inject constructor() :
+    WeatherDataSource.Remote {
     @Singleton
     @Inject
     lateinit var retrofit: Retrofit
-    var weatherResponse: WeatherResponse? = null
-
+    var weatherDailyDataList = MutableLiveData<List<WeatherDailyData>>()
     fun requestData() {
         val service = retrofit.create(WeatherService::class.java)
         val call = service.getCurrentWeatherData(
@@ -32,32 +29,20 @@ class WeatherRemoteDataSource @Inject constructor() : WeatherDataSource {
                 call: Call<WeatherResponse>,
                 response: Response<WeatherResponse>
             ) {
-                if (response.code() == 200) {
-                    weatherResponse = response.body()
-                    Log.d("retrofit+",weatherResponse.toString())
-
+                if (response.code() == 200 && response.body()?.list != null) {
+                    val data: List<WeatherDailyData> = response.body()?.list!!
+                    weatherDailyDataList.value = data
                 }
             }
 
             override fun onFailure(call: Call<WeatherResponse>, t: Throwable) {
-                Log.d("retrofit+",weatherResponse.toString())
-
                 Log.d(MainActivity.TAG, t.toString())
             }
         })
     }
 
-
-    override suspend fun saveRecord(weatherEntity: WeatherEntity) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override suspend fun getRecords(): List<WeatherEntity> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun getResponse(): WeatherResponse? {
-        return weatherResponse
+    override fun getResponse(): MutableLiveData<List<WeatherDailyData>> {
+        return weatherDailyDataList
     }
 }
 

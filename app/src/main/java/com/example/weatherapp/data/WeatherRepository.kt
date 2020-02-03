@@ -1,27 +1,31 @@
 package com.example.weatherapp.data
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.example.weatherapp.data.local.WeatherEntity
 import com.example.weatherapp.data.local.WeatherLocalDataSource
-import com.example.weatherapp.data.models.WeatherResponse
+import com.example.weatherapp.data.models.WeatherDailyData
+import com.example.weatherapp.data.remote.WeatherDataSource
 import com.example.weatherapp.data.remote.WeatherRemoteDataSource
 import javax.inject.Inject
 
-class WeatherRepository @Inject constructor() : WeatherDataSource {
+class WeatherRepository @Inject constructor() :
+    WeatherDataSource.Remote, WeatherDataSource.Local {
     @Inject
     lateinit var weatherRemoteDataSource: WeatherRemoteDataSource
+    @Inject
+    lateinit var weatherLocalDataSource: WeatherLocalDataSource
 
-    var weatherLocalDataSource: WeatherLocalDataSource = WeatherLocalDataSource()
     override suspend fun saveRecord(weatherEntity: WeatherEntity) {
         weatherLocalDataSource.saveRecord(weatherEntity)
     }
 
-    override suspend fun getRecords(): List<WeatherEntity> {
+    override fun getRecords(): LiveData<List<WeatherEntity>> {
         return weatherLocalDataSource.getRecords()
     }
 
-    override fun getResponse(): WeatherResponse? {
+    override fun getResponse(): MutableLiveData<List<WeatherDailyData>> {
         weatherRemoteDataSource.requestData()
         return weatherRemoteDataSource.getResponse()
     }
-
 }

@@ -3,13 +3,15 @@ package com.example.weatherapp.ui.weather
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import com.example.weatherapp.BaseApp
 import com.example.weatherapp.R
-import com.example.weatherapp.data.local.WeatherEntity
 import com.example.weatherapp.databinding.ActivityWeatherBinding
 import javax.inject.Inject
 
 class WeatherActivity : AppCompatActivity() {
+    @Inject
+    lateinit var viewModel: WeatherViewModel
     private lateinit var binding: ActivityWeatherBinding
     private lateinit var adapter: WeatherAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,17 +25,16 @@ class WeatherActivity : AppCompatActivity() {
             lifecycleOwner = this@WeatherActivity
         }
         setSupportActionBar(binding.toolbarAll)
-//        weatherRecordsActivityPresenter.apply {
-//            setView(view)
-//            openDatabase()
-//        }
+        viewModel.getRecords()
+
+        viewModel.weatherDataBaseList.observe(this, Observer { list ->
+            with(binding) {
+                adapter = WeatherAdapter()
+                adapter.submitList(list)
+                recycleviewAll.hasFixedSize()
+                recycleviewAll.adapter = adapter
+            }
+        })
     }
-//    override fun updateViewData(list: List<WeatherEntity>) {
-//        with(binding) {
-//            adapter = WeatherAdapter()
-//            adapter.submitList(list)
-//            recycleviewAll.hasFixedSize()
-//            recycleviewAll.adapter=adapter
-//        }
-    }
+}
 
