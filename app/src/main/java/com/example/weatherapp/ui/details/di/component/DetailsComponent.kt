@@ -1,9 +1,9 @@
-package com.example.weatherapp.ui.details
+package com.example.weatherapp.ui.details.di.component
 
-import com.example.weatherapp.di.scope.ActivityScope
+import com.example.weatherapp.ui.details.DetailsActivity
 import dagger.Subcomponent
-@ActivityScope
-@Subcomponent(modules = [DetailsModule::class])
+
+@Subcomponent
 interface DetailsComponent {
 
     @Subcomponent.Factory

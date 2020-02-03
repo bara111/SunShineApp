@@ -4,8 +4,4 @@
         android:id="@+id/records"
         android:title="@string/main_records"
        />
-    <item
-        android:id="@+id/courtine"
-        android:title="@string/main_courtine"
-         />
 </menu>

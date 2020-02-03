@@ -18,10 +18,6 @@
         <activity
             android:name=".ui.details.DetailsActivity"
             android:theme="@style/AppCompatTheme" />
-        <activity
-            android:name=".ui.courtine.CourtineActivity"
-            android:theme="@style/AppCompatTheme" />
-
         <activity android:name=".ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

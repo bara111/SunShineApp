@@ -20,17 +20,20 @@ class MainAdapter(
             }
         }
     }
+
     override fun onBindViewHolder(holder: DetailsViewHolder, position: Int) =
         holder.bind(getItem(position))
+
     class DetailsViewHolder(
         val binding: WeatherdailyitemMainBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(data: WeatherDailyData) {
-            if(data.weather?.size!=0)
-            Glide.with(itemView.ctx).load(data.weather?.get(0)?.getUrl()).into(binding.imgaeviewListitemIcon)
+            if (data.weather?.size != 0)
+                Glide.with(itemView.ctx).load(data.weather?.get(0)?.getUrl()).into(binding.imgaeviewListitemIcon)
             binding.itemViewModel = data
             binding.executePendingBindings()
         }
+
         companion object {
             fun from(parent: ViewGroup): DetailsViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
@@ -39,14 +42,19 @@ class MainAdapter(
             }
         }
     }
+
     private class WeatherDC : DiffUtil.ItemCallback<WeatherDailyData>() {
         override fun areItemsTheSame(
             oldItem: WeatherDailyData,
             newItem: WeatherDailyData
-        ) = oldItem.getFormatedTime()==newItem.getFormatedTime()
+        ) = oldItem.getFormatedTime() == newItem.getFormatedTime()
+
         override fun areContentsTheSame(
             oldItem: WeatherDailyData,
             newItem: WeatherDailyData
-        ) = ((oldItem.main?.converterTempMax()==newItem.main?.converterTempMax())&&(oldItem.main?.converterTempMin()== newItem.main?.converterTempMin())&&(oldItem.weather?.get(0)?.description== newItem.weather?.get(0)?.description))
+        ) =
+            ((oldItem.main?.converterTempMax() == newItem.main?.converterTempMax()) && (oldItem.main?.converterTempMin() == newItem.main?.converterTempMin()) && (oldItem.weather?.get(
+                0
+            )?.description == newItem.weather?.get(0)?.description))
     }
 }

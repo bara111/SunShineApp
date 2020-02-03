@@ -11,11 +11,8 @@ import com.example.weatherapp.BaseApp
 import com.example.weatherapp.R
 import com.example.weatherapp.data.models.WeatherDailyData
 import com.example.weatherapp.databinding.ActivityDetailsBinding
-import javax.inject.Inject
 
-class DetailsActivity : AppCompatActivity(), DetailsContract.View {
-    @Inject
-    lateinit var detailsActivityPresenter: DetailsActivityPresenter
+class DetailsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailsBinding
     private var weatherDailyData: WeatherDailyData? = null
 
@@ -51,11 +48,11 @@ class DetailsActivity : AppCompatActivity(), DetailsContract.View {
         return when (item.itemId) {
             R.id.insert_data -> {
                 if (weatherDailyData?.main != null) {
-                    detailsActivityPresenter.addRecord(
-                        weatherDailyData!!.getFormatedTime(),
-                        weatherDailyData!!.main!!.converterTempMax(),
-                        weatherDailyData!!.main!!.converterTempMin()
-                    )
+//                    detailsActivityPresenter.addRecord(
+//                        weatherDailyData!!.getFormatedTime(),
+//                        weatherDailyData!!.main!!.converterTempMax(),
+//                        weatherDailyData!!.main!!.converterTempMin()
+//                    )
                 }
                 true
             }

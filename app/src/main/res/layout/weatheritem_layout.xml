@@ -7,7 +7,7 @@
 
         <variable
             name="databaseViewModel"
-            type="com.example.weatherapp.data.database.WeatherEntity" />
+            type="com.example.weatherapp.data.local.WeatherEntity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

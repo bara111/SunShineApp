@@ -1,4 +1,4 @@
-package com.example.weatherapp.data.database
+package com.example.weatherapp.data.local
 
 import androidx.room.Dao
 import androidx.room.Insert

@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.weatherapp.data.database.WeatherEntity
+import com.example.weatherapp.data.local.WeatherEntity
 import com.example.weatherapp.databinding.WeatheritemLayoutBinding
 
 class WeatherAdapter :
