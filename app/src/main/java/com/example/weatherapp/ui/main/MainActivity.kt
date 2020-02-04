@@ -2,7 +2,6 @@ package com.example.weatherapp.ui.main
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -15,6 +14,7 @@ import com.example.weatherapp.databinding.ActivityMainBinding
 import com.example.weatherapp.ui.details.DetailsActivity
 import com.example.weatherapp.ui.weather.WeatherActivity
 import javax.inject.Inject
+
 
 class MainActivity : AppCompatActivity() {
     @Inject
@@ -39,9 +39,9 @@ class MainActivity : AppCompatActivity() {
             Observer { list ->
                 with(binding) {
                     progressbarMain.visibility = View.GONE
-                    textviewMainMaxtemp?.text= list[0].main?.converterTempMax()
-                    textviewMainMintemp?.text= list[0].main?.converterTempMin()
-                    textviewListitemCondition.text= list[0].weather?.get(0)?.description
+                    textviewMainMaxtemp?.text = list[0].main?.converterTempMax()
+                    textviewMainMintemp?.text = list[0].main?.converterTempMin()
+                    textviewListitemCondition.text = list[0].weather?.get(0)?.description
                 }
                 mainAdapter.submitList(list)
             })
@@ -64,6 +64,5 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         val TAG: String = MainActivity::javaClass.name
-        const val lIST: String = "SAVED_LIST"
     }
 }
