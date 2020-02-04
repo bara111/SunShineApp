@@ -7,12 +7,12 @@ import com.example.weatherapp.data.models.WeatherDailyData
 
 interface WeatherDataSource {
     suspend fun saveRecord(weatherEntity: WeatherEntity)
-    suspend fun getRecords(): LiveData<List<WeatherEntity>>
+     fun getRecords(): LiveData<List<WeatherEntity>>
     fun getResponse(): MutableLiveData<List<WeatherDailyData>>
 
     interface Local {
         suspend fun saveRecord(weatherEntity: WeatherEntity)
-        fun getRecords(): LiveData<List<WeatherEntity>>?
+        fun getRecords(): LiveData<List<WeatherEntity>>
     }
 
     interface Remote {

@@ -7,14 +7,12 @@ import com.example.weatherapp.data.local.WeatherLocalDataSource
 import com.example.weatherapp.data.models.WeatherDailyData
 import com.example.weatherapp.data.remote.WeatherDataSource
 import com.example.weatherapp.data.remote.WeatherRemoteDataSource
-import javax.inject.Inject
 
-class WeatherRepository @Inject constructor() :
-    WeatherDataSource.Remote, WeatherDataSource.Local {
-    @Inject
-    lateinit var weatherRemoteDataSource: WeatherRemoteDataSource
-    @Inject
-    lateinit var weatherLocalDataSource: WeatherLocalDataSource
+class WeatherRepository(
+    var weatherRemoteDataSource: WeatherRemoteDataSource,
+    var weatherLocalDataSource: WeatherLocalDataSource
+) :
+    WeatherDataSource {
 
     override suspend fun saveRecord(weatherEntity: WeatherEntity) {
         weatherLocalDataSource.saveRecord(weatherEntity)

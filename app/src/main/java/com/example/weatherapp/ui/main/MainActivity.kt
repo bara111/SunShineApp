@@ -8,33 +8,33 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.example.weatherapp.BaseApp
 import com.example.weatherapp.R
 import com.example.weatherapp.databinding.ActivityMainBinding
 import com.example.weatherapp.ui.details.DetailsActivity
 import com.example.weatherapp.ui.weather.WeatherActivity
-import javax.inject.Inject
 
 
 class MainActivity : AppCompatActivity() {
-    @Inject
-    lateinit var viewModel: MainViewModel
+    private lateinit var viewModel: MainViewModel
     private lateinit var binding: ActivityMainBinding
     private lateinit var mainAdapter: MainAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
-        (application as BaseApp).appComponent.mainComponent().create().inject(this)
+        (application as BaseApp).appComponent.inject(this)
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView<ActivityMainBinding>(
             this,
             R.layout.activity_main
         ).apply { lifecycleOwner = this@MainActivity }
         setSupportActionBar(binding.toolbarAll)
-        viewModel.getDataFromWeatherRepository()
         mainAdapter = MainAdapter {
             startActivity(DetailsActivity.newIntent(this@MainActivity, it))
         }
         binding.recycleviewAll.adapter = mainAdapter
         binding.recycleviewAll.hasFixedSize()
+        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+
         viewModel.weatherDailyDataList.observe(this,
             Observer { list ->
                 with(binding) {

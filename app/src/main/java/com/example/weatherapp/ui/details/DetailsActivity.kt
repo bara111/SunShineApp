@@ -7,6 +7,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import com.example.weatherapp.BaseApp
 import com.example.weatherapp.R
 import com.example.weatherapp.data.models.WeatherDailyData
@@ -14,16 +15,14 @@ import com.example.weatherapp.databinding.ActivityDetailsBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 class DetailsActivity : AppCompatActivity() {
-    @Inject
     lateinit var viewModel: DetailsViewModel
     private var weatherDailyData: WeatherDailyData? = null
     private lateinit var binding: ActivityDetailsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        (application as BaseApp).appComponent.detailsComponent().create().inject(this)
+        (application as BaseApp).appComponent.inject(this)
         super.onCreate(savedInstanceState)
         binding =
             DataBindingUtil.setContentView<ActivityDetailsBinding>(this, R.layout.activity_details)
@@ -33,6 +32,8 @@ class DetailsActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbarAll)
         weatherDailyData = intent.getParcelableExtra(EXTRA_DETAILS)
         binding.weatherData = weatherDailyData
+        viewModel = ViewModelProvider(this).get(DetailsViewModel::class.java)
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

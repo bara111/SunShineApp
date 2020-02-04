@@ -9,14 +9,15 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
-import javax.inject.Inject
-import javax.inject.Singleton
+import retrofit2.converter.gson.GsonConverterFactory
 
-class WeatherRemoteDataSource @Inject constructor() :
+
+class WeatherRemoteDataSource :
     WeatherDataSource.Remote {
-    @Singleton
-    @Inject
-    lateinit var retrofit: Retrofit
+    var retrofit: Retrofit = Retrofit.Builder()
+        .baseUrl("http://api.openweathermap.org/")
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
     var weatherDailyDataList = MutableLiveData<List<WeatherDailyData>>()
     fun requestData() {
         val service = retrofit.create(WeatherService::class.java)
