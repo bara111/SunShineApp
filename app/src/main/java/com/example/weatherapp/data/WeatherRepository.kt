@@ -7,9 +7,10 @@ import com.example.weatherapp.data.local.WeatherLocalDataSource
 import com.example.weatherapp.data.models.WeatherDailyData
 import com.example.weatherapp.data.remote.WeatherDataSource
 import com.example.weatherapp.data.remote.WeatherRemoteDataSource
+import javax.inject.Inject
 
-class WeatherRepository(
-    var weatherRemoteDataSource: WeatherRemoteDataSource,
+class WeatherRepository @Inject constructor(
+    private var weatherRemoteDataSource: WeatherRemoteDataSource,
     var weatherLocalDataSource: WeatherLocalDataSource
 ) :
     WeatherDataSource {

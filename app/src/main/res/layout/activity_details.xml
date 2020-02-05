@@ -30,14 +30,12 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imageview_details_degree"
-
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
             android:layout_marginStart="12dp"
             android:src="@drawable/details_windicon_small"
             app:layout_constrainedWidth="true"
-            app:layout_constraintBottom_toTopOf="@+id/view"
             app:layout_constraintEnd_toStartOf="@+id/textview_details_degree"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -119,7 +117,6 @@
             android:textStyle="bold"
             app:layout_constrainedWidth="true"
             app:layout_constraintBottom_toTopOf="@+id/imageview_details_time_date"
-            app:layout_constraintEnd_toStartOf="@+id/view"
             app:layout_constraintHorizontal_bias="0.517"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textview_all_maxtemp"
@@ -159,7 +156,6 @@
             app:layout_constrainedHeight="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageview_details_time_date"
-            app:layout_constraintTop_toBottomOf="@+id/view"
             app:layout_constraintVertical_bias="0.78"
             tools:text="2020-1-25" />
 
@@ -174,20 +170,9 @@
             app:layout_constrainedWidth="true"
             app:layout_constraintEnd_toStartOf="@+id/textview_details_humidity"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/view"
             app:layout_constraintTop_toBottomOf="@+id/imageview_details_speed"
             tools:ignore="ContentDescription" />
 
-        <androidx.legacy.widget.Space
-            android:id="@+id/view"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_margin="10dp"
-            android:layout_marginTop="148dp"
-            app:layout_constraintEnd_toStartOf="@+id/imageView_details_humidity"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/textview_all_maxtemp"
-            app:layout_constraintTop_toBottomOf="@+id/imageview_details_speed" />
 
         <TextView
             android:id="@+id/textview_all_maxtemp"
@@ -206,7 +191,6 @@
             android:textStyle="bold"
             app:layout_constrainedWidth="true"
             app:layout_constraintBottom_toTopOf="@+id/textview_all_mintemp"
-            app:layout_constraintEnd_toStartOf="@+id/view"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageview_details_degree"

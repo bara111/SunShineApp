@@ -10,11 +10,12 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Inject
 
 
-class WeatherRemoteDataSource :
+class WeatherRemoteDataSource @Inject constructor() :
     WeatherDataSource.Remote {
-    var retrofit: Retrofit = Retrofit.Builder()
+    private var retrofit: Retrofit = Retrofit.Builder()
         .baseUrl("http://api.openweathermap.org/")
         .addConverterFactory(GsonConverterFactory.create())
         .build()

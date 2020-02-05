@@ -1,21 +1,11 @@
 package com.example.weatherapp.ui.details
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModel
 import com.example.weatherapp.data.WeatherRepository
 import com.example.weatherapp.data.local.WeatherEntity
-import com.example.weatherapp.data.local.WeatherLocalDataSource
-import com.example.weatherapp.data.remote.WeatherRemoteDataSource
+import javax.inject.Inject
 
-class DetailsViewModel(application: Application) : AndroidViewModel(application) {
-    private var weatherRepository: WeatherRepository
-    var weatherLocalDataSource: WeatherLocalDataSource =
-        WeatherLocalDataSource(application.applicationContext)
-    var weatherRemoteDataSource: WeatherRemoteDataSource = WeatherRemoteDataSource()
-
-    init {
-        weatherRepository = WeatherRepository(weatherRemoteDataSource, weatherLocalDataSource)
-    }
+class DetailsViewModel @Inject constructor(private var weatherRepository: WeatherRepository) : ViewModel() {
 
     suspend fun saveRecord(
         time: String,
