@@ -13,7 +13,6 @@ class WeatherAdapter :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailsViewHolder {
         return DetailsViewHolder.from(parent)
     }
-
     override fun onBindViewHolder(holder: DetailsViewHolder, position: Int) =
         holder.bind(getItem(position))
 
@@ -24,7 +23,6 @@ class WeatherAdapter :
             binding.databaseViewModel = data
             binding.executePendingBindings()
         }
-
         companion object {
             fun from(parent: ViewGroup): DetailsViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
@@ -33,7 +31,6 @@ class WeatherAdapter :
             }
         }
     }
-
     private class WeatherDatabaseDC : DiffUtil.ItemCallback<WeatherEntity>() {
         override fun areItemsTheSame(
             oldItem: WeatherEntity,

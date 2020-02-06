@@ -23,8 +23,8 @@ import javax.inject.Inject
 class DetailsActivity : AppCompatActivity() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-    private lateinit var viewModel: DetailsViewModel
     private var weatherDailyData: WeatherDailyData? = null
+    private lateinit var viewModel: DetailsViewModel
     private lateinit var binding: ActivityDetailsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,7 +36,7 @@ class DetailsActivity : AppCompatActivity() {
                     lifecycleOwner = this@DetailsActivity
                 }
         setSupportActionBar(binding.toolbarAll)
-        weatherDailyData = intent.getParcelableExtra(EXTRA_DETAILS)
+        this.weatherDailyData = intent.getParcelableExtra(EXTRA_DETAILS)
         binding.weatherData = weatherDailyData
         viewModel = ViewModelProviders.of(this, viewModelFactory)
             .get(DetailsViewModel::class.java)

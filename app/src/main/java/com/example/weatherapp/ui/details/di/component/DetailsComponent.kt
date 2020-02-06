@@ -9,7 +9,6 @@ interface DetailsComponent {
     interface Factory {
         fun create(): DetailsComponent
     }
-
     fun inject(activity: DetailsActivity)
 
 }

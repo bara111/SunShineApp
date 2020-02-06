@@ -1,6 +1,5 @@
 package com.example.weatherapp.data.models
 
-
 data class WeatherResponse(
     val city: City?,
     val cnt: Int,
