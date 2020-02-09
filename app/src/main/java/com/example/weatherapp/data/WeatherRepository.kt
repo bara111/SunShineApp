@@ -14,15 +14,12 @@ class WeatherRepository @Inject constructor(
     var weatherLocalDataSource: WeatherLocalDataSource
 ) :
     WeatherDataSource {
-
     override suspend fun saveRecord(weatherEntity: WeatherEntity) {
         weatherLocalDataSource.saveRecord(weatherEntity)
     }
-
     override fun getRecords(): LiveData<List<WeatherEntity>> {
         return weatherLocalDataSource.getRecords()
     }
-
     override fun getResponse(): MutableLiveData<List<WeatherDailyData>> {
         weatherRemoteDataSource.requestData()
         return weatherRemoteDataSource.getResponse()

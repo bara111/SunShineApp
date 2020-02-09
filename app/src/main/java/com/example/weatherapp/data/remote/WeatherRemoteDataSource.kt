@@ -11,11 +11,8 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import javax.inject.Inject
 
-
 class WeatherRemoteDataSource @Inject constructor(private var retrofit: Retrofit) :
     WeatherDataSource.Remote {
-
-
     var weatherDailyDataList = MutableLiveData<List<WeatherDailyData>>()
     fun requestData() {
         val service = retrofit.create(WeatherService::class.java)

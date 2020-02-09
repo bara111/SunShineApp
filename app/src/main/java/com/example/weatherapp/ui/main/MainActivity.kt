@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         binding.recycleviewAll.hasFixedSize()
         viewModel = ViewModelProviders.of(this, viewModelFactory)
             .get(MainViewModel::class.java)
-        viewModel.weatherDailyDataList.observe(this,
+        viewModel.weatherDailyDataList?.observe(this,
             Observer { list ->
                 with(binding) {
                     progressbarMain.visibility = View.GONE
