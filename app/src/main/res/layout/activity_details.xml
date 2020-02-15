@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="weatherData"
+            type="com.example.weatherapp.data.models.WeatherDailyData" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            tools:ignore="MissingConstraints">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar_all"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary" />
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageview_details_degree"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:layout_marginStart="12dp"
+            android:src="@drawable/details_windicon_small"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintEnd_toStartOf="@+id/textview_details_degree"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+            app:layout_constraintVertical_bias="0.0"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+
+            android:id="@+id/textview_details_degree"
+            android:layout_width="0dp"
+            android:layout_height="31dp"
+            android:layout_gravity="start"
+            android:layout_margin="15dp"
+            android:layout_marginTop="12dp"
+            android:fontFamily="serif"
+            android:gravity="start"
+            android:lines="1"
+            android:text="@{weatherData.wind.getDegreeWithUnit()}"
+            android:textAlignment="center"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/size_text_details_small"
+            android:textStyle="bold"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintEnd_toStartOf="@+id/imageview_details_speed"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/imageview_details_degree"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+            tools:text="180" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageview_details_speed"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="12dp"
+            android:src="@drawable/details_metericon_small"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintEnd_toStartOf="@+id/textview_details_speed"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/textview_details_degree"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/textview_details_speed"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_margin="15dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="serif"
+            android:gravity="start"
+            android:text="@{weatherData.wind.getSpeedWithUnit()}"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/size_text_details_small"
+            android:textStyle="bold"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/imageview_details_speed"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+            tools:text="100" />
+
+        <TextView
+            android:id="@+id/textview_all_mintemp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="start"
+            android:layout_margin="15dp"
+            android:fontFamily="serif"
+            android:gravity="start"
+            android:text="@{weatherData.main.converterTempMin()}"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/size_text_details_small"
+            android:textStyle="bold"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toTopOf="@+id/imageview_details_time_date"
+            app:layout_constraintHorizontal_bias="0.517"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textview_all_maxtemp"
+            tools:text="10" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageview_details_time_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/details_calendaricon_small"
+            app:layout_constrainedHeight="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/textview_details_time_date"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textview_all_mintemp"
+            app:layout_constraintVertical_bias="0.956"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/textview_details_time_date"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_gravity="start"
+            android:layout_margin="15dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="148dp"
+            android:fontFamily="serif"
+            android:gravity="start"
+            android:lines="1"
+            android:text="@{weatherData.getFormatedTime()}"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/size_text_details_small"
+            android:textStyle="bold"
+            app:layout_constrainedHeight="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageview_details_time_date"
+            app:layout_constraintVertical_bias="0.78"
+            tools:text="2020-1-25" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageView_details_humidity"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/details_rainicon_small"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintEnd_toStartOf="@+id/textview_details_humidity"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintTop_toBottomOf="@+id/imageview_details_speed"
+            tools:ignore="ContentDescription" />
+
+
+        <TextView
+            android:id="@+id/textview_all_maxtemp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_gravity="start"
+            android:layout_margin="15dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="40dp"
+            android:fontFamily="serif"
+            android:gravity="start"
+            android:text="@{weatherData.main.converterTempMax()}"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/size_text_details_small"
+            android:textStyle="bold"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toTopOf="@+id/textview_all_mintemp"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageview_details_degree"
+            tools:text="12" />
+
+        <TextView
+            android:id="@+id/textview_details_humidity"
+            android:layout_width="33dp"
+            android:layout_height="24dp"
+            android:layout_margin="15dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="serif"
+            android:maxHeight="100dp"
+            android:maxLines="4"
+            android:text="@{weatherData.main.getHumidityWithUnit()}"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/size_text_details_small"
+            android:textStyle="bold"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView_details_humidity"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.652"
+            app:layout_constraintStart_toEndOf="@+id/imageview_details_speed"
+            app:layout_constraintTop_toBottomOf="@+id/textview_details_speed"
+            app:layout_constraintVertical_bias="1.0"
+            tools:text="18%" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

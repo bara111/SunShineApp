@@ -1,0 +1,31 @@
+<component name="ProjectDictionaryState">
+  <dictionary name="ambar">
+    <words>
+      <w>appid</w>
+      <w>calendaricon</w>
+      <w>coord</w>
+      <w>courtine</w>
+      <w>descriptiontext</w>
+      <w>formated</w>
+      <w>grnd</w>
+      <w>imageview</w>
+      <w>imgaeview</w>
+      <w>listitem</w>
+      <w>listtext</w>
+      <w>maxtemp</w>
+      <w>maxtemptext</w>
+      <w>metericon</w>
+      <w>mintemp</w>
+      <w>mintemptext</w>
+      <w>nablus</w>
+      <w>rainicon</w>
+      <w>recyclerview</w>
+      <w>recycleview</w>
+      <w>sunicon</w>
+      <w>textview</w>
+      <w>weatherapp</w>
+      <w>weatherrecords</w>
+      <w>windicon</w>
+    </words>
+  </dictionary>
+</component>
