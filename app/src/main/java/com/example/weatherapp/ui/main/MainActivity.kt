@@ -8,11 +8,11 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import com.example.weatherapp.BaseApp
 import com.example.weatherapp.R
 import com.example.weatherapp.databinding.ActivityMainBinding
@@ -40,13 +40,16 @@ class MainActivity : AppCompatActivity() {
         }
         binding.recycleviewAll.adapter = mainAdapter
         binding.recycleviewAll.hasFixedSize()
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(MainViewModel::class.java)
+        val viewModel by viewModels<MainViewModel> {
+            viewModelFactory
+        }
         viewModel.weatherDailyDataList.observe(this, Observer { list ->
             with(binding) {
                 progressbarMain.visibility = View.GONE
                 textviewMainMaxtemp?.text = list.Response?.list?.get(0)?.main?.converterTempMax()
                 textviewMainMintemp?.text = list.Response?.list?.get(0)?.main?.converterTempMin()
-                textviewListitemCondition.text = list.Response?.list?.get(0)?.weather?.get(0)?.description
+                textviewListitemCondition.text =
+                    list.Response?.list?.get(0)?.weather?.get(0)?.description
             }
             mainAdapter.submitList(list.Response?.list)
         })
@@ -59,7 +62,7 @@ class MainActivity : AppCompatActivity() {
         viewModel.error.observe(this, Observer { it ->
             it.getContentIfNotHandled()?.let {
                 if (!it.contentEquals("null"))
-                Toast.makeText(this, it, Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, it, Toast.LENGTH_LONG).show()
             }
         })
 

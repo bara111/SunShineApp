@@ -3,11 +3,11 @@
 package com.example.weatherapp.ui.weather
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import com.example.weatherapp.BaseApp
 import com.example.weatherapp.R
 import com.example.weatherapp.databinding.ActivityWeatherBinding
@@ -17,6 +17,7 @@ class WeatherActivity : AppCompatActivity() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var viewModel: WeatherViewModel
+
     private lateinit var binding: ActivityWeatherBinding
     private lateinit var adapter: WeatherAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,8 +31,9 @@ class WeatherActivity : AppCompatActivity() {
         }
         setSupportActionBar(binding.toolbarAll)
         adapter = WeatherAdapter()
-        viewModel = ViewModelProviders.of(this, viewModelFactory)
-            .get(WeatherViewModel::class.java)
+        val viewModel by viewModels<WeatherViewModel>{
+            viewModelFactory
+        }
         viewModel.weatherDataBaseList.observe(this, Observer { list ->
             with(binding) {
                 adapter.submitList(list)

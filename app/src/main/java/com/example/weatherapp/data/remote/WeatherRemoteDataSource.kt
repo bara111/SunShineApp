@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 class WeatherRemoteDataSource @Inject constructor(
     private var retrofit: Retrofit,
-    var context: Context
+    private var context: Context
 ) : WeatherDataSource.Remote {
     var weatherApiMutable = MutableLiveData<ApiResponse<WeatherResponse, ErrorMessage>>()
     lateinit var weatherApi: ApiResponse<WeatherResponse, ErrorMessage>

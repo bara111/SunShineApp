@@ -7,10 +7,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import com.example.weatherapp.BaseApp
 import com.example.weatherapp.R
 import com.example.weatherapp.data.models.WeatherDailyData
@@ -38,8 +38,9 @@ class DetailsActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbarAll)
         this.weatherDailyData = intent.getParcelableExtra(EXTRA_DETAILS)
         binding.weatherData = weatherDailyData
-        viewModel = ViewModelProviders.of(this, viewModelFactory)
-            .get(DetailsViewModel::class.java)
+        val viewModel by viewModels<DetailsViewModel> {
+            viewModelFactory
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
