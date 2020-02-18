@@ -6,11 +6,12 @@ import android.os.Parcelable
 data class Coord(
     val lat: Double,
     val lon: Double
-): Parcelable {
+) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readDouble(),
         parcel.readDouble()
     )
+
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeDouble(lat)
         parcel.writeDouble(lon)

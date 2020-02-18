@@ -1,7 +1,7 @@
 package com.example.weatherapp
 
 open class Event<out T>(private val content: T) {
-     var hasBeenHandled = false
+    var hasBeenHandled = false
         private set
 
     fun getContentIfNotHandled(): T? {

@@ -5,7 +5,7 @@ import android.os.Parcelable
 
 data class Clouds(
     val all: Int
-): Parcelable {
+) : Parcelable {
     constructor(parcel: Parcel) : this(parcel.readInt())
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {

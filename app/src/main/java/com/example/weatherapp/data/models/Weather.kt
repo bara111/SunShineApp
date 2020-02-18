@@ -17,6 +17,7 @@ data class Weather(
         parcel.readInt(),
         parcel.readString()
     )
+
     fun getUrl(): String {
         return "http://openweathermap.org/img/w/$icon.png"
     }

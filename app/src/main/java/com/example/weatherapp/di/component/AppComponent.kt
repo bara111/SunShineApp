@@ -11,12 +11,13 @@ import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [RetrofitModule::class, AppSubComponents::class, ViewModelFactoryModule::class,WeatherViewModelModule::class,DetailsViewModelModule::class,MainViewModelModule::class])
+@Component(modules = [RetrofitModule::class, AppSubComponents::class, ViewModelFactoryModule::class, WeatherViewModelModule::class, DetailsViewModelModule::class, MainViewModelModule::class])
 interface AppComponent {
     @Component.Factory
     interface Factory {
         fun create(@BindsInstance context: Context): AppComponent
     }
+
     fun weatherComponent(): WeatherComponent.Factory
     fun detailsComponent(): DetailsComponent.Factory
     fun mainComponent(): MainComponent.Factory

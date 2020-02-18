@@ -15,7 +15,6 @@
         android:layout_height="wrap_content">
 
         <TextView
-            app:layout_constrainedWidth="true"
             android:id="@+id/textview_listitem_time_date"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -26,6 +25,7 @@
             android:textColor="@color/colorBlack"
             android:textSize="@dimen/size_text_details_small"
             android:textStyle="bold"
+            app:layout_constrainedWidth="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/textview_all_maxtemp"
             app:layout_constraintHorizontal_bias="0.0"
@@ -49,13 +49,13 @@
             tools:text="25" />
 
         <TextView
-            android:layout_marginBottom="10dp"
             android:id="@+id/textview_all_mintemp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="15dp"
+            android:layout_marginBottom="10dp"
             android:text="@{databaseViewModel.minTemp}"
             android:textSize="@dimen/size_Item_minTemp_small"
             android:textStyle="bold"
