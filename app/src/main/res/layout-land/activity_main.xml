@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="weatherData"
+            type="com.example.weatherapp.data.models.WeatherDailyData" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:baselineAligned="false"
+        android:orientation="vertical">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout_all"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar_all"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary" />
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/main_roundedcorners_shape"
+                android:orientation="vertical"
+                tools:context=".ui.main.MainActivity">
+
+                <TextView
+                    android:id="@+id/textview_main_today"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/main_today"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/size_main_todayText_small"
+                    app:layout_constraintEnd_toStartOf="@+id/imageview_main_sun"
+                    app:layout_constraintHorizontal_bias="0.487"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/appBarLayout_all"
+                    tools:ignore="NotSibling" />
+
+                <TextView
+                    android:id="@+id/textview_main_maxtemp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:layout_marginStart="20dp"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/size_main_maxtemptext_small"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textview_main_today"
+                    app:layout_constraintVertical_bias="0.486"
+                    tools:text="25" />
+
+                <TextView
+                    android:id="@+id/textview_main_mintemp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:layout_marginBottom="88dp"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/size_main_mintemptext_small"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/imageview_main_sun"
+                    app:layout_constraintHorizontal_bias="0.378"
+                    app:layout_constraintStart_toEndOf="@+id/textview_main_maxtemp"
+                    app:layout_constraintTop_toBottomOf="@+id/textview_main_today"
+                    tools:text="15" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imageview_main_sun"
+                    android:layout_width="@dimen/size_main_icon_small"
+                    android:layout_height="@dimen/size_main_icon_small"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginTop="24dp"
+                    android:src="@drawable/main_sunicon_small"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/appBarLayout_all"
+                    tools:ignore="ContentDescription,NotSibling" />
+
+                <TextView
+                    android:id="@+id/textview_listitem_condition"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="1dp"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/size_all_descriptiontext_small"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.76"
+                    app:layout_constraintStart_toEndOf="@+id/textview_main_maxtemp"
+                    app:layout_constraintTop_toBottomOf="@+id/imageview_main_sun"
+                    app:layout_constraintVertical_bias="0.302"
+                    tools:text="cloudy" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycleview_all"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scrollbars="vertical"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+                <ProgressBar
+                    android:id="@+id/progressbar_main"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    app:layout_constraintBottom_toBottomOf="@+id/recycleview_all"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/recycleview_all"
+                    app:layout_constraintTop_toTopOf="@+id/recycleview_all" />
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+</layout>
