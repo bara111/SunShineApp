@@ -2,7 +2,6 @@
 
 package com.example.weatherapp.ui.main
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -18,9 +17,11 @@ import com.example.weatherapp.R
 import com.example.weatherapp.databinding.ActivityMainBinding
 import com.example.weatherapp.ui.details.DetailsActivity
 import com.example.weatherapp.ui.weather.WeatherActivity
-import org.jetbrains.anko.toast
+import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
+@Suppress("PLUGIN_WARNING")
 class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -49,8 +50,8 @@ class MainActivity : AppCompatActivity() {
 
         updateUI()
 
-        showErrorMessageNetworkRequest(this)
-        showToastOnMaxTempChange(this)
+        showErrorMessageNetworkRequest()
+        showToastOnMaxTempChange()
 
         binding.swipeContainer?.setColorSchemeResources(
             android.R.color.holo_blue_bright
@@ -75,11 +76,15 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun showToastOnMaxTempChange(context: Context) {
+    private fun showToastOnMaxTempChange() {
         viewModel.maxTemp.observe(this, Observer { it ->
             it.getContentIfNotHandled()?.let {
                 if (!it.contentEquals("null")) {
-                    context.toast(it)
+                    Snackbar.make(
+                        root_layout,
+                        it,
+                        Snackbar.LENGTH_SHORT
+                    ).show()
                     binding.alertMain?.visibility = View.GONE
                     binding.textErrorMain?.visibility = View.GONE
                 }
@@ -87,11 +92,15 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    private fun showErrorMessageNetworkRequest(context: Context) {
+    private fun showErrorMessageNetworkRequest() {
         viewModel.error.observe(this, Observer { it ->
             it.getContentIfNotHandled()?.let {
                 if (!it.contentEquals("null")) {
-                    context.toast(it)
+                    Snackbar.make(
+                        root_layout,
+                        it,
+                        Snackbar.LENGTH_SHORT
+                    ).show()
                     binding.alertMain?.visibility = View.VISIBLE
                     binding.textErrorMain?.visibility = View.VISIBLE
                 }
@@ -103,8 +112,8 @@ class MainActivity : AppCompatActivity() {
         this.viewModel.weatherDailyDataList.observe(this, Observer { list ->
             with(binding) {
                 progressbarMain.visibility = View.GONE
-                textviewMainMaxtemp?.text = list.Response?.list?.get(0)?.main?.converterTempMax()
-                textviewMainMintemp?.text = list.Response?.list?.get(0)?.main?.converterTempMin()
+                textviewMainMaxtemp.text = list.Response?.list?.get(0)?.main?.converterTempMax()
+                textviewMainMintemp.text = list.Response?.list?.get(0)?.main?.converterTempMin()
                 textviewListitemCondition.text =
                     list.Response?.list?.get(0)?.weather?.get(0)?.description
             }
@@ -115,7 +124,5 @@ class MainActivity : AppCompatActivity() {
     private fun fetchNewDataOnRefresh() {
         this.viewModel.fetchNewDataOnRefresh()
         binding.swipeContainer?.isRefreshing = false
-
     }
-
 }

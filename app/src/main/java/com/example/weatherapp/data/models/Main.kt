@@ -29,18 +29,16 @@ data class Main(
         parcel.readDouble()
     )
 
-    fun converterTempMin(): String {
+    fun converterTempMin(): String? {
         return ((this.temp_min - 273).toInt().toString() + "°")
 
     }
 
-    fun converterTempMax(): String {
-
+    fun converterTempMax(): String? {
         return ((this.temp_max - 273).toInt().toString() + "°")
     }
 
     fun getHumidityWithUnit(): String {
-
         return this.humidity.toString() + "%"
     }
 
