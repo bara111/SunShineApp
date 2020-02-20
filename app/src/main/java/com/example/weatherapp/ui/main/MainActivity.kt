@@ -50,6 +50,16 @@ class MainActivity : AppCompatActivity() {
         updateUI()
         showErrorMessageNetworkRequest(this)
         showToastOnMaxTempChange(this)
+        binding.swipeContainer?.setColorSchemeResources(
+            android.R.color.holo_blue_bright,
+            android.R.color.holo_green_light,
+            android.R.color.holo_orange_light,
+            android.R.color.holo_red_light
+        )
+
+        binding.swipeContainer?.setOnRefreshListener {
+            fetchNewDataOnRefresh()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -70,8 +80,11 @@ class MainActivity : AppCompatActivity() {
     private fun showToastOnMaxTempChange(context: Context) {
         viewModel.maxTemp.observe(this, Observer { it ->
             it.getContentIfNotHandled()?.let {
-                if (!it.contentEquals("null"))
+                if (!it.contentEquals("null")) {
                     context.toast(it)
+                    binding.alertMain?.visibility = View.GONE
+                    binding.textErrorMain?.visibility = View.GONE
+                }
             }
         })
     }
@@ -79,8 +92,11 @@ class MainActivity : AppCompatActivity() {
     private fun showErrorMessageNetworkRequest(context: Context) {
         viewModel.error.observe(this, Observer { it ->
             it.getContentIfNotHandled()?.let {
-                if (!it.contentEquals("null"))
+                if (!it.contentEquals("null")) {
                     context.toast(it)
+                    binding.alertMain?.visibility = View.VISIBLE
+                    binding.textErrorMain?.visibility = View.VISIBLE
+                }
             }
         })
     }
@@ -97,4 +113,11 @@ class MainActivity : AppCompatActivity() {
             mainAdapter.submitList(list.Response?.list)
         })
     }
+
+    private fun fetchNewDataOnRefresh() {
+        this.viewModel.fetchNewDataOnRefresh()
+        binding.swipeContainer?.isRefreshing = false
+
+    }
+
 }

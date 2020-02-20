@@ -8,4 +8,5 @@
     <string name="details_insert">Insert</string>
     <string name="main_records">Records</string>
     <string name="main_courtine">Courtine</string>
+    <string name="main_errorMessage">check your internet connection or use swap screen to reload</string>
 </resources>

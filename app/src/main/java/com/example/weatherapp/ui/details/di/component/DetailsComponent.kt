@@ -10,5 +10,4 @@ interface DetailsComponent {
         fun create(): DetailsComponent
     }
     fun inject(activity: DetailsActivity)
-
 }
