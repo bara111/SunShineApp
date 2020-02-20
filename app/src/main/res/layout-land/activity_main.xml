@@ -116,7 +116,6 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1">
-
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycleview_all"
                     android:layout_width="match_parent"
@@ -135,6 +134,7 @@
                     app:layout_constraintStart_toStartOf="@+id/recycleview_all"
                     app:layout_constraintTop_toTopOf="@+id/recycleview_all" />
             </RelativeLayout>
+
         </LinearLayout>
     </LinearLayout>
 </layout>

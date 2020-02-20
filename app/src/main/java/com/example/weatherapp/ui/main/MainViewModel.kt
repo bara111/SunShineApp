@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 class MainViewModel @Inject constructor(var weatherRepository: WeatherRepository) : ViewModel(),
     WeatherDataSource.GetResponseCallback {
-    var _weatherDailyDataList: MutableLiveData<ApiResponse<WeatherResponse, ErrorMessage>> =
+    private var _weatherDailyDataList: MutableLiveData<ApiResponse<WeatherResponse, ErrorMessage>> =
         MutableLiveData()
     val weatherDailyDataList: LiveData<ApiResponse<WeatherResponse, ErrorMessage>> get() = _weatherDailyDataList
     var maxTemp: LiveData<Event<String>>
@@ -34,11 +34,6 @@ class MainViewModel @Inject constructor(var weatherRepository: WeatherRepository
     override fun onSuccessCallback(ApiResponse: ApiResponse<WeatherResponse, ErrorMessage>) {
         _weatherDailyDataList.value = ApiResponse
     }
-
-    override fun onFailureCallback(ApiResponse: ApiResponse<WeatherResponse, ErrorMessage>) {
-        _weatherDailyDataList.value = ApiResponse
-    }
-
     internal fun fetchNewDataOnRefresh() {
         weatherRepository.getTask(this)
 

@@ -21,7 +21,6 @@ import com.example.weatherapp.ui.weather.WeatherActivity
 import org.jetbrains.anko.toast
 import javax.inject.Inject
 
-
 class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -47,12 +46,15 @@ class MainActivity : AppCompatActivity() {
             viewModelFactory
         }
         this.viewModel = viewModel
+
         updateUI()
+
         showErrorMessageNetworkRequest(this)
         showToastOnMaxTempChange(this)
-        binding.swipeContainer?.setColorSchemeResources(
-            android.R.color.holo_blue_bright)
 
+        binding.swipeContainer?.setColorSchemeResources(
+            android.R.color.holo_blue_bright
+        )
         binding.swipeContainer?.setOnRefreshListener {
             fetchNewDataOnRefresh()
         }

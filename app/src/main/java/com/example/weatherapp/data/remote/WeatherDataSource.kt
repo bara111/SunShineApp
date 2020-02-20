@@ -6,7 +6,6 @@ import com.example.weatherapp.data.models.ApiResponse
 import com.example.weatherapp.data.models.ErrorMessage
 import com.example.weatherapp.data.models.WeatherResponse
 
-
 interface WeatherDataSource {
     suspend fun saveRecord(weatherEntity: WeatherEntity)
     fun getRecords(): LiveData<List<WeatherEntity>>
@@ -19,6 +18,5 @@ interface WeatherDataSource {
     interface Remote
     interface GetResponseCallback {
         fun onSuccessCallback(ApiResponse: ApiResponse<WeatherResponse, ErrorMessage>)
-        fun onFailureCallback(ApiResponse: ApiResponse<WeatherResponse, ErrorMessage>)
     }
 }

@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName
 data class Rain(
     @SerializedName("`3h`")
     val snowValue: Double
-): Parcelable {
+) : Parcelable {
     constructor(parcel: Parcel) : this(parcel.readDouble())
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {

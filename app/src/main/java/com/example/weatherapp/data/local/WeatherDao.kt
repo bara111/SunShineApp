@@ -13,8 +13,8 @@ interface WeatherDao {
     fun getRecords(): LiveData<List<WeatherEntity>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-     fun insert(weatherEntity: WeatherEntity)
+    fun insert(weatherEntity: WeatherEntity)
 
     @Query("DELETE FROM weather_table")
-     fun deleteAll()
+    fun deleteAll()
 }

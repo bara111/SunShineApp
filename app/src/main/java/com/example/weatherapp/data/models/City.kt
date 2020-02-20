@@ -14,7 +14,7 @@ data class City(
     val sunrise: Int,
     val sunset: Int,
     val timezone: Int
-):Parcelable {
+) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readParcelable(Coord::class.java.classLoader),
         parcel.readString(),

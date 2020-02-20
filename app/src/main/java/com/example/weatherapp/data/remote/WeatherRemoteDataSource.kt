@@ -36,6 +36,7 @@ class WeatherRemoteDataSource @Inject constructor(
                     callback.onSuccessCallback(weatherApi)
                 }
             }
+
             override fun onFailure(call: Call<WeatherResponse>, t: Throwable) {
                 error = ErrorMessage(t.toString())
                 weatherApi = ApiResponse(null, error)
