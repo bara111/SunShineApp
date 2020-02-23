@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="size_text_details_small">18sp</dimen>
+    <dimen name="size_main_icon_small">120dp</dimen>
+    <dimen name="size_Item_maxTemp_small">20sp</dimen>
+    <dimen name="size_Item_minTemp_small">18sp</dimen>
+    <dimen name="size_itemList_icon_small">60dp</dimen>
+    <dimen name="size_details_icon_small">93.75dp</dimen>
+    <dimen name="margin_all_description_small">17dp</dimen>
+    <dimen name="size_main_todayText_small">45sp</dimen>
+    <dimen name="size_all_descriptiontext_small">30sp</dimen>
+    <dimen name="size_main_maxtemptext_small">30sp</dimen>
+    <dimen name="size_main_mintemptext_small">25sp</dimen>
+</resources>
+
