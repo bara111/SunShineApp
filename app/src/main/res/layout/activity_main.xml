@@ -88,7 +88,7 @@
                 android:layout_height="@dimen/size_main_icon_small"
                 android:layout_gravity="center"
                 android:layout_marginTop="28dp"
-                android:layout_marginEnd="50dp"
+                android:layout_marginEnd="28dp"
                 android:src="@drawable/main_sunicon_small"
                 app:layout_constrainedWidth="true"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -103,7 +103,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
-                android:layout_marginEnd="50dp"
+                android:layout_marginEnd="28dp"
                 android:fontFamily="serif"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/size_all_descriptiontext_small"
@@ -137,7 +137,8 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:src="@drawable/main_alert_meduim"
-                    android:visibility="gone" />
+                    android:visibility="gone"
+                    tools:ignore="ContentDescription" />
 
                 <TextView
                     android:id="@+id/text_error_main"

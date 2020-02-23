@@ -2,6 +2,7 @@
 
 package com.example.weatherapp.ui.main
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -28,6 +29,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var mainAdapter: MainAdapter
     private lateinit var viewModel: MainViewModel
+    @SuppressLint("MissingPermission")
     override fun onCreate(savedInstanceState: Bundle?) {
         (application as BaseApp).appComponent.mainComponent().create().inject(this)
         super.onCreate(savedInstanceState)
@@ -80,11 +82,7 @@ class MainActivity : AppCompatActivity() {
         viewModel.maxTemp.observe(this, Observer { it ->
             it.getContentIfNotHandled()?.let {
                 if (!it.contentEquals("null")) {
-                    Snackbar.make(
-                        root_layout,
-                        it,
-                        Snackbar.LENGTH_SHORT
-                    ).show()
+                    Snackbar.make(root_layout, it, Snackbar.LENGTH_SHORT).show()
                     binding.alertMain?.visibility = View.GONE
                     binding.textErrorMain?.visibility = View.GONE
                 }
@@ -96,11 +94,7 @@ class MainActivity : AppCompatActivity() {
         viewModel.error.observe(this, Observer { it ->
             it.getContentIfNotHandled()?.let {
                 if (!it.contentEquals("null")) {
-                    Snackbar.make(
-                        root_layout,
-                        it,
-                        Snackbar.LENGTH_SHORT
-                    ).show()
+                    Snackbar.make(root_layout, it, Snackbar.LENGTH_SHORT).show()
                     binding.alertMain?.visibility = View.VISIBLE
                     binding.textErrorMain?.visibility = View.VISIBLE
                 }
