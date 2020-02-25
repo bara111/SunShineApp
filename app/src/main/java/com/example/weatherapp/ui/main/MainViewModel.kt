@@ -22,4 +22,5 @@ class MainViewModel @Inject constructor(weatherRepository: WeatherRepository) : 
         _errorEvent.postValue(Event(maxTemp))
     }
     var _errorEvent: MutableLiveData<Event<String?>> = MutableLiveData()
+    //test
 }
