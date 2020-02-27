@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">SunShine</string>
+    <string name="retrofit_base_url">http://api.openweathermap.org/</string>
+    <string name="retrofit_lat_nablus">32.22</string>
+    <string name="retrofit_lon_nablus">35.22</string>
+    <string name="retrofit_api_key">829740af696dc0258609d2d0a6a8472a</string>
+    <string name="main_today">Today</string>
+    <string name="details_insert">Insert</string>
+    <string name="main_records">Records</string>
+    <string name="main_courtine">Courtine</string>
+    <string name="main_errorMessage">check your internet connection or use swap screen to reload</string>
+</resources>
