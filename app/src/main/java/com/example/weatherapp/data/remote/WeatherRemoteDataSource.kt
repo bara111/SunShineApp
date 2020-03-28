@@ -26,7 +26,7 @@ class WeatherRemoteDataSource @Inject constructor(
                 context.resources.getString(R.string.retrofit_lat_nablus),
                 context.resources.getString(R.string.retrofit_lon_nablus),
                 context.resources.getString(R.string.retrofit_api_key)
-
+            )
         observable.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : SingleObserver<Response<WeatherResponse>> {
