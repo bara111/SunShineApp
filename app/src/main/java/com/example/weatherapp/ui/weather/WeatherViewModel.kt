@@ -6,6 +6,8 @@ import com.example.weatherapp.data.WeatherRepository
 import com.example.weatherapp.data.local.WeatherEntity
 import javax.inject.Inject
 
-class WeatherViewModel @Inject constructor(weatherRepository: WeatherRepository) : ViewModel() {
+class WeatherViewModel @Inject constructor(
+    weatherRepository: WeatherRepository
+) : ViewModel() {
     var weatherDataBaseList: LiveData<List<WeatherEntity>> = weatherRepository.getRecords()
 }

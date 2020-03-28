@@ -27,15 +27,17 @@ class WeatherRemoteDataSource @Inject constructor(
                 context.resources.getString(R.string.retrofit_lon_nablus),
                 context.resources.getString(R.string.retrofit_api_key)
             )
-             observable.subscribeOn(Schedulers.io())
+        observable.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : SingleObserver<Response<WeatherResponse>> {
                 override fun onSuccess(weatherResponse: Response<WeatherResponse>) {
                     apiResponse.value = ApiResponse(weatherResponse.body(), null)
                 }
+
                 override fun onSubscribe(d: Disposable) {
                     disposable.add(d)
                 }
+
                 override fun onError(throwable: Throwable) {
                     apiResponse.value = ApiResponse(null, throwable.message)
                 }

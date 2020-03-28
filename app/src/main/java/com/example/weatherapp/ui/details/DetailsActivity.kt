@@ -1,5 +1,3 @@
-@file:Suppress("DEPRECATION")
-
 package com.example.weatherapp.ui.details
 
 import android.content.Context

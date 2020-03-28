@@ -1,7 +1,7 @@
 package com.example.weatherapp.di.module
 
 import androidx.lifecycle.ViewModelProvider
-import com.example.weatherapp.ViewModelFactory
+import com.example.weatherapp.viewmodel.ViewModelFactory
 import com.example.weatherapp.data.local.WeatherLocalDataSource
 import com.example.weatherapp.data.remote.WeatherDataSource
 import com.example.weatherapp.data.remote.WeatherRemoteDataSource

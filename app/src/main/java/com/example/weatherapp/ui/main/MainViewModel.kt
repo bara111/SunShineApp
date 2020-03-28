@@ -10,10 +10,13 @@ import com.example.weatherapp.data.models.ApiResponse
 import com.example.weatherapp.data.models.WeatherResponse
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
-class MainViewModel @Inject constructor(private var weatherRepository: WeatherRepository) :
-    ViewModel() {
+
+class MainViewModel @Inject constructor(
+    private var weatherRepository: WeatherRepository
+) : ViewModel() {
     private val disposable = CompositeDisposable()
-    private var _weatherDailyDataList: MutableLiveData<ApiResponse<WeatherResponse,String>> = weatherRepository.weatherRemoteDataSource.requestData(disposable)
+    private var _weatherDailyDataList: MutableLiveData<ApiResponse<WeatherResponse, String>> =
+        weatherRepository.weatherRemoteDataSource.requestData(disposable)
     val weatherDailyDataList: LiveData<ApiResponse<WeatherResponse, String>> get() = _weatherDailyDataList
     var maxTemp: LiveData<Event<String>>
     var error: LiveData<Event<String>>
@@ -28,7 +31,7 @@ class MainViewModel @Inject constructor(private var weatherRepository: WeatherRe
     }
 
     internal fun fetchNewDataOnRefresh() {
-        _weatherDailyDataList=weatherRepository.weatherRemoteDataSource.requestData(disposable)
+        _weatherDailyDataList = weatherRepository.weatherRemoteDataSource.requestData(disposable)
     }
 
     override fun onCleared() {

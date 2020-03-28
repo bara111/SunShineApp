@@ -1,7 +1,7 @@
 package com.example.weatherapp.di.component
 
 import android.content.Context
-import com.example.weatherapp.AppSubComponents
+import com.example.weatherapp.di.AppSubComponents
 import com.example.weatherapp.di.module.*
 import com.example.weatherapp.ui.details.di.component.DetailsComponent
 import com.example.weatherapp.ui.main.di.component.MainComponent

@@ -5,7 +5,9 @@ import com.example.weatherapp.data.WeatherRepository
 import com.example.weatherapp.data.local.WeatherEntity
 import javax.inject.Inject
 
-class DetailsViewModel @Inject constructor(private var weatherRepository: WeatherRepository) : ViewModel() {
+class DetailsViewModel @Inject constructor(
+    private var weatherRepository: WeatherRepository
+) : ViewModel() {
 
     suspend fun saveRecord(
         time: String,

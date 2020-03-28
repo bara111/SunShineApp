@@ -14,8 +14,12 @@ import javax.inject.Inject
 class WeatherActivity : AppCompatActivity() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
+    private val viewModel by viewModels<WeatherViewModel> {
+        viewModelFactory
+    }
     private lateinit var binding: ActivityWeatherBinding
     private lateinit var adapter: WeatherAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         (application as BaseApp).appComponent.weatherComponent().create().inject(this)
         super.onCreate(savedInstanceState)
@@ -27,9 +31,6 @@ class WeatherActivity : AppCompatActivity() {
         }
         setSupportActionBar(binding.toolbarAll)
         adapter = WeatherAdapter()
-        val viewModel by viewModels<WeatherViewModel> {
-            viewModelFactory
-        }
         viewModel.weatherDataBaseList.observe(this, Observer { list ->
             with(binding) {
                 adapter.submitList(list)

@@ -8,8 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherapp.data.local.WeatherEntity
 import com.example.weatherapp.databinding.WeatheritemLayoutBinding
 
-class WeatherAdapter :
-    ListAdapter<WeatherEntity, WeatherAdapter.DetailsViewHolder>(WeatherDatabaseDC()) {
+class WeatherAdapter: ListAdapter<WeatherEntity, WeatherAdapter.DetailsViewHolder>(WeatherDatabaseDC()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailsViewHolder {
         return DetailsViewHolder.from(parent)
     }

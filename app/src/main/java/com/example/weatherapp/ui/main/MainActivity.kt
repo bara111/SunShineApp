@@ -2,7 +2,6 @@
 
 package com.example.weatherapp.ui.main
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -19,17 +18,17 @@ import com.example.weatherapp.databinding.ActivityMainBinding
 import com.example.weatherapp.ui.details.DetailsActivity
 import com.example.weatherapp.ui.weather.WeatherActivity
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
-@Suppress("PLUGIN_WARNING")
 class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var binding: ActivityMainBinding
     private lateinit var mainAdapter: MainAdapter
-    private lateinit var viewModel: MainViewModel
-    @SuppressLint("MissingPermission")
+    private val viewModel by viewModels<MainViewModel> {
+        viewModelFactory
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         (application as BaseApp).appComponent.mainComponent().create().inject(this)
         super.onCreate(savedInstanceState)
@@ -45,10 +44,6 @@ class MainActivity : AppCompatActivity() {
             recycleviewAll.adapter = mainAdapter
             recycleviewAll.hasFixedSize()
         }
-        val viewModel by viewModels<MainViewModel> {
-            viewModelFactory
-        }
-        this.viewModel = viewModel
 
         updateUI()
 
@@ -82,7 +77,7 @@ class MainActivity : AppCompatActivity() {
         viewModel.maxTemp.observe(this, Observer { it ->
             it.getContentIfNotHandled()?.let {
                 if (!it.contentEquals("null")) {
-                    Snackbar.make(root_layout, it, Snackbar.LENGTH_SHORT).show()
+                    Snackbar.make(binding.rootLayout, it, Snackbar.LENGTH_SHORT).show()
                     binding.alertMain?.visibility = View.GONE
                     binding.textErrorMain?.visibility = View.GONE
                 }
@@ -94,7 +89,7 @@ class MainActivity : AppCompatActivity() {
         viewModel.error.observe(this, Observer { it ->
             it.getContentIfNotHandled()?.let {
                 if (!it.contentEquals("null")) {
-                    Snackbar.make(root_layout, it, Snackbar.LENGTH_SHORT).show()
+                    Snackbar.make(binding.rootLayout, it, Snackbar.LENGTH_SHORT).show()
                     binding.alertMain?.visibility = View.VISIBLE
                     binding.textErrorMain?.visibility = View.VISIBLE
                 }
