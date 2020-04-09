@@ -9,5 +9,5 @@ import javax.inject.Inject
 class WeatherViewModel @Inject constructor(
     weatherRepository: WeatherRepository
 ) : ViewModel() {
-    var weatherDataBaseList: LiveData<List<WeatherEntity>> = weatherRepository.getRecords()
+    var weatherDataBaseList: LiveData<List<WeatherEntity>> = weatherRepository.getDailyRecordsFromDataBase()
 }

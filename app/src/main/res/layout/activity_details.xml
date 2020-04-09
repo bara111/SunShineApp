@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
             android:layout_marginStart="12dp"
-            android:src="@drawable/details_windicon_small"
+            android:src="@drawable/ic_details_wind_small"
             app:layout_constrainedWidth="true"
             app:layout_constraintEnd_toStartOf="@+id/textview_details_degree"
             app:layout_constraintHorizontal_bias="0.5"
@@ -43,8 +43,7 @@
             app:layout_constraintVertical_bias="0.0"
             tools:ignore="ContentDescription" />
 
-        <TextView
-
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textview_details_degree"
             android:layout_width="0dp"
             android:layout_height="31dp"
@@ -55,7 +54,6 @@
             android:gravity="start"
             android:lines="1"
             android:text="@{weatherData.wind.getDegreeWithUnit()}"
-            android:textAlignment="center"
             android:textColor="@color/colorBlack"
             android:textSize="@dimen/size_text_details_small"
             android:textStyle="bold"
@@ -73,7 +71,7 @@
             android:layout_margin="15dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="12dp"
-            android:src="@drawable/details_metericon_small"
+            android:src="@drawable/ic_details_meter_small"
             app:layout_constrainedWidth="true"
             app:layout_constraintEnd_toStartOf="@+id/textview_details_speed"
             app:layout_constraintHorizontal_bias="0.5"
@@ -81,7 +79,7 @@
             app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
             tools:ignore="ContentDescription" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textview_details_speed"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -102,7 +100,7 @@
             app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
             tools:text="100" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textview_all_mintemp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -128,17 +126,15 @@
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
             android:layout_marginStart="16dp"
-            android:src="@drawable/details_calendaricon_small"
+            android:src="@drawable/ic_details_calendar_small"
             app:layout_constrainedHeight="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/textview_details_time_date"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textview_all_mintemp"
-            app:layout_constraintVertical_bias="0.956"
             tools:ignore="ContentDescription" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textview_details_time_date"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
@@ -159,22 +155,19 @@
             app:layout_constraintVertical_bias="0.78"
             tools:text="2020-1-25" />
 
+
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imageView_details_humidity"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="8dp"
-            android:src="@drawable/details_rainicon_small"
+            android:src="@drawable/ic_details_rain_small"
             app:layout_constrainedWidth="true"
-            app:layout_constraintEnd_toStartOf="@+id/textview_details_humidity"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintTop_toBottomOf="@+id/imageview_details_speed"
+            app:layout_constraintBottom_toTopOf="@+id/imageview_details_time_date"
+            app:layout_constraintStart_toStartOf="parent"
             tools:ignore="ContentDescription" />
 
-
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textview_all_maxtemp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -196,12 +189,11 @@
             app:layout_constraintTop_toBottomOf="@+id/imageview_details_degree"
             tools:text="12" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textview_details_humidity"
             android:layout_width="33dp"
             android:layout_height="24dp"
             android:layout_margin="15dp"
-            android:layout_marginEnd="8dp"
             android:fontFamily="serif"
             android:maxHeight="100dp"
             android:maxLines="4"
@@ -210,12 +202,8 @@
             android:textSize="@dimen/size_text_details_small"
             android:textStyle="bold"
             app:layout_constrainedWidth="true"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView_details_humidity"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.652"
-            app:layout_constraintStart_toEndOf="@+id/imageview_details_speed"
-            app:layout_constraintTop_toBottomOf="@+id/textview_details_speed"
-            app:layout_constraintVertical_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/imageView_details_humidity"
+            app:layout_constraintTop_toTopOf="@+id/imageView_details_humidity"
             tools:text="18%" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

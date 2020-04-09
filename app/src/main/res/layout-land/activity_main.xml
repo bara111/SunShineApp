@@ -40,11 +40,11 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/main_roundedcorners_shape"
+                android:background="@drawable/main_rounded_corners_shape"
                 android:orientation="vertical"
                 tools:context=".ui.main.MainActivity">
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textview_main_today"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/appBarLayout_all"
                     tools:ignore="NotSibling" />
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textview_main_maxtemp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -71,7 +71,7 @@
                     app:layout_constraintVertical_bias="0.29"
                     tools:text="25" />
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textview_main_mintemp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -89,12 +89,12 @@
                     android:layout_height="@dimen/size_main_icon_small"
                     android:layout_gravity="center"
                     android:layout_marginEnd="24dp"
-                    android:src="@drawable/main_sunicon_small"
+                    android:src="@drawable/ic_main_sun_small"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/appBarLayout_all"
                     tools:ignore="ContentDescription,NotSibling" />
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textview_listitem_condition"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -117,6 +117,10 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1">
+                <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                    android:id="@+id/swipeContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycleview_all"
                     android:layout_width="match_parent"
@@ -126,6 +130,7 @@
                     app:layout_constraintBottom_toBottomOf="parent" />
 
                 <ProgressBar
+                    app:visibleGone="@{mainViewModel.isLoadingProgressBar().booleanValue()}"
                     android:id="@+id/progressbar_main"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

@@ -9,12 +9,12 @@ class DetailsViewModel @Inject constructor(
     private var weatherRepository: WeatherRepository
 ) : ViewModel() {
 
-    suspend fun saveRecord(
+    suspend fun addDailyRecordToDataBase(
         time: String,
         MaxTemp: String?,
         MinTemp: String?
     ) {
         val weatherEntity = WeatherEntity(time, MaxTemp, MinTemp)
-        weatherRepository.weatherLocalDataSource.saveRecord(weatherEntity)
+        weatherRepository.weatherLocalDataSource.addDailyRecordToDataBase(weatherEntity)
     }
 }

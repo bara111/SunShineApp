@@ -6,7 +6,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -20,7 +19,9 @@ import com.example.weatherapp.ui.weather.WeatherActivity
 import com.google.android.material.snackbar.Snackbar
 import javax.inject.Inject
 
+
 class MainActivity : AppCompatActivity() {
+
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var binding: ActivityMainBinding
@@ -35,27 +36,14 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView<ActivityMainBinding>(
             this,
             R.layout.activity_main
-        ).apply { lifecycleOwner = this@MainActivity }
-        setSupportActionBar(binding.toolbarAll)
-        mainAdapter = MainAdapter {
-            startActivity(DetailsActivity.newIntent(this@MainActivity, it))
-        }
-        with(binding) {
-            recycleviewAll.adapter = mainAdapter
-            recycleviewAll.hasFixedSize()
+        ).apply {
+            lifecycleOwner = this@MainActivity
+            mainViewModel = viewModel
         }
 
-        updateUI()
+        initViews()
 
-        showErrorMessageNetworkRequest()
-        showToastOnMaxTempChange()
-
-        binding.swipeContainer?.setColorSchemeResources(
-            android.R.color.holo_blue_bright
-        )
-        binding.swipeContainer?.setOnRefreshListener {
-            fetchNewDataOnRefresh()
-        }
+        initViewModel()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -73,45 +61,63 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun showToastOnMaxTempChange() {
-        viewModel.maxTemp.observe(this, Observer { it ->
-            it.getContentIfNotHandled()?.let {
-                if (!it.contentEquals("null")) {
-                    Snackbar.make(binding.rootLayout, it, Snackbar.LENGTH_SHORT).show()
-                    binding.alertMain?.visibility = View.GONE
-                    binding.textErrorMain?.visibility = View.GONE
-                }
+    private fun initViews() {
+        setSupportActionBar(binding.toolbarAll)
+        mainAdapter = MainAdapter {
+            startActivity(DetailsActivity.newIntent(this@MainActivity, it))
+        }
+
+        with(binding.recycleviewAll) {
+            adapter = mainAdapter
+            hasFixedSize()
+        }
+
+        with(binding.swipeContainer) {
+           setColorSchemeResources(
+                android.R.color.holo_blue_bright
+            )
+            setOnRefreshListener {
+                fetchNewDataOnRefresh()
             }
-        })
+        }
     }
 
-    private fun showErrorMessageNetworkRequest() {
-        viewModel.error.observe(this, Observer { it ->
-            it.getContentIfNotHandled()?.let {
-                if (!it.contentEquals("null")) {
-                    Snackbar.make(binding.rootLayout, it, Snackbar.LENGTH_SHORT).show()
-                    binding.alertMain?.visibility = View.VISIBLE
-                    binding.textErrorMain?.visibility = View.VISIBLE
-                }
+    private fun initViewModel() {
+        with(viewModel) {
+            binding.lifecycleOwner?.let { it ->
+                firstItemMaxTemp.observe(it, Observer {
+                    it.getContentIfNotHandled()?.let { maxTemp ->
+                        Snackbar.make(binding.rootLayout, maxTemp, Snackbar.LENGTH_SHORT).show()
+                    }
+                })
             }
-        })
-    }
 
-    private fun updateUI() {
-        this.viewModel.weatherDailyDataList.observe(this, Observer { list ->
-            with(binding) {
-                progressbarMain.visibility = View.GONE
-                textviewMainMaxtemp.text = list.Response?.list?.get(0)?.main?.converterTempMax()
-                textviewMainMintemp.text = list.Response?.list?.get(0)?.main?.converterTempMin()
-                textviewListitemCondition.text =
-                    list.Response?.list?.get(0)?.weather?.get(0)?.description
+            binding.lifecycleOwner?.let { it ->
+                error.observe(it, Observer {
+                    it.getContentIfNotHandled()?.let { data ->
+                        Snackbar.make(
+                            binding.rootLayout,
+                            data.message.toString(),
+                            Snackbar.LENGTH_SHORT
+                        )
+                            .show()
+                    }
+                })
             }
-            mainAdapter.submitList(list.Response?.list)
-        })
+
+            binding.lifecycleOwner?.let {
+                weatherDailyDataList.observe(it, Observer {
+                    with(binding) {
+                        weatherData=it.Response?.list?.get(0)
+                        mainAdapter.submitList(it?.Response?.list)
+                    }
+                })
+            }
+        }
     }
 
     private fun fetchNewDataOnRefresh() {
-        this.viewModel.fetchNewDataOnRefresh()
+        viewModel.fetchNewDataOnRefresh()
         binding.swipeContainer?.isRefreshing = false
     }
 }

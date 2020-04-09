@@ -29,14 +29,24 @@ class WeatherActivity : AppCompatActivity() {
         ).apply {
             lifecycleOwner = this@WeatherActivity
         }
+
+        initViews()
+
+        initViewModel()
+    }
+
+    private fun initViews() {
         setSupportActionBar(binding.toolbarAll)
         adapter = WeatherAdapter()
+        with(binding.recycleviewAll) {
+            hasFixedSize()
+            adapter = adapter
+        }
+    }
+
+    private fun initViewModel() {
         viewModel.weatherDataBaseList.observe(this, Observer { list ->
-            with(binding) {
-                adapter.submitList(list)
-                recycleviewAll.hasFixedSize()
-                recycleviewAll.adapter = adapter
-            }
+            adapter.submitList(list)
         })
     }
 }

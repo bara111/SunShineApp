@@ -22,25 +22,28 @@ class DetailsActivity : AppCompatActivity() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private var weatherDailyData: WeatherDailyData? = null
-    private lateinit var viewModel: DetailsViewModel
     private lateinit var binding: ActivityDetailsBinding
+    private val viewModel by viewModels<DetailsViewModel> {
+        viewModelFactory
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         (application as BaseApp).appComponent.detailsComponent().create().inject(this)
         super.onCreate(savedInstanceState)
-        binding =
-            DataBindingUtil.setContentView<ActivityDetailsBinding>(this, R.layout.activity_details)
+        binding = DataBindingUtil.setContentView<ActivityDetailsBinding>(this, R.layout.activity_details)
                 .apply {
                     lifecycleOwner = this@DetailsActivity
                 }
-        setSupportActionBar(binding.toolbarAll)
-        this.weatherDailyData = intent.getParcelableExtra(EXTRA_DETAILS)
-        binding.weatherData = weatherDailyData
-        val viewModel by viewModels<DetailsViewModel> {
-            viewModelFactory
-        }
-        this.viewModel=viewModel
+
+        initViews()
+
+        processingIncomingIntent()
     }
+
+    private fun initViews() {
+        setSupportActionBar(binding.toolbarAll)
+    }
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.appbar, menu)
@@ -51,18 +54,29 @@ class DetailsActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.insert_data -> {
                 if (weatherDailyData?.main != null) {
-                    CoroutineScope(Dispatchers.Main).launch {
-                        viewModel.saveRecord(
-                            weatherDailyData!!.getFormatedTime(),
-                            weatherDailyData!!.main?.converterTempMax(),
-                            weatherDailyData!!.main?.converterTempMin()
-                        )
-                    }
+                    saveRecordInDatabase()
                 }
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun saveRecordInDatabase() {
+        CoroutineScope(Dispatchers.Main).launch {
+            if (weatherDailyData != null) {
+                viewModel.addDailyRecordToDataBase(
+                    weatherDailyData!!.getFormatedTime(),
+                    weatherDailyData!!.main?.converterTempMax(),
+                    weatherDailyData!!.main?.converterTempMin()
+                )
+            }
+        }
+    }
+
+    private fun processingIncomingIntent() {
+        weatherDailyData = intent.getParcelableExtra(EXTRA_DETAILS)
+        binding.weatherData = weatherDailyData
     }
 
     companion object {

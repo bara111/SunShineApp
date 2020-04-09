@@ -11,13 +11,13 @@ class WeatherLocalDataSource @Inject constructor(
     var context: Context
 ) : WeatherDataSource.Local {
     private var daoDatabase: WeatherDao = WeatherRoomDatabase.getDatabase(context).wordDao()
-    override suspend fun saveRecord(weatherEntity: WeatherEntity) {
+    override suspend fun addDailyRecordToDataBase(weatherEntity: WeatherEntity) {
         withContext(Dispatchers.IO) {
-            daoDatabase.insert(weatherEntity)
+            daoDatabase.addDailyRecordToDataBase(weatherEntity)
         }
     }
 
-    override fun getRecords(): LiveData<List<WeatherEntity>> {
-        return daoDatabase.getRecords()
+    override fun getDailyRecordsFromDataBase(): LiveData<List<WeatherEntity>> {
+        return daoDatabase.getDailyRecordsFromDataBase()
     }
 }

@@ -30,8 +30,10 @@ class MainAdapter(
         fun bind(data: WeatherDailyData) {
             if (data.weather?.size != 0)
                 Glide.with(itemView.ctx).load(data.weather?.get(0)?.getUrl()).into(binding.imgaeviewListitemIcon)
-            binding.itemViewModel = data
-            binding.executePendingBindings()
+            with(binding){
+                itemViewModel = data
+                executePendingBindings()
+            }
         }
 
         companion object {

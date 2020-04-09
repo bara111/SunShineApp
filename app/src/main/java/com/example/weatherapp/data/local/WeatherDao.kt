@@ -10,11 +10,11 @@ import androidx.room.Query
 interface WeatherDao {
 
     @Query("SELECT * from weather_table")
-    fun getRecords(): LiveData<List<WeatherEntity>>
+    fun getDailyRecordsFromDataBase(): LiveData<List<WeatherEntity>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insert(weatherEntity: WeatherEntity)
+    fun addDailyRecordToDataBase(weatherEntity: WeatherEntity)
 
     @Query("DELETE FROM weather_table")
-    fun deleteAll()
+    fun deleteAllRecordFromDataBase()
 }

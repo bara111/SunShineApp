@@ -20,8 +20,10 @@ class WeatherAdapter: ListAdapter<WeatherEntity, WeatherAdapter.DetailsViewHolde
         val binding: WeatheritemLayoutBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(data: WeatherEntity) {
-            binding.databaseViewModel = data
-            binding.executePendingBindings()
+            with(binding) {
+                databaseViewModel = data
+                executePendingBindings()
+            }
         }
 
         companion object {
