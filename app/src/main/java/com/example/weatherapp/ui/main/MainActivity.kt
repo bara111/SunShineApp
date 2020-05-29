@@ -1,5 +1,3 @@
-@file:Suppress("DEPRECATION")
-
 package com.example.weatherapp.ui.main
 
 import android.content.Intent
@@ -91,18 +89,13 @@ class MainActivity : AppCompatActivity() {
                     }
                 })
             }
-
+            error.observe(this@MainActivity, Observer {
+                it.getContentIfNotHandled()?.let { data ->
+                    Snackbar.make(binding.rootLayout, data.message.toString(), Snackbar.LENGTH_SHORT).show()
+                }
+            })
             binding.lifecycleOwner?.let { it ->
-                error.observe(it, Observer {
-                    it.getContentIfNotHandled()?.let { data ->
-                        Snackbar.make(
-                            binding.rootLayout,
-                            data.message.toString(),
-                            Snackbar.LENGTH_SHORT
-                        )
-                            .show()
-                    }
-                })
+
             }
 
             binding.lifecycleOwner?.let {
@@ -118,6 +111,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun fetchNewDataOnRefresh() {
         viewModel.fetchNewDataOnRefresh()
-        binding.swipeContainer?.isRefreshing = false
+        binding.swipeContainer.isRefreshing = false
     }
 }

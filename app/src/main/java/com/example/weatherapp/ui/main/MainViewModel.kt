@@ -3,10 +3,10 @@ package com.example.weatherapp.ui.main
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.weatherapp.Event
 import com.example.weatherapp.data.WeatherRepository
 import com.example.weatherapp.data.models.ApiResponse
 import com.example.weatherapp.data.models.WeatherResponse
+import com.example.weatherapp.util.Event
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -14,9 +14,13 @@ import retrofit2.Response
 import javax.inject.Inject
 
 class MainViewModel @Inject constructor(
-    weatherRepository: WeatherRepository
+    private val weatherRepository: WeatherRepository
 ) : ViewModel() {
+
     private val disposable = CompositeDisposable()
+
+    private var _isRefreshing: MutableLiveData<Boolean> = MutableLiveData()
+    val isRefreshing: LiveData<Boolean> get() = _isRefreshing
 
     private var _weatherDailyData: MutableLiveData<ApiResponse<WeatherResponse, Throwable>> =
         MutableLiveData()
@@ -31,8 +35,11 @@ class MainViewModel @Inject constructor(
     private var _error: MutableLiveData<Event<Throwable>> = MutableLiveData()
     val error: LiveData<Event<Throwable>> get() = _error
 
-
     init {
+        getWeatherData()
+    }
+
+    private fun getWeatherData() {
         disposable.add(
             weatherRepository.weatherRemoteDataSource.requestData()
                 .subscribeOn(Schedulers.io())
@@ -57,7 +64,9 @@ class MainViewModel @Inject constructor(
         _isLoadingProgressBar.value = true
     }
 
-    internal fun fetchNewDataOnRefresh() {
+    fun fetchNewDataOnRefresh() {
+        getWeatherData()
+        _isRefreshing.value = false
     }
 
     override fun onCleared() {
