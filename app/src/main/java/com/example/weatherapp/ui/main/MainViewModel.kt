@@ -18,25 +18,25 @@ class MainViewModel @Inject constructor(private var weatherRepository: WeatherRe
     val weatherDailyDataList: LiveData<Result<WeatherResponse?>> get() = _weatherDailyDataList
     var maxTemp: LiveData<Event<String>>
     var error: LiveData<Event<String>>
-    var state:Boolean=false
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
-             state = weatherRepository.getTask()
+           val response = weatherRepository.getWeatherDetailsResponse()
             withContext(Dispatchers.Main) {
-                if (state)
-                _weatherDailyDataList.value=Result.success(weatherRepository.getSuccess())
+                if(response!=null&&response.isSuccessful){
+                    _weatherDailyDataList.value = Result.success(response.body())
+                }
                 else {
-                    _errorResponse.value= weatherRepository.getException()?.let { Result.failure(it) }
+                    _errorResponse.value =
+                        weatherRepository.getException()?.let { Result.failure(it) }
                 }
             }
         }
+
         maxTemp = Transformations.map(_weatherDailyDataList) { response ->
-            Event(
-                "${response.getOrNull()?.list?.get(0)?.main?.converterTempMax()
-                }"
-            )
+            Event("${response.getOrNull()?.list?.get(0)?.main?.converterTempMax()}")
         }
+
         error = Transformations.map(_errorResponse) { response ->
             Event("${response.onFailure { it.cause }}}")
         }
